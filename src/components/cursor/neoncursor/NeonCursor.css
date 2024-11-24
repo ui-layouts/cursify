@@ -1,0 +1,41 @@
+
+.neon-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.cursor-main {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgb(236, 101, 23);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.cursor-trail {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid rgb(236, 101, 23);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.cursor-glow {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(236, 101, 23, 0.4) 0%, transparent 70%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
