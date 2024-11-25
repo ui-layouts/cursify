@@ -4,6 +4,7 @@ import Navbar from '@/components/layout/Navbar';
 import Sidebar from '@/components/layout/Sidebar';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { findComponentByPath } from '@/lib/navigation';
+import Footer from '@/components/layout/Footer';
 
 const DocumentPage = () => {
   const location = useLocation();
@@ -27,6 +28,7 @@ const DocumentPage = () => {
             <div className="p-6">
               {Component && <Component />}
             </div>
+            <Footer />
           </ScrollArea>
         </main>
       </div>

@@ -12,12 +12,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { Menu, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { CATEGORIES } from "@/constants/sidebarOptions";
 
@@ -25,7 +20,6 @@ const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   // Sort categories alphabetically
   const sortedCategories = [...CATEGORIES].sort((a, b) =>
@@ -49,8 +43,7 @@ const Sidebar = () => {
   };
 
   const SidebarContent = () => (
-    <div className="flex 
- flex-col gap-4" style={{ height: "calc(100vh - 4rem)" }}>
+    <div className="flex flex-col gap-4" style={{ height: "calc(100vh - 4rem)" }}>
       {/* Search Trigger */}
       <div className="p-4 border-b">
         <Button
@@ -83,7 +76,6 @@ const Sidebar = () => {
                     <Link
                       key={subcategory.id}
                       to={formatPath(category.id, subcategory.id)}
-                      onClick={() => setIsSheetOpen(false)}
                       className={cn(
                         "block px-2 py-1.5 text-sm rounded-md transition-colors",
                         location.pathname === formatPath(category.id, subcategory.id)
@@ -104,18 +96,6 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Mobile Menu Trigger */}
-      <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-        <SheetTrigger asChild className="lg:hidden">
-          <Button variant="outline" size="icon" className="ml-2">
-            <Menu className="h-5 w-5" />
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="left" className="w-72 p-0">
-          <SidebarContent />
-        </SheetContent>
-      </Sheet>
-
       {/* Desktop Sidebar */}
       <nav className="hidden lg:block sticky top-0 shrink-0 w-[280px] border-r h-[calc(100vh-4rem)] bg-background">
         <SidebarContent />

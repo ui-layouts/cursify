@@ -6,55 +6,13 @@ import BreadcrumbMaker from "../common/Breadcrumb";
 import SEO from "../common/SEO";
 import TextFlagCursor from "../cursor/common/TextFlagCursor";
 import { Separator } from "../ui/separator";
+import { TextFlagCursorCode } from "@/constants/constant-hooks";
 
 const TextFlagCursorExample = () => {
      const codeToDisplay = `
-import React from 'react';
-import TextFlagCursor from './TextFlagCursor';
-
-const ExampleComponent = () => {
-  return (
-    <div>
-      <TextFlagCursor />
-      {/* With options */}
-      {/* <TextFlagCursor
-        text="Hello World"
-        color="#000000"
-        font="monospace"
-        textSize={12}
-      /> */}
-
-      {/* With container element */}
-      {/* <div ref={containerRef}>
-        <TextFlagCursor element={containerRef.current} />
-      </div> */}
-    </div>
-  );
-};
-
-export default ExampleComponent;
   `;
 
-     const codeToDisplayHook = `
-import { useState, useEffect } from 'react';
 
-const useMouse = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  return mousePosition;
-};
-
-export default useMouse;
-  `;
 
      return (
           <DocumentLayout
@@ -68,17 +26,17 @@ export default useMouse;
                {/* Live Demo Section */}
                <ComponentCard
                     title="TextFlag Cursor Component"
-                    description="An interactive React component that tracks and visualizes cursor movement as a text flag."
+                    description="A React component that displays a trailing text flag following the cursor's movement.."
                >
                     <LivePreviewCard>
-                         <TextFlagCursor />
+                         {/* <TextFlagCursor /> */}
                          {/* Example with options */}
-                         {/* <TextFlagCursor
-            text="Hello World"
-            color="#000000"
-            font="monospace"
-            textSize={12}
-          /> */}
+                         <TextFlagCursor
+                              text="Hello World"
+                              color="#000000"
+                              font="monospace"
+                              textSize={12}
+                         />
                          {/* Example with container element */}
                          {/* <div ref={containerRef}>
             <TextFlagCursor element={containerRef.current} />
@@ -88,28 +46,19 @@ export default useMouse;
 
                {/* Implementation Section */}
                <ComponentCard
-                    title="Component Implementation"
+                    title="Usage"
                     description="Detailed code breakdown of the TextFlag Cursor component."
                >
                     <div className="space-y-4">
                          {/* Code Example for TextFlag Cursor Component */}
                          <CodeExample
-                              title="TextFlag Cursor Component"
-                              code={codeToDisplay}
-                              fileName="./TextFlagCursorExample.tsx"
+                              title="Create TextFlagCursor.tsx Component"
+                              code={TextFlagCursorCode}
+                              fileName="./TextFlagCursor.tsx"
                               badgeText="TSX"
                          />
 
-                         {/* Separator */}
-                         <Separator className="my-4" />
 
-                         {/* Code Example for Hook */}
-                         <CodeExample
-                              title="useMouse Hook"
-                              code={codeToDisplayHook}
-                              fileName="./use-mouse.ts"
-                              badgeText="TS"
-                         />
                     </div>
                </ComponentCard>
           </DocumentLayout>

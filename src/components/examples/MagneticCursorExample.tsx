@@ -1,75 +1,78 @@
 import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
-
-// Import custom components
 import { DocumentLayout } from "@/components/common/DocumentLayout";
 import { ComponentCard } from "@/components/common/ComponentCard";
 import { CodeExample } from "@/components/common/CodeExample";
 import { LivePreviewCard } from "@/components/common/LivePreviewCard";
 import BreadcrumbMaker from "../common/Breadcrumb";
-import SEO from '../common/SEO';
+
 import MagneticCursor from "../cursor/common/MagneticCursor";
+import CommandCode from "../ui/CommandCode";
 
 const MagneticCursorExample = () => {
-  const codeToDisplay = ``;
+  const codeToDisplay = `
+import React, { useRef, useEffect, useState } from 'react';
+import { gsap } from 'gsap';
 
-  const codeToDisplayHook = `
-"use client";
-import { type RefObject, useLayoutEffect, useRef, useState } from "react";
+const MagneticCursor: React.FC = () => {
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const [isHovering, setIsHovering] = useState(false);
 
-interface MouseState {
-  x: number | null;
-  y: number | null;
-  elementX: number | null;
-  elementY: number | null;
-  elementPositionX: number | null;
-  elementPositionY: number | null;
-}
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (buttonRef.current) {
+        const button = buttonRef.current.getBoundingClientRect();
+        const centerX = button.left + button.width / 2;
+        const centerY = button.top + button.height / 2;
+        const deltaX = e.pageX - centerX;
+        const deltaY = e.pageY - centerY;
 
-export function useMouse(): [MouseState, RefObject<HTMLDivElement>] {
-  const [state, setState] = useState<MouseState>({
-    x: null,
-    y: null,
-    elementX: null,
-    elementY: null,
-    elementPositionX: null,
-    elementPositionY: null,
-  });
-  
-  const ref = useRef<HTMLDivElement | null>(null);
+        const distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+        const magneticDistance = 120; // Distance for magnetic attraction
+        const attractionStrength = 0.45; // Magnetic strength
 
-  useLayoutEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
-      const newState: Partial<MouseState> = {
-        x: event.pageX,
-        y: event.pageY,
-      };
-
-      if (ref.current instanceof Element) {
-        const { left, top } = ref.current.getBoundingClientRect();
-        const elementPositionX = left + window.scrollX;
-        const elementPositionY = top + window.scrollY;
-        const elementX = event.pageX - elementPositionX;
-        const elementY = event.pageY - elementPositionY;
-        
-        newState.elementX = elementX;
-        newState.elementY = elementY;
-        newState.elementPositionX = elementPositionX;
-        newState.elementPositionY = elementPositionY;
+        if (distance < magneticDistance) {
+          const strength = 1 - distance / magneticDistance;
+          gsap.to(buttonRef.current, {
+            x: deltaX * strength * attractionStrength,
+            y: deltaY * strength * attractionStrength,
+            duration: 0.2,
+          });
+          setIsHovering(true);
+        } else {
+          gsap.to(buttonRef.current, {
+            x: 0,
+            y: 0,
+            duration: 0.3,
+          });
+          setIsHovering(false);
+        }
       }
-      setState((s) => ({ ...s, ...newState }));
     };
 
-    document.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
-  return [state, ref];
-}
+  return (
+    <div className="relative w-full h-screen bg-gray-900 flex items-center justify-center">
+      <button
+        ref={buttonRef}
+        className={\`px-6 py-3 rounded-lg text-white font-semibold transition-transform \${isHovering ? 'bg-green-500' : 'bg-green-600'
+          }\`}
+      >
+        Hover on me!
+      </button>
+    </div>
+  );
+};
+
+export default MagneticCursor;
 `;
+
+
 
   return (
     <DocumentLayout
@@ -83,37 +86,33 @@ export function useMouse(): [MouseState, RefObject<HTMLDivElement>] {
       {/* Live Demo Section */}
       <ComponentCard
         title="Magnetic Cursor Component"
-        description="An interactive React component that tracks and visualizes cursor movement"
+        description="A responsive React component that dynamically pulls elements toward the cursor, creating a magnetic interaction effect."
       >
         <LivePreviewCard>
           <MagneticCursor />
         </LivePreviewCard>
       </ComponentCard>
-
+      <ComponentCard
+        title="Installation"
+        description="Install dependencies"
+      >
+        <CommandCode >npm i @gsap/react</CommandCode>
+      </ComponentCard>
       {/* Implementation Section */}
       <ComponentCard
-        title="Component Implementation"
+        title="Usage"
         description="Detailed code breakdown of the Magnetic Cursor component."
       >
         <div className="space-y-4">
           {/* Code Example for Magnetic Cursor */}
           <CodeExample
-            title="Magnetic Cursor Component"
+            title="Create Magnetic Cursor Component"
             code={codeToDisplay}
-            fileName="./MagneticCursorExample.tsx"
+            fileName="./MagneticCursor.tsx"
             badgeText="TSX"
           />
 
-          {/* Separator */}
-          <Separator className="my-4" />
-
-          {/* Code Example for Custom Mouse Hook */}
-          <CodeExample
-            title="Custom Mouse Hook"
-            code={codeToDisplayHook}
-            fileName="./use-mouse.ts"
-            badgeText="TS"
-          />
+          
         </div>
       </ComponentCard>
     </DocumentLayout>

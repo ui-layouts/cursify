@@ -24,7 +24,7 @@ export function ComponentCard({
      return (
           <Card className={cn('border-none shadow-none', className)}>
                <CardHeader>
-                    
+
                     <CardTitle className=" scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">{title}</CardTitle>
                     <CardDescription className="leading-7 [&:not(:first-child)]:mt-6">{description}</CardDescription>
                </CardHeader>

@@ -1,5 +1,5 @@
 import useSpotlightEffect from '@/hooks/use-spotlight';
-import React from 'react';
+
 
 const SpotlightCursor = ({ config }) => {
   const canvasRef = useSpotlightEffect(config);

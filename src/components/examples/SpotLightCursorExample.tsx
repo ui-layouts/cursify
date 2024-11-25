@@ -7,13 +7,36 @@ import SEO from "../common/SEO";
 
 import { Separator } from "@radix-ui/react-separator";
 import SpotlightCursor from "../cursor/common/SpotLightCursor";
+import { useSpotLightCursorCode } from "@/constants/constant-hooks";
 
 const SpotLightCursorExample = () => {
   const codeToDisplay = `
+import useSpotlightEffect from '@/hooks/use-spotlight';
+import React from 'react';
+
+const SpotlightCursor = ({ config }) => {
+  const canvasRef = useSpotlightEffect(config);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        pointerEvents: 'none',
+        zIndex: 9999,
+        width: '100%',
+        height: '100%',
+      }}
+    />
+  );
+};
+
+export default SpotlightCursor;
   `;
 
-  const codeToDisplayHook = `
-  `;
+  
 
   return (
     <DocumentLayout
@@ -27,7 +50,7 @@ const SpotLightCursorExample = () => {
       {/* Live Demo Section */}
       <ComponentCard
         title="SpotLight Cursor Component"
-        description="An interactive React component that tracks and visualizes cursor movement."
+        description="A React component that simulates a spotlight effect following the cursor's movement."
       >
         <LivePreviewCard>
           <SpotlightCursor />
@@ -40,7 +63,14 @@ const SpotLightCursorExample = () => {
         description="Detailed code breakdown of the SpotLight Cursor component."
       >
         <div className="space-y-4">
-          {/* Code Example for Spotlight Cursor Component */}
+        <CodeExample
+            title="Create useSpotlight.ts Hook"
+            code={useSpotLightCursorCode}
+            fileName="./use-Spotlight.ts"
+            badgeText="TS"
+          />
+            <Separator className="my-4" />
+
           <CodeExample
             title="SpotLight Cursor Component"
             code={codeToDisplay}
@@ -48,16 +78,7 @@ const SpotLightCursorExample = () => {
             badgeText="TSX"
           />
 
-          {/* Separator */}
-          <Separator className="my-4" />
-
-          {/* Code Example for Hook */}
-          <CodeExample
-            title="useSpotlight Hook"
-            code={codeToDisplayHook}
-            fileName="./use-Spotlight.ts"
-            badgeText="TS"
-          />
+         
         </div>
       </ComponentCard>
     </DocumentLayout>
