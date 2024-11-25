@@ -2,7 +2,6 @@ import { Category } from "@/types";
 import FollowCursorExample from "@/components/examples/FollowCursorExample";
 import NeonCursorExample from "@/components/examples/NeonCursorExample";
 import SpotLightCursorExample from "@/components/examples/SpotLightCursorExample";
-import { MousePointer, Sparkles } from "lucide-react";
 import TrailCursorExample from "@/components/examples/TrailCursorExample";
 import BlobCursorExample from "@/components/examples/BlobCursorExample";
 import ClickCursorExample from "@/components/examples/ClickCursorExample";
@@ -16,7 +15,6 @@ import ThreeDCursorExample from "@/components/examples/ThreeDCursorExample";
 import TrailUpdateCursorExample from "@/components/examples/TrailUpdateCursorExample";
 import SpringCursorExample from "@/components/examples/SpringCursorExample";
 import SwirlCursorExample from "@/components/examples/SwirlCursorExample";
-import RainbowCursorExample from "@/components/examples/RainbowCursorExample";
 import BubbleCursorExample from "@/components/examples/BubbleCursorExample";
 import CharacterCursorExample from "@/components/examples/CharacterCursorExample";
 import FairyDustCursorExample from "@/components/examples/FairyDustCursorExample";
@@ -26,6 +24,7 @@ import CanvasCursorExample from "@/components/examples/CanvasCursorExample";
 import FluidCursorExample from "@/components/examples/FluidCursorExample";
 import Introduction from "@/pages/document/common/Introduction";
 import InstallationGuide from "@/pages/document/common/InstallationGuide";
+import RainbowCursorExample from "@/components/examples/RainbowCursorExample";
 
 export const CATEGORIES: Category[] = [
   {
@@ -141,12 +140,12 @@ export const CATEGORIES: Category[] = [
         description: "Springy cursor effect",
         component: SpringCursorExample,
       },
-      {
-        id: "swirl-cursor",
-        title: "Swirl Cursor",
-        description: "Swirl cursor effect",
-        component: SwirlCursorExample,
-      },
+      // {
+      //   id: "swirl-cursor",
+      //   title: "Swirl Cursor",
+      //   description: "Swirl cursor effect",
+      //   component: SwirlCursorExample,
+      // },
       {
         id: "rainbow-cursor",
         title: "Rainbow Cursor",

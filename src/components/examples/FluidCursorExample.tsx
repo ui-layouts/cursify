@@ -1,82 +1,97 @@
-import React from 'react';
+import React from "react";
 
 // Import UI components from shadcn/ui
-import {
-     Card,
-     CardContent,
-     CardDescription,
-     CardHeader,
-     CardTitle
-} from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 
 // Import custom components
-import SEO from '../common/SEO';
-import { AdvancedCodeBlock } from '@/pages/document/components/AdvanceCodeBlock';
-import Preview from '@/pages/document/components/Preview';
+import { DocumentLayout } from "@/components/common/DocumentLayout";
+import { ComponentCard } from "@/components/common/ComponentCard";
+import { CodeExample } from "@/components/common/CodeExample";
+import { LivePreviewCard } from "@/components/common/LivePreviewCard";
+import BreadcrumbMaker from "../common/Breadcrumb";
 import CommandCode from "@/components/ui/CommandCode";
-import FluidCursor from '../cursor/common/FluidCursor';
-
+import FluidCursor from "../cursor/common/FluidCursor";
 
 const FluidCursorExample = () => {
      // Code to be displayed in the documentation
      const codeToDisplay = `import React, { useState, useEffect, useCallback } from 'react';
 import { motion, useAnimation, useSpring } from 'framer-motion';
+
+const FluidCursor = () => {
+    const controls = useAnimation();
+    const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+
+    const handleMouseMove = useCallback((event: MouseEvent) => {
+        setCursorPos({ x: event.clientX, y: event.clientY });
+    }, []);
+
+    useEffect(() => {
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, [handleMouseMove]);
+
+    return (
+        <motion.div
+            className="cursor"
+            style={{
+                position: "absolute",
+                left: cursorPos.x,
+                top: cursorPos.y,
+                width: "20px",
+                height: "20px",
+                borderRadius: "50%",
+                backgroundColor: "rgba(0, 0, 255, 0.5)",
+                pointerEvents: "none",
+            }}
+            animate={controls}
+        />
+    );
+};
+
+export default FluidCursor;
 `;
 
      return (
-          <div className="container mx-auto px-4 py-8 space-y-6">
-               {/* SEO Configuration */}
-               <SEO
-                    title="Fluid Cursor"
-                    description="Interactive cursor tracking component"
-                    keywords={['react', 'cursor', 'interaction', 'mouse tracking']}
-               />
+          <DocumentLayout
+               title="Fluid Cursor"
+               description="Interactive cursor tracking component"
+               keywords={["react", "cursor", "interaction", "mouse tracking"]}
+          >
+               {/* Breadcrumb */}
+               <BreadcrumbMaker />
 
-               {/* Live Demo Card */}
-               <Card className='border-none shadow-none'>
-                    <CardHeader>
-                         <CardTitle className="text-2xl">Fluid Cursor Component</CardTitle>
-                         <CardDescription></CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                         <Separator className="my-4" />
-                         <Preview
-                              title="Live Preview"
-                              className="relative"
-                         >
-                              <FluidCursor />
-                         </Preview>
-                    </CardContent>
-               </Card>
+               {/* Live Demo Section */}
+               <ComponentCard
+                    title="Fluid Cursor Component"
+                    description="An interactive React component that tracks mouse movement and renders a fluid animation around the cursor."
+               >
+                    <LivePreviewCard>
+                         <FluidCursor />
+                    </LivePreviewCard>
+               </ComponentCard>
 
-               {/* Implementation Card */}
-               <Card className='border-none shadow-none'>
-                    <CardHeader>
-                         <CardTitle>Component Implementation</CardTitle>
-                         <CardDescription>
-                              Detailed code breakdown of the Follow Cursor component
+               {/* Implementation Section */}
+               <ComponentCard
+                    title="Component Implementation"
+                    description="Detailed code breakdown of the Fluid Cursor component."
+               >
+                    <div className="space-y-4">
+                         {/* Installation Command */}
+                         <div className="mb-4">
                               <CommandCode>npm install framer-motion</CommandCode>
-                         </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                         <div className="space-y-4">
-                              <div>
-                                   <h4 className="text-lg font-semibold mb-2">
-                                        Fluid Cursor Component
-                                        <Badge variant="secondary" className="ml-2">TSX</Badge>
-                                   </h4>
-                                   <AdvancedCodeBlock
-                                        code={codeToDisplay}
-                                        fileName="./FluidCursorExample.tsx"
-                                        lang="typescript"
-                                   />
-                              </div>
                          </div>
-                    </CardContent>
-               </Card>
-          </div>
+
+                         {/* Code Example */}
+                         <CodeExample
+                              title="Fluid Cursor Component"
+                              code={codeToDisplay}
+                              fileName="./FluidCursorExample.tsx"
+                              badgeText="TSX"
+                         />
+                    </div>
+               </ComponentCard>
+          </DocumentLayout>
      );
 };
 

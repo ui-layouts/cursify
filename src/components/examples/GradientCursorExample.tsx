@@ -1,140 +1,88 @@
-import {
-     Card,
-     CardContent,
-     CardDescription,
-     CardHeader,
-     CardTitle
-} from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
+
+// Import custom components
+import { DocumentLayout } from "@/components/common/DocumentLayout";
+import { ComponentCard } from "@/components/common/ComponentCard";
+import { CodeExample } from "@/components/common/CodeExample";
+import { LivePreviewCard } from "@/components/common/LivePreviewCard";
+import BreadcrumbMaker from "../common/Breadcrumb";
 import SEO from '../common/SEO';
-import { AdvancedCodeBlock } from '@/pages/document/components/AdvanceCodeBlock';
-import Preview from '@/pages/document/components/Preview';
 import GradientCursor from "../cursor/common/GradientCursor";
 
 const GradientCursorExample = () => {
-     const codeToDisplay = ``;
+  const codeToDisplay = ``;
 
-     const codeToDisplayHook = `
+  const codeToDisplayHook = `
 "use client";
-import { type RefObject, useLayoutEffect, useRef, useState } from "react";
-interface MouseState {
-  x: number | null;
-  y: number | null;
-  elementX: number | null;
-  elementY: number | null;
-  elementPositionX: number | null;
-  elementPositionY: number | null;
-}
-export function useMouse(): [MouseState, RefObject<HTMLDivElement>] {
-  const [state, setState] = useState<MouseState>({
-    x: null,
-    y: null,
-    elementX: null,
-    elementY: null,
-    elementPositionX: null,
-    elementPositionY: null,
-  });
-  const ref = useRef<HTMLDivElement | null>(null);
-  useLayoutEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
-      const newState: Partial<MouseState> = {
-        x: event.pageX,
-        y: event.pageY,
-      };
-      if (ref.current instanceof Element) {
-        const { left, top } = ref.current.getBoundingClientRect();
-        const elementPositionX = left + window.scrollX;
-        const elementPositionY = top + window.scrollY;
-        const elementX = event.pageX - elementPositionX;
-        const elementY = event.pageY - elementPositionY;
-        newState.elementX = elementX;
-        newState.elementY = elementY;
-        newState.elementPositionX = elementPositionX;
-        newState.elementPositionY = elementPositionY;
-      }
-      setState((s) => ({
-        ...s,
-        ...newState,
-      }));
+import { useState, useEffect } from "react";
+
+export function useMouse() {
+  const [position, setPosition] = useState({ x: null, y: null });
+
+  useEffect(() => {
+    const updatePosition = (event: MouseEvent) => {
+      setPosition({ x: event.pageX, y: event.pageY });
     };
-    document.addEventListener("mousemove", handleMouseMove);
+
+    document.addEventListener("mousemove", updatePosition);
+
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mousemove", updatePosition);
     };
   }, []);
-  return [state, ref];
+
+  return position;
 }
 `;
 
-     return (
-          <div className="container mx-auto px-4 py-8 space-y-6">
-               <SEO
-                    title="Gradient Cursor"
-                    description="Interactive Gradient cursor tracking component"
-                    keywords={['react', 'cursor', 'interaction', 'mouse tracking']}
-               />
+  return (
+    <DocumentLayout
+      title="Gradient Cursor"
+      description="Interactive Gradient cursor tracking component"
+      keywords={['react', 'cursor', 'interaction', 'mouse tracking']}
+    >
+      {/* Breadcrumb */}
+      <BreadcrumbMaker />
 
+      {/* Live Demo Section */}
+      <ComponentCard
+        title="Gradient Cursor Component"
+        description="An interactive React component that tracks and visualizes cursor movement"
+      >
+        <LivePreviewCard>
+          <GradientCursor />
+        </LivePreviewCard>
+      </ComponentCard>
 
+      {/* Implementation Section */}
+      <ComponentCard
+        title="Component Implementation"
+        description="Detailed code breakdown of the Gradient Cursor component."
+      >
+        <div className="space-y-4">
+          {/* Code Example for Gradient Cursor */}
+          <CodeExample
+            title="Gradient Cursor Component"
+            code={codeToDisplay}
+            fileName="./GradientCursorExample.tsx"
+            badgeText="TSX"
+          />
 
-               <Card className='border-none shadow-none'>
-                    <CardHeader>
-                         <CardTitle className="text-2xl">Gradient Cursor Component</CardTitle>
-                         <CardDescription>
-                              An interactive React component that tracks and visualizes cursor movement
-                         </CardDescription>
-                    </CardHeader>
-                    <CardContent>
+          {/* Separator */}
+          <Separator className="my-4" />
 
-                         <Separator className="my-4" />
-                         <Preview
-                              title="Live Preview"
-                              className="bg-neutral-50 border"
-                         >
-                              <GradientCursor />
-                         </Preview>
-                    </CardContent>
-               </Card>
-
-               <Card className='border-none shadow-none'>
-                    <CardHeader>
-                         <CardTitle>Component Implementation</CardTitle>
-                         <CardDescription>
-                              Detailed code breakdown of the Gradient Cursor component
-                         </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                         <div className="space-y-4">
-                              <div>
-                                   <h4 className="text-lg font-semibold mb-2">
-                                        Gradient Cursor Component
-                                        <Badge variant="secondary" className="ml-2">TSX</Badge>
-                                   </h4>
-                                   <AdvancedCodeBlock
-                                        code={codeToDisplay}
-                                        fileName="./GradientCursorExample.tsx"
-                                        lang="typescript"
-                                   />
-                              </div>
-
-                              <Separator className="my-4" />
-
-                              <div>
-                                   <h4 className="text-lg font-semibold mb-2">
-                                        Custom Mouse Hook
-                                        <Badge variant="secondary" className="ml-2">TS</Badge>
-                                   </h4>
-                                   <AdvancedCodeBlock
-                                        code={codeToDisplayHook}
-                                        fileName="./use-mouse.ts"
-                                        lang="typescript"
-                                   />
-                              </div>
-                         </div>
-                    </CardContent>
-               </Card>
-          </div>
-     );
+          {/* Code Example for Custom Mouse Hook */}
+          <CodeExample
+            title="Custom Mouse Hook"
+            code={codeToDisplayHook}
+            fileName="./use-mouse.ts"
+            badgeText="TS"
+          />
+        </div>
+      </ComponentCard>
+    </DocumentLayout>
+  );
 };
 
 export default GradientCursorExample;

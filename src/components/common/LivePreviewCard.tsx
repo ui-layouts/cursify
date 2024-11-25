@@ -10,14 +10,14 @@ interface LivePreviewCardProps {
 
 export function LivePreviewCard({ children, className }: LivePreviewCardProps) {
      return (
-          <>
+          <div>
                <Separator className="my-4" />
                <Preview
                     title="Live Preview"
-                    className={cn("bg-neutral-100 border rounded-lg", className)}
+                    className={cn(" border rounded-lg", className)}
                >
                     {children}
                </Preview>
-          </>
+          </div>
      );
 }

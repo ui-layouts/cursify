@@ -1,21 +1,22 @@
-import {
-     Card,
-     CardContent,
-     CardDescription,
-     CardHeader,
-     CardTitle
-} from "@/components/ui/card";
+import React from 'react';
+
+// Import UI components from shadcn/ui
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
+
+// Import custom components
+import { DocumentLayout } from "@/components/common/DocumentLayout";
+import { ComponentCard } from "@/components/common/ComponentCard";
+import { CodeExample } from "@/components/common/CodeExample";
+import { LivePreviewCard } from "@/components/common/LivePreviewCard";
+import BreadcrumbMaker from "../common/Breadcrumb";
 import SEO from '../common/SEO';
-import { AdvancedCodeBlock } from '@/pages/document/components/AdvanceCodeBlock';
-import Preview from '@/pages/document/components/Preview';
 import GlitchCursor from "../cursor/common/GlitchCursor";
 
 const GlitchCursorExample = () => {
-     const codeToDisplay = ``;
+  const codeToDisplay = ``;
 
-     const codeToDisplayHook = `
+  const codeToDisplayHook = `
 "use client";
 import { type RefObject, useLayoutEffect, useRef, useState } from "react";
 interface MouseState {
@@ -67,74 +68,53 @@ export function useMouse(): [MouseState, RefObject<HTMLDivElement>] {
 }
 `;
 
-     return (
-          <div className="container mx-auto px-4 py-8 space-y-6">
-               <SEO
-                    title="Glitch Cursor"
-                    description="Interactive Glitch cursor tracking component"
-                    keywords={['react', 'cursor', 'interaction', 'mouse tracking']}
-               />
+  return (
+    <DocumentLayout
+      title="Glitch Cursor"
+      description="Interactive Glitch cursor tracking component"
+      keywords={['react', 'cursor', 'interaction', 'mouse tracking']}
+    >
+      {/* Breadcrumb */}
+      <BreadcrumbMaker />
 
+      {/* Live Demo Section */}
+      <ComponentCard
+        title="Glitch Cursor Component"
+        description="An interactive React component that tracks and visualizes cursor movement"
+      >
+        <LivePreviewCard>
+          <GlitchCursor />
+        </LivePreviewCard>
+      </ComponentCard>
 
+      {/* Implementation Section */}
+      <ComponentCard
+        title="Component Implementation"
+        description="Detailed code breakdown of the Glitch Cursor component."
+      >
+        <div className="space-y-4">
+          {/* Code Example for Glitch Cursor */}
+          <CodeExample
+            title="Glitch Cursor Component"
+            code={codeToDisplay}
+            fileName="./GlitchCursorExample.tsx"
+            badgeText="TSX"
+          />
 
-               <Card className='border-none shadow-none'>
-                    <CardHeader>
-                         <CardTitle className="text-2xl">Glitch Cursor Component</CardTitle>
-                         <CardDescription>
-                              An interactive React component that tracks and visualizes cursor movement
-                         </CardDescription>
-                    </CardHeader>
-                    <CardContent>
+          {/* Separator */}
+          <Separator className="my-4" />
 
-                         <Separator className="my-4" />
-                         <Preview
-                              title="Live Preview"
-                              className="bg-neutral-50 border"
-                         >
-                              <GlitchCursor />
-                         </Preview>
-                    </CardContent>
-               </Card>
-
-               <Card className='border-none shadow-none'>
-                    <CardHeader>
-                         <CardTitle>Component Implementation</CardTitle>
-                         <CardDescription>
-                              Detailed code breakdown of the Glitch Cursor component
-                         </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                         <div className="space-y-4">
-                              <div>
-                                   <h4 className="text-lg font-semibold mb-2">
-                                        Glitch Cursor Component
-                                        <Badge variant="secondary" className="ml-2">TSX</Badge>
-                                   </h4>
-                                   <AdvancedCodeBlock
-                                        code={codeToDisplay}
-                                        fileName="./GlitchCursorExample.tsx"
-                                        lang="typescript"
-                                   />
-                              </div>
-
-                              <Separator className="my-4" />
-
-                              <div>
-                                   <h4 className="text-lg font-semibold mb-2">
-                                        Custom Mouse Hook
-                                        <Badge variant="secondary" className="ml-2">TS</Badge>
-                                   </h4>
-                                   <AdvancedCodeBlock
-                                        code={codeToDisplayHook}
-                                        fileName="./use-mouse.ts"
-                                        lang="typescript"
-                                   />
-                              </div>
-                         </div>
-                    </CardContent>
-               </Card>
-          </div>
-     );
+          {/* Code Example for Custom Mouse Hook */}
+          <CodeExample
+            title="Custom Mouse Hook"
+            code={codeToDisplayHook}
+            fileName="./use-mouse.ts"
+            badgeText="TS"
+          />
+        </div>
+      </ComponentCard>
+    </DocumentLayout>
+  );
 };
 
 export default GlitchCursorExample;

@@ -27,7 +27,7 @@ const Preview: React.FC<PreviewProps> = ({
                               {title}
                          </div>
                     )}
-                    <div className="w-full flex items-center justify-center p-10 rounded-lg">
+                    <div className="w-full min-h-screen flex items-center justify-center p-10 rounded-lg relative">
                          {children}
                     </div>
                </div>
@@ -38,7 +38,7 @@ const Preview: React.FC<PreviewProps> = ({
           <Card className={cn(
                "w-full max-w-6xl mx-auto",
                "min-h-[250px]",
-               "relative overflow-hidden",
+               "relative overflow-hidden ",
                className
           )}>
                {title && (

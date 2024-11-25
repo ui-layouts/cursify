@@ -1,141 +1,128 @@
-import {
-     Card,
-     CardContent,
-     CardDescription,
-     CardHeader,
-     CardTitle
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
-import SEO from '../common/SEO';
-import { AdvancedCodeBlock } from '@/pages/document/components/AdvanceCodeBlock';
-import Preview from '@/pages/document/components/Preview';
+import { DocumentLayout } from "@/components/common/DocumentLayout";
+import { ComponentCard } from "@/components/common/ComponentCard";
+import { CodeExample } from "@/components/common/CodeExample";
+import { LivePreviewCard } from "@/components/common/LivePreviewCard";
+import BreadcrumbMaker from "../common/Breadcrumb";
+import SEO from "../common/SEO";
 import { SpringyCursor } from "../cursor/common/SpringyCursor";
-
+import { Separator } from "../ui/separator";
 
 const SpringCursorExample = () => {
-     const codeToDisplay = ``;
+  const codeToDisplay = `
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
-     const codeToDisplayHook = `
-"use client";
-import { type RefObject, useLayoutEffect, useRef, useState } from "react";
-interface MouseState {
-  x: number | null;
-  y: number | null;
-  elementX: number | null;
-  elementY: number | null;
-  elementPositionX: number | null;
-  elementPositionY: number | null;
-}
-export function useMouse(): [MouseState, RefObject<HTMLDivElement>] {
-  const [state, setState] = useState<MouseState>({
-    x: null,
-    y: null,
-    elementX: null,
-    elementY: null,
-    elementPositionX: null,
-    elementPositionY: null,
-  });
-  const ref = useRef<HTMLDivElement | null>(null);
-  useLayoutEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
-      const newState: Partial<MouseState> = {
-        x: event.pageX,
-        y: event.pageY,
-      };
-      if (ref.current instanceof Element) {
-        const { left, top } = ref.current.getBoundingClientRect();
-        const elementPositionX = left + window.scrollX;
-        const elementPositionY = top + window.scrollY;
-        const elementX = event.pageX - elementPositionX;
-        const elementY = event.pageY - elementPositionY;
-        newState.elementX = elementX;
-        newState.elementY = elementY;
-        newState.elementPositionX = elementPositionX;
-        newState.elementPositionY = elementPositionY;
-      }
-      setState((s) => ({
-        ...s,
-        ...newState,
-      }));
+const SpringyCursor = ({ emoji }) => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
     };
-    document.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
-  return [state, ref];
-}
-`;
 
-     return (
-          <div className="container mx-auto px-4 py-8 space-y-6">
-               <SEO
-                    title="Spring Cursor"
-                    description="Interactive cursor tracking component"
-                    keywords={['react', 'cursor', 'interaction', 'mouse tracking']}
-               />
+  return (
+    <motion.div
+      style={{
+        position: 'absolute',
+        left: mousePosition.x,
+        top: mousePosition.y,
+        width: '50px',
+        height: '50px',
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        borderRadius: '50%',
+        pointerEvents: 'none',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+      animate={{
+        x: mousePosition.x,
+        y: mousePosition.y,
+        scale: [1, 1.5, 1],
+        opacity: [0.5, 1, 0.5],
+      }}
+      transition={{ type: 'spring', stiffness: 100 }}
+    >
+      {emoji}
+    </motion.div>
+  );
+};
 
+export default SpringyCursor;
+  `;
 
+  const codeToDisplayHook = `
+import { useState, useEffect } from 'react';
 
-               <Card className='border-none shadow-none'>
-                    <CardHeader>
-                         <CardTitle className="text-2xl">Spring Cursor Component</CardTitle>
-                         <CardDescription>
-                              An interactive React component that tracks and visualizes cursor movement
-                         </CardDescription>
-                    </CardHeader>
-                    <CardContent>
+const useMouse = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-                         <Separator className="my-4" />
-                         <Preview
-                              title="Live Preview"
-                              className="bg-neutral-50 border"
-                         >
-                                <SpringyCursor emoji="🌟" />
-                         </Preview>
-                    </CardContent>
-               </Card>
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
 
-               <Card className='border-none shadow-none'>
-                    <CardHeader>
-                         <CardTitle>Component Implementation</CardTitle>
-                         <CardDescription>
-                              Detailed code breakdown of the Spring Cursor component
-                         </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                         <div className="space-y-4">
-                              <div>
-                                   <h4 className="text-lg font-semibold mb-2">
-                                        Spring Cursor Component
-                                        <Badge variant="secondary" className="ml-2">TSX</Badge>
-                                   </h4>
-                                   <AdvancedCodeBlock
-                                        code={codeToDisplay}
-                                        fileName="./SpringCursorExample.tsx"
-                                        lang="typescript"
-                                   />
-                              </div>
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
-                              <Separator className="my-4" />
+  return mousePosition;
+};
 
-                              <div>
-                                   <h4 className="text-lg font-semibold mb-2">
-                                        Custom Mouse Hook
-                                        <Badge variant="secondary" className="ml-2">TS</Badge>
-                                   </h4>
-                                   <AdvancedCodeBlock
-                                        code={codeToDisplayHook}
-                                        fileName="./use-mouse.ts"
-                                        lang="typescript"
-                                   />
-                              </div>
-                         </div>
-                    </CardContent>
-               </Card>
-          </div>
-     );
+export default useMouse;
+  `;
+
+  return (
+    <DocumentLayout
+      title="Spring Cursor"
+      description="Interactive springy cursor tracking component"
+      keywords={['react', 'cursor', 'interaction', 'mouse tracking', 'spring cursor']}
+    >
+      {/* Breadcrumb */}
+      <BreadcrumbMaker />
+
+      {/* Live Demo Section */}
+      <ComponentCard
+        title="Spring Cursor Component"
+        description="An interactive React component that tracks and visualizes cursor movement with spring animation."
+      >
+        <LivePreviewCard>
+          <SpringyCursor emoji="🌟" />
+        </LivePreviewCard>
+      </ComponentCard>
+
+      {/* Implementation Section */}
+      <ComponentCard
+        title="Component Implementation"
+        description="Detailed code breakdown of the Spring Cursor component."
+      >
+        <div className="space-y-4">
+          {/* Code Example for Spring Cursor Component */}
+          <CodeExample
+            title="Spring Cursor Component"
+            code={codeToDisplay}
+            fileName="./SpringCursorExample.tsx"
+            badgeText="TSX"
+          />
+
+          {/* Separator */}
+          <Separator className="my-4" />
+
+          {/* Code Example for Hook */}
+          <CodeExample
+            title="useMouse Hook"
+            code={codeToDisplayHook}
+            fileName="./use-mouse.ts"
+            badgeText="TS"
+          />
+        </div>
+      </ComponentCard>
+    </DocumentLayout>
+  );
 };
 
 export default SpringCursorExample;

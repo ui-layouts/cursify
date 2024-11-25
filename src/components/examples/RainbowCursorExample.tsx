@@ -1,105 +1,76 @@
-// Example usage with all customizable options
-{/* <RainbowCursor
-  length={20} // Number of particles in the trail
-  colors={["#FF0000", "#00FF00", "#0000FF"]} // Custom colors
-  size={3} // Base size of the trail
-  trailSpeed={0.4} // Speed of trail movement (0-1)
-  colorCycleSpeed={0.002} // Speed of color cycling
-  blur={1} // Optional blur effect (pixels)
-  pulseSpeed={0.01} // Speed of size pulsing
-  pulseMin={0.8} // Minimum size multiplier
-  pulseMax={1.2} // Maximum size multiplier
-/> */}
-
-
-
-import {
-     Card,
-     CardContent,
-     CardDescription,
-     CardHeader,
-     CardTitle
-} from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
 
-import SEO from '../common/SEO';
-import { AdvancedCodeBlock } from '@/pages/document/components/AdvanceCodeBlock';
-import Preview from '@/pages/document/components/Preview';
-import CommandCode  from "@/components/ui/CommandCode";
+// Import custom components
+import { DocumentLayout } from "@/components/common/DocumentLayout";
+import { ComponentCard } from "@/components/common/ComponentCard";
+import { CodeExample } from "@/components/common/CodeExample";
+import { LivePreviewCard } from "@/components/common/LivePreviewCard";
+import BreadcrumbMaker from "../common/Breadcrumb";
 import { RainbowCursor } from "../cursor/common/RainbowCursor";
 
 const RainbowCursorExample = () => {
-     const codeToDisplay = ``;
-     const CSScodeToDisplay = ``;
-     return (
+  const codeToDisplay = ``;
 
-          <div className="container mx-auto px-4 py-8 space-y-6">
-               <SEO
-                    title="Rainbow Cursor"
-                    description="Interactive cursor tracking component"
-                    keywords={['react', 'cursor', 'interaction', 'mouse tracking']}
-               />
+  const codeToDisplayCSS = `
+`;
 
+  return (
+    <DocumentLayout
+      title="Rainbow Cursor"
+      description="Interactive rainbow cursor tracking component"
+      keywords={['react', 'cursor', 'interaction', 'mouse tracking', 'rainbow cursor']}
+    >
+      {/* Breadcrumb */}
+      <BreadcrumbMaker />
 
-               <Card className='border-none shadow-none'>
-                    <CardHeader>
-                         <CardTitle className="text-2xl">Rainbow Cursor Component</CardTitle>
-                         <CardDescription>
+      {/* Live Demo Section */}
+      <ComponentCard
+        title="Rainbow Cursor Component"
+        description="An interactive React component that tracks and visualizes cursor movement with a rainbow trail effect."
+      >
+        <LivePreviewCard>
+          <RainbowCursor
+            length={20}
+            colors={["#FF0000", "#00FF00", "#0000FF"]}
+            size={3}
+            trailSpeed={0.4}
+            colorCycleSpeed={0.002}
+            blur={1}
+            pulseSpeed={0.01}
+            pulseMin={0.8}
+            pulseMax={1.2}
+          />
+        </LivePreviewCard>
+      </ComponentCard>
 
-                         </CardDescription>
-                    </CardHeader>
-                    <CardContent>
+      {/* Implementation Section */}
+      <ComponentCard
+        title="Component Implementation"
+        description="Detailed code breakdown of the Rainbow Cursor component."
+      >
+        <div className="space-y-4">
+          {/* Code Example for Rainbow Cursor Component */}
+          <CodeExample
+            title="Rainbow Cursor Component"
+            code={codeToDisplay}
+            fileName="./RainbowCursorExample.tsx"
+            badgeText="TSX"
+          />
 
-                         <Separator className="my-4" />
-                         <Preview
-                              title="Live Preview"
-                              className=" border"
-                         >
-                              <RainbowCursor />
-                         </Preview>
-                    </CardContent>
-               </Card>
+          {/* Separator */}
+          <Separator className="my-4" />
 
-               <Card className='border-none shadow-none'>
-                    <CardHeader>
-                         <CardTitle>Component Implementation</CardTitle>
-                         <CardDescription>
-                              Detailed code breakdown of the Follow Cursor component
-                              <CommandCode>npm install framer-motion</CommandCode>
-                         </CardDescription>
-
-                    </CardHeader>
-                    <CardContent>
-                         <div className="space-y-4">
-                              <div>
-                                   <h4 className="text-lg font-semibold mb-2">
-                                        Rainbow Cursor Component
-                                        <Badge variant="secondary" className="ml-2">TSX</Badge>
-                                   </h4>
-                                   <AdvancedCodeBlock
-                                        code={codeToDisplay}
-                                        fileName="./RainbowCursorExample.tsx"
-                                        lang="typescript"
-                                   />
-                              </div>
-                              <Separator className="my-4" />
-                              <div>
-                                   <h4 className="text-lg font-semibold mb-2">
-                                        /Rainbowcursor.css
-                                        <Badge variant="secondary" className="ml-2">css</Badge>
-                                   </h4>
-                                   <AdvancedCodeBlock
-                                        code={CSScodeToDisplay}
-                                        fileName="./Rainbowcursor.css"
-                                        lang="css"
-                                   />
-                              </div>
-                         </div>
-                    </CardContent>
-               </Card>
-          </div>
-     );
+          {/* Code Example for Rainbow Cursor Custom Styling */}
+          <CodeExample
+            title="Rainbow Cursor Custom Styling"
+            code={codeToDisplayCSS}
+            fileName="./Rainbowcursor.css"
+            badgeText="CSS"
+          />
+        </div>
+      </ComponentCard>
+    </DocumentLayout>
+  );
 };
 
 export default RainbowCursorExample;

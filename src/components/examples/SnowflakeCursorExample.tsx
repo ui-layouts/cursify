@@ -1,82 +1,121 @@
-import React from 'react';
-
-// Import UI components from shadcn/ui
-import {
-     Card,
-     CardContent,
-     CardDescription,
-     CardHeader,
-     CardTitle
-} from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
-
-// Import custom components
+import { DocumentLayout } from "@/components/common/DocumentLayout";
+import { ComponentCard } from "@/components/common/ComponentCard";
+import { CodeExample } from "@/components/common/CodeExample";
+import { LivePreviewCard } from "@/components/common/LivePreviewCard";
+import BreadcrumbMaker from "../common/Breadcrumb";
 import SEO from '../common/SEO';
-import { AdvancedCodeBlock } from '@/pages/document/components/AdvanceCodeBlock';
-import Preview from '@/pages/document/components/Preview';
-import { SnowflakeCursor } from '../cursor/common/SnowflakeCursor';
-import CommandCode from '../ui/CommandCode';
+import { SnowflakeCursor } from "../cursor/common/SnowflakeCursor";
 
 const SnowflakeCursorExample = () => {
-     // Code to be displayed in the documentation
-     const codeToDisplay = `import React, { useState, useEffect, useCallback } from 'react';
+  const codeToDisplay = `
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, useAnimation, useSpring } from 'framer-motion';
-`;
 
-     return (
-          <div className="container mx-auto px-4 py-8 space-y-6">
-               {/* SEO Configuration */}
-               <SEO
-                    title="Snowflake Cursor"
-                    description="Interactive cursor tracking component"
-                    keywords={['react', 'cursor', 'interaction', 'mouse tracking']}
-               />
+export default function SnowflakeCursor() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
-               {/* Live Demo Card */}
-               <Card className='border-none shadow-none'>
-                    <CardHeader>
-                         <CardTitle className="text-2xl">Snowflake Cursor Component</CardTitle>
-                         <CardDescription></CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                         <Separator className="my-4" />
-                         <Preview
-                              title="Live Preview"
-                              className="border"
-                         >
-                              <SnowflakeCursor />
-                         </Preview>
-                    </CardContent>
-               </Card>
+  return (
+    <motion.div
+      style={{
+        position: 'absolute',
+        left: mousePosition.x,
+        top: mousePosition.y,
+        width: '30px',
+        height: '30px',
+        backgroundColor: '#00f',  // Example color for the snowflake
+        borderRadius: '50%',
+        transform: 'translate(-50%, -50%)',
+      }}
+      animate={{ opacity: [0, 1, 0] }}
+      transition={{ duration: 1, repeat: Infinity }}
+    />
+  );
+}
+  `;
 
-               {/* Implementation Card */}
-               <Card className='border-none shadow-none'>
-                    <CardHeader>
-                         <CardTitle>Component Implementation</CardTitle>
-                         <CardDescription>
-                              Detailed code breakdown of the Follow Cursor component
-                              <CommandCode>npm install framer-motion</CommandCode>
-                         </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                         <div className="space-y-4">
-                              <div>
-                                   <h4 className="text-lg font-semibold mb-2">
-                                        Snowflake Cursor Component
-                                        <Badge variant="secondary" className="ml-2">TSX</Badge>
-                                   </h4>
-                                   <AdvancedCodeBlock
-                                        code={codeToDisplay}
-                                        fileName="./SnowflakeCursorExample.tsx"
-                                        lang="typescript"
-                                   />
-                              </div>
-                         </div>
-                    </CardContent>
-               </Card>
-          </div>
-     );
+  const codeToDisplayCSS = `
+/* Snowflake Cursor Custom Styling */
+.snowflake-cursor {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #00f;  // Example color for the snowflake
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: snowflake-animation 1s infinite;
+}
+
+@keyframes snowflake-animation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+  `;
+
+  return (
+    <DocumentLayout
+      title="Snowflake Cursor"
+      description="Interactive snowflake cursor tracking component"
+      keywords={['react', 'cursor', 'interaction', 'mouse tracking', 'snowflake cursor']}
+    >
+      {/* Breadcrumb */}
+      <BreadcrumbMaker />
+
+      {/* Live Demo Section */}
+      <ComponentCard
+        title="Snowflake Cursor Component"
+        description="An interactive React component that tracks the mouse and creates a snowflake effect on movement."
+      >
+        <LivePreviewCard>
+          <SnowflakeCursor />
+        </LivePreviewCard>
+      </ComponentCard>
+
+      {/* Implementation Section */}
+      <ComponentCard
+        title="Component Implementation"
+        description="Detailed code breakdown of the Snowflake Cursor component."
+      >
+        <div className="space-y-4">
+          {/* Code Example for Snowflake Cursor Component */}
+          <CodeExample
+            title="Snowflake Cursor Component"
+            code={codeToDisplay}
+            fileName="./SnowflakeCursorExample.tsx"
+            badgeText="TSX"
+          />
+
+          {/* Separator */}
+          <Separator className="my-4" />
+
+          {/* Code Example for Snowflake Cursor Custom Styling */}
+          <CodeExample
+            title="Snowflake Cursor Custom Styling"
+            code={codeToDisplayCSS}
+            fileName="./SnowflakeCursor.css"
+            badgeText="CSS"
+          />
+        </div>
+      </ComponentCard>
+    </DocumentLayout>
+  );
 };
 
 export default SnowflakeCursorExample;

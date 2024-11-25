@@ -1,86 +1,74 @@
-import React from 'react';
-
-// Import UI components from shadcn/ui
-import {
-     Card,
-     CardContent,
-     CardDescription,
-     CardHeader,
-     CardTitle
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
-
-// Import custom components
-import SEO from '../common/SEO';
-import { AdvancedCodeBlock } from '@/pages/document/components/AdvanceCodeBlock';
-import Preview from '@/pages/document/components/Preview';
+import { DocumentLayout } from "@/components/common/DocumentLayout";
+import { ComponentCard } from "@/components/common/ComponentCard";
+import { CodeExample } from "@/components/common/CodeExample";
+import { LivePreviewCard } from "@/components/common/LivePreviewCard";
+import BreadcrumbMaker from "../common/Breadcrumb";
+import SEO from "../common/SEO";
 import TrailCursor from "../cursor/TrailCursor/TrailCursor";
-import CommandCode from '../ui/CommandCode';
+import CommandCode from "../ui/CommandCode";
+import { Separator } from "../ui/separator";
 
 const TrailCursorExample = () => {
-     // Code to be displayed in the documentation
-     const codeToDisplay = `import React, { useState, useEffect, useCallback } from 'react';
+     const codeToDisplay = `
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, useAnimation, useSpring } from 'framer-motion';
-`;
+
+const TrailCursor = () => {
+  // Your cursor tracking code here
+  return (
+    <motion.div className="cursor-trail">
+      {/* Render your custom cursor trail here */}
+    </motion.div>
+  );
+};
+
+export default TrailCursor;
+  `;
 
      return (
-          <div className="container mx-auto px-4 py-8 space-y-6">
-               {/* SEO Configuration */}
-               <SEO
-                    title="Trail Cursor"
-                    description="Interactive cursor tracking component"
-                    keywords={['react', 'cursor', 'interaction', 'mouse tracking']}
-               />
+          <DocumentLayout
+               title="Trail Cursor"
+               description="Interactive cursor tracking component"
+               keywords={['react', 'cursor', 'interaction', 'mouse tracking', 'trail cursor']}
+          >
+               {/* Breadcrumb */}
+               <BreadcrumbMaker />
 
-               {/* Live Demo Card */}
-               <Card className='border-none shadow-none'>
-                    <CardHeader>
-                         <CardTitle className="text-2xl">Trail Cursor Component</CardTitle>
-                         <CardDescription></CardDescription>
-                    </CardHeader>
-                    <CardContent>
+               {/* Live Demo Section */}
+               <ComponentCard
+                    title="Trail Cursor Component"
+                    description="An interactive React component that creates a trail effect following the cursor."
+               >
+                    <LivePreviewCard>
+                         <TrailCursor />
+                    </LivePreviewCard>
+               </ComponentCard>
+
+               {/* Implementation Section */}
+               <ComponentCard
+                    title="Component Implementation"
+                    description="Detailed code breakdown of the Trail Cursor component."
+               >
+                    <div className="space-y-4">
+                         {/* Code Example for Trail Cursor Component */}
+                         <CodeExample
+                              title="Trail Cursor Component"
+                              code={codeToDisplay}
+                              fileName="./TrailCursorExample.tsx"
+                              badgeText="TSX"
+                         />
+
+                         {/* Separator */}
                          <Separator className="my-4" />
-                         <Preview
-                              title="Live Preview"
-                              className="border"
-                         >
-                              <TrailCursor />
-                              {/* <TrailingCursor 
-        particles={20} // More particles in the trail
-        rate={0.3} // Slower trail movement
-        baseImageSrc="your-custom-cursor-image.png" // Custom cursor image
-      /> */}
-                         </Preview>
-                    </CardContent>
-               </Card>
 
-               {/* Implementation Card */}
-               <Card className='border-none shadow-none'>
-                    <CardHeader>
-                         <CardTitle>Component Implementation</CardTitle>
-                         <CardDescription>
-                              Detailed code breakdown of the Follow Cursor component
+                         {/* Installation Command */}
+                         <div className="space-y-2">
+                              <h4 className="text-lg font-semibold mb-2">Installation</h4>
                               <CommandCode>npm install framer-motion</CommandCode>
-                         </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                         <div className="space-y-4">
-                              <div>
-                                   <h4 className="text-lg font-semibold mb-2">
-                                        Trail Cursor Component
-                                        <Badge variant="secondary" className="ml-2">TSX</Badge>
-                                   </h4>
-                                   <AdvancedCodeBlock
-                                        code={codeToDisplay}
-                                        fileName="./TrailCursorExample.tsx"
-                                        lang="typescript"
-                                   />
-                              </div>
                          </div>
-                    </CardContent>
-               </Card>
-          </div>
+                    </div>
+               </ComponentCard>
+          </DocumentLayout>
      );
 };
 

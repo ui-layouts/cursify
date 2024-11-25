@@ -6,27 +6,39 @@ const BreadcrumbMaker = () => {
   const location = useLocation()
   const pathnames = location.pathname.split('/').filter(x => x)
 
+  const formatName = (name) => {
+    return name
+      .replace(/-/g, ' ') // Replace hyphens with spaces
+      .split(' ') // Split by space
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
+      .join(' ') // Join back into a single string
+  }
+
   return (
-    <Breadcrumb className='p-4'>
+    <Breadcrumb className='px-6'>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink as={Link} to="/">Home</BreadcrumbLink>
+          <BreadcrumbLink href="/" >Home</BreadcrumbLink>
         </BreadcrumbItem>
-        
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/components" >Components</BreadcrumbLink>
+        </BreadcrumbItem>
+
         {pathnames.map((name, index) => {
           const routeTo = `/${pathnames.slice(0, index + 1).join('/')}`
           const isLast = index === pathnames.length - 1
-          
+
           return (
             <React.Fragment key={name}>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbLink 
-                  as={Link} 
+                <BreadcrumbLink
+                  as={Link}
                   to={routeTo}
                   className={isLast ? "text-foreground" : ""}
                 >
-                  {name.charAt(0).toUpperCase() + name.slice(1)}
+                  {formatName(name)}
                 </BreadcrumbLink>
               </BreadcrumbItem>
             </React.Fragment>

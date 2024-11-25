@@ -5,6 +5,7 @@ import { ComponentCard } from "@/components/common/ComponentCard";
 import { CodeExample } from "@/components/common/CodeExample";
 import { LivePreviewCard } from "@/components/common/LivePreviewCard";
 import  CommandCode  from "../ui/CommandCode";
+import BreadcrumbMaker from "../common/Breadcrumb";
 
 const BlobCursorExample = () => {
      const codeToDisplay = `...your blob cursor code...`;
@@ -17,12 +18,13 @@ const BlobCursorExample = () => {
                keywords={['react', 'cursor', 'interaction', 'mouse tracking']}
           >
                {/* Demo Component Card */}
+               <BreadcrumbMaker />
                <ComponentCard
                     title="Blob Cursor Component"
                     description="An interactive React component that tracks and visualizes cursor movement"
                >
                     <LivePreviewCard>
-                         <div className="bg-black min-h-screen w-full">
+                         <div className=" min-h-screen w-full">
                               <BlobCursor />
                          </div>
                     </LivePreviewCard>

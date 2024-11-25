@@ -1,139 +1,68 @@
-import {
-     Card,
-     CardContent,
-     CardDescription,
-     CardHeader,
-     CardTitle
-} from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
-import SEO from '../common/SEO';
-import { AdvancedCodeBlock } from '@/pages/document/components/AdvanceCodeBlock';
-import Preview from '@/pages/document/components/Preview';
+import { DocumentLayout } from "@/components/common/DocumentLayout";
+import { ComponentCard } from "@/components/common/ComponentCard";
+import { CodeExample } from "@/components/common/CodeExample";
+import { LivePreviewCard } from "@/components/common/LivePreviewCard";
+import BreadcrumbMaker from "../common/Breadcrumb";
 import ScalingCursor from "../cursor/common/ScalingCursor";
+
 
 const ScalingCursorExample = () => {
      const codeToDisplay = ``;
 
-     const codeToDisplayHook = `
-"use client";
-import { type RefObject, useLayoutEffect, useRef, useState } from "react";
-interface MouseState {
-  x: number | null;
-  y: number | null;
-  elementX: number | null;
-  elementY: number | null;
-  elementPositionX: number | null;
-  elementPositionY: number | null;
-}
-export function useMouse(): [MouseState, RefObject<HTMLDivElement>] {
-  const [state, setState] = useState<MouseState>({
-    x: null,
-    y: null,
-    elementX: null,
-    elementY: null,
-    elementPositionX: null,
-    elementPositionY: null,
-  });
-  const ref = useRef<HTMLDivElement | null>(null);
-  useLayoutEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
-      const newState: Partial<MouseState> = {
-        x: event.pageX,
-        y: event.pageY,
-      };
-      if (ref.current instanceof Element) {
-        const { left, top } = ref.current.getBoundingClientRect();
-        const elementPositionX = left + window.scrollX;
-        const elementPositionY = top + window.scrollY;
-        const elementX = event.pageX - elementPositionX;
-        const elementY = event.pageY - elementPositionY;
-        newState.elementX = elementX;
-        newState.elementY = elementY;
-        newState.elementPositionX = elementPositionX;
-        newState.elementPositionY = elementPositionY;
-      }
-      setState((s) => ({
-        ...s,
-        ...newState,
-      }));
-    };
-    document.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-  return [state, ref];
-}
-`;
+     const codeToDisplayCSS = ``;
 
      return (
-          <div className="container mx-auto px-4 py-8 space-y-6">
-               <SEO
-                    title="Scaling Cursor"
-                    description="Interactive Scaling cursor tracking component"
-                    keywords={['react', 'cursor', 'interaction', 'mouse tracking']}
-               />
+          <DocumentLayout
+               title="Scaling Cursor"
+               description="Interactive scaling cursor tracking component"
+               keywords={['react', 'cursor', 'interaction', 'mouse tracking', 'scaling cursor']}
+          >
+               {/* Breadcrumb */}
+               <BreadcrumbMaker />
 
+               {/* Live Demo Section */}
+               <ComponentCard
+                    title="Scaling Cursor Component"
+                    description="An interactive React component that tracks and scales the cursor position based on distance from the center."
+               >
+                    <LivePreviewCard>
+                         <ScalingCursor
+                              size={50}
+                              scaleMin={1}
+                              scaleMax={2}
+                              scaleSpeed={0.1}
+                         />
+                    </LivePreviewCard>
+               </ComponentCard>
 
+               {/* Implementation Section */}
+               <ComponentCard
+                    title="Component Implementation"
+                    description="Detailed code breakdown of the Scaling Cursor component."
+               >
+                    <div className="space-y-4">
+                         {/* Code Example for Scaling Cursor Component */}
+                         <CodeExample
+                              title="Scaling Cursor Component"
+                              code={codeToDisplay}
+                              fileName="./ScalingCursorExample.tsx"
+                              badgeText="TSX"
+                         />
 
-               <Card className='border-none shadow-none'>
-                    <CardHeader>
-                         <CardTitle className="text-2xl">Scaling Cursor Component</CardTitle>
-                         <CardDescription>
-                              An interactive React component that tracks and visualizes cursor movement
-                         </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-
+                         {/* Separator */}
                          <Separator className="my-4" />
-                         <Preview
-                              title="Live Preview"
-                              className="bg-neutral-50 border"
-                         >
-                              <ScalingCursor />
-                         </Preview>
-                    </CardContent>
-               </Card>
 
-               <Card className='border-none shadow-none'>
-                    <CardHeader>
-                         <CardTitle>Component Implementation</CardTitle>
-                         <CardDescription>
-                              Detailed code breakdown of the Scaling Cursor component
-                         </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                         <div className="space-y-4">
-                              <div>
-                                   <h4 className="text-lg font-semibold mb-2">
-                                        Scaling Cursor Component
-                                        <Badge variant="secondary" className="ml-2">TSX</Badge>
-                                   </h4>
-                                   <AdvancedCodeBlock
-                                        code={codeToDisplay}
-                                        fileName="./ScalingCursorExample.tsx"
-                                        lang="typescript"
-                                   />
-                              </div>
-
-                              <Separator className="my-4" />
-
-                              <div>
-                                   <h4 className="text-lg font-semibold mb-2">
-                                        Custom Mouse Hook
-                                        <Badge variant="secondary" className="ml-2">TS</Badge>
-                                   </h4>
-                                   <AdvancedCodeBlock
-                                        code={codeToDisplayHook}
-                                        fileName="./use-mouse.ts"
-                                        lang="typescript"
-                                   />
-                              </div>
-                         </div>
-                    </CardContent>
-               </Card>
-          </div>
+                         {/* Code Example for Scaling Cursor Custom Styling */}
+                         <CodeExample
+                              title="Scaling Cursor Custom Styling"
+                              code={codeToDisplayCSS}
+                              fileName="./ScalingCursor.css"
+                              badgeText="CSS"
+                         />
+                    </div>
+               </ComponentCard>
+          </DocumentLayout>
      );
 };
 

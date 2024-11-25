@@ -50,6 +50,7 @@
     "framer-motion": "^11.0.8",
     "gsap": "^3.12.5",
     "input-otp": "^1.2.4",
+    "locomotive-scroll": "^5.0.0-beta.21",
     "lucide-react": "^0.446.0",
     "next-themes": "^0.3.0",
     "react": "^18.3.1",

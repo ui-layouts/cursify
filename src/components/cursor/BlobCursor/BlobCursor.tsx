@@ -42,7 +42,7 @@ const BlobCursor = ({ blobType = 'circle', fillColor = '#00f0ff' }) => {
   }, [updatePosition]);
 
   return (
-    <div className='container'>
+    <div className='container '>
       <svg style={{ position: 'absolute', width: 0, height: 0 }}>
         <filter id="blob">
           <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="30" />
