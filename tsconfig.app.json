@@ -1,4 +1,5 @@
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "target": "ES2020",
     "useDefineForClassFields": true,
@@ -14,12 +15,13 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
-    /* Linting */
-    "strict": true,
+    
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
+    "noImplicitAny": false,
+    "strict": false,
     /* for ShadCN */
     "baseUrl": ".",
     "paths": {

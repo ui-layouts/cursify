@@ -6,7 +6,7 @@ const BreadcrumbMaker = () => {
   const location = useLocation()
   const pathnames = location.pathname.split('/').filter(x => x)
 
-  const formatName = (name) => {
+  const formatName = (name: string) => {
     return name
       .replace(/-/g, ' ') // Replace hyphens with spaces
       .split(' ') // Split by space
@@ -34,7 +34,7 @@ const BreadcrumbMaker = () => {
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbLink
-                  as={Link}
+                  href={Link}
                   to={routeTo}
                   className={isLast ? "text-foreground" : ""}
                 >
