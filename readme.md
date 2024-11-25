@@ -22,7 +22,7 @@
 ---
 
 ## **Demo**  
-Check out the live demo of **Cursify** in action: [Cursify Demo](https://your-demo-link.com)  
+Check out the live demo of **Cursify** in action: [Cursify Demo](https://cursify.vercel.app)  
 
 ---
 
