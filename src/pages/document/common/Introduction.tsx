@@ -6,7 +6,7 @@ import CanvasCursor from '@/components/cursor/common/CanvasCursor';
 const Introduction = () => {
      return (
           <>
-               <div className="max-w-6xl mx-auto space-y-12 py-12 px-4">
+               <div className="max-w-6xl mx-auto space-y-12 py-12 px-4 md:px-12">
                     {/* Hero Section */}
                     <div className="space-y-4">
                          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
