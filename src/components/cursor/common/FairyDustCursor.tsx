@@ -88,7 +88,7 @@ export const FairyDustCursor: React.FC<FairyDustCursorProps> = ({
       context.clearRect(0, 0, canvasSize.width, canvasSize.height);
 
       // Update and draw particles
-      particlesRef.current.forEach((particle, index) => {
+      particlesRef.current.forEach((particle) => {
         // Update position
         particle.x += particle.velocity.x;
         particle.y += particle.velocity.y;

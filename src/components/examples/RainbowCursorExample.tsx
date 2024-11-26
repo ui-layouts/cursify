@@ -1,6 +1,3 @@
-import { Separator } from "@/components/ui/separator";
-
-// Import custom components
 import { DocumentLayout } from "@/components/common/DocumentLayout";
 import { ComponentCard } from "@/components/common/ComponentCard";
 import { CodeExample } from "@/components/common/CodeExample";
@@ -9,7 +6,7 @@ import BreadcrumbMaker from "../common/Breadcrumb";
 import { RainbowCursor } from "../cursor/common/RainbowCursor";
 
 const RainbowCursorExample = () => {
-  const codeToDisplay = `
+     const codeToDisplay = `
 import React, { useEffect, useRef } from 'react';
 
 interface RainbowCursorProps {
@@ -240,54 +237,54 @@ export const RainbowCursor: React.FC<RainbowCursorProps> = ({
 };`;
 
 
-  return (
-    <DocumentLayout
-      title="Rainbow Cursor"
-      description="Interactive rainbow cursor tracking component"
-      keywords={['react', 'cursor', 'interaction', 'mouse tracking', 'rainbow cursor']}
-    >
-      {/* Breadcrumb */}
-      <BreadcrumbMaker />
+     return (
+          <DocumentLayout
+               title="Rainbow Cursor"
+               description="Interactive rainbow cursor tracking component"
+               keywords={['react', 'cursor', 'interaction', 'mouse tracking', 'rainbow cursor']}
+          >
+               {/* Breadcrumb */}
+               <BreadcrumbMaker />
 
-      {/* Live Demo Section */}
-      <ComponentCard
-        title="Rainbow Cursor Component"
-        description="A captivating React component that follows cursor movement with a colorful rainbow trail."
-      >
-        <LivePreviewCard>
-          <RainbowCursor
-            length={20}
-            colors={["#FF0000", "#00FF00", "#0000FF"]}
-            size={3}
-            trailSpeed={0.4}
-            colorCycleSpeed={0.002}
-            blur={1}
-            pulseSpeed={0.01}
-            pulseMin={0.8}
-            pulseMax={1.2}
-          />
-        </LivePreviewCard>
-      </ComponentCard>
+               {/* Live Demo Section */}
+               <ComponentCard
+                    title="Rainbow Cursor Component"
+                    description="A captivating React component that follows cursor movement with a colorful rainbow trail."
+               >
+                    <LivePreviewCard>
+                         <RainbowCursor
+                              length={20}
+                              colors={["#FF0000", "#00FF00", "#0000FF"]}
+                              size={3}
+                              trailSpeed={0.4}
+                              colorCycleSpeed={0.002}
+                              blur={1}
+                              pulseSpeed={0.01}
+                              pulseMin={0.8}
+                              pulseMax={1.2}
+                         />
+                    </LivePreviewCard>
+               </ComponentCard>
 
-      {/* Implementation Section */}
-      <ComponentCard
-        title="Usage"
-        description="Detailed code breakdown of the Rainbow Cursor component."
-      >
-        <div className="space-y-4">
-          {/* Code Example for Rainbow Cursor Component */}
-          <CodeExample
-            title="Create RainbowCursor.tsx Component"
-            code={codeToDisplay}
-            fileName="./RainbowCursor.tsx"
-            badgeText="TSX"
-          />
+               {/* Implementation Section */}
+               <ComponentCard
+                    title="Usage"
+                    description="Detailed code breakdown of the Rainbow Cursor component."
+               >
+                    <div className="space-y-4">
+                         {/* Code Example for Rainbow Cursor Component */}
+                         <CodeExample
+                              title="Create RainbowCursor.tsx Component"
+                              code={codeToDisplay}
+                              fileName="./RainbowCursor.tsx"
+                              badgeText="TSX"
+                         />
 
 
-        </div>
-      </ComponentCard>
-    </DocumentLayout>
-  );
+                    </div>
+               </ComponentCard>
+          </DocumentLayout>
+     );
 };
 
 export default RainbowCursorExample;

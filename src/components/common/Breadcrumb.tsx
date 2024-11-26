@@ -1,4 +1,4 @@
-import React from 'react'
+
 import {
   Breadcrumb,
   BreadcrumbEllipsis,
@@ -32,7 +32,7 @@ const BreadcrumbMaker = () => {
     <Breadcrumb className='px-6'>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink  to="/" as={Link}>Home</BreadcrumbLink>
+          <BreadcrumbLink href="/" >Home</BreadcrumbLink>
         </BreadcrumbItem>
 
         {pathnames.length > 2 && (
@@ -63,9 +63,8 @@ const BreadcrumbMaker = () => {
           <>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink 
-                as={Link} 
-                to={`/${pathnames.slice(0, -1).join('/')}`}
+              <BreadcrumbLink
+                href={`/${pathnames.slice(0, -1).join('/')}`}
               >
                 {formatName(pathnames[pathnames.length - 2])}
               </BreadcrumbLink>

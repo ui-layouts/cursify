@@ -1,10 +1,9 @@
-import { Separator } from "@/components/ui/separator";
+
 import { DocumentLayout } from "@/components/common/DocumentLayout";
 import { ComponentCard } from "@/components/common/ComponentCard";
 import { CodeExample } from "@/components/common/CodeExample";
 import { LivePreviewCard } from "@/components/common/LivePreviewCard";
 import BreadcrumbMaker from "../common/Breadcrumb";
-import SEO from '../common/SEO';
 import { SnowflakeCursor } from "../cursor/common/SnowflakeCursor";
 
 const SnowflakeCursorExample = () => {

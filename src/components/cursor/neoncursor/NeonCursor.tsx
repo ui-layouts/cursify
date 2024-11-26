@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import './NeonCursor.css'
 // Attach your `neoncursor.css` file in your project. 

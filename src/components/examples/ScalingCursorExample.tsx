@@ -5,8 +5,16 @@ import { CodeExample } from "@/components/common/CodeExample";
 import { LivePreviewCard } from "@/components/common/LivePreviewCard";
 import BreadcrumbMaker from "../common/Breadcrumb";
 import ScalingCursor from "../cursor/common/ScalingCursor";
+import { HTMLAttributes } from "react";
 
+interface ScalingCursorProps extends HTMLAttributes<HTMLDivElement> {
+     size?: number;
+     scaleMin?: number;
+     scaleMax?: number;
+     scaleSpeed?: number;
+ }
 
+ 
 const ScalingCursorExample = () => {
      const codeToDisplay = ``;
 

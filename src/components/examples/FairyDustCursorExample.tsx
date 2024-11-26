@@ -1,4 +1,3 @@
-import { Separator } from "@/components/ui/separator";
 import { DocumentLayout } from "@/components/common/DocumentLayout";
 import { ComponentCard } from "@/components/common/ComponentCard";
 import { CodeExample } from "@/components/common/CodeExample";
@@ -7,7 +6,7 @@ import BreadcrumbMaker from "../common/Breadcrumb";
 import { FairyDustCursor } from "../cursor/common/FairyDustCursor";
 
 const FairyDustCursorExample = () => {
-     const codeToDisplay = `
+  const codeToDisplay = `
 import React, { useEffect, useRef, useState } from 'react';
 
 interface FairyDustCursorProps {
@@ -196,54 +195,54 @@ export default FairyDustCursor;
 `;
 
 
-     return (
-          <DocumentLayout
-               title="FairyDust Cursor"
-               description="Interactive cursor tracking component"
-               keywords={['react', 'cursor', 'interaction', 'mouse tracking']}
-          >
-               {/* Breadcrumb */}
-               <BreadcrumbMaker />
+  return (
+    <DocumentLayout
+      title="FairyDust Cursor"
+      description="Interactive cursor tracking component"
+      keywords={['react', 'cursor', 'interaction', 'mouse tracking']}
+    >
+      {/* Breadcrumb */}
+      <BreadcrumbMaker />
 
-               {/* Demo Component */}
-               <ComponentCard
-                    title="FairyDust Cursor Component"
-                    description="An interactive React component that creates a magical trail of custom characters and colors, dynamically tracking cursor movement."
-               >
-                    <LivePreviewCard>
-                         <div className="min-h-screen w-full">
-                              {/* Basic and Advanced Usage */}
-                              <FairyDustCursor
-                                   colors={["#FF0000", "#00FF00", "#0000FF"]}
-                                   characterSet={["✨", "⭐", "🌟"]}
-                                   particleSize={24}
-                                   particleCount={2}
-                                   gravity={0.015}
-                                   fadeSpeed={0.97}
-                                   initialVelocity={{ min: 0.7, max: 2.0 }}
-                              />
-                         </div>
-                    </LivePreviewCard>
-               </ComponentCard>
+      {/* Demo Component */}
+      <ComponentCard
+        title="FairyDust Cursor Component"
+        description="An interactive React component that creates a magical trail of custom characters and colors, dynamically tracking cursor movement."
+      >
+        <LivePreviewCard>
+          <div className="min-h-screen w-full">
+            {/* Basic and Advanced Usage */}
+            <FairyDustCursor
+              colors={["#FF0000", "#00FF00", "#0000FF"]}
+              characterSet={["✨", "⭐", "🌟"]}
+              particleSize={24}
+              particleCount={2}
+              gravity={0.015}
+              fadeSpeed={0.97}
+              initialVelocity={{ min: 0.7, max: 2.0 }}
+            />
+          </div>
+        </LivePreviewCard>
+      </ComponentCard>
 
-               {/* Implementation Details */}
-               <ComponentCard
-                    title="Usage"
-                    description="Detailed code breakdown of the FairyDust Cursor component and custom hook."
-               >
-                    <div className="space-y-4">
-                         {/* FairyDustCursor Code Example */}
-                         <CodeExample
-                              title="Create a FairyDustCursor.tsx Component"
-                              code={codeToDisplay}
-                              fileName="./FairyDustCursor.tsx"
-                               badgeText="TSX"
-                         />
+      {/* Implementation Details */}
+      <ComponentCard
+        title="Usage"
+        description="Detailed code breakdown of the FairyDust Cursor component and custom hook."
+      >
+        <div className="space-y-4">
+          {/* FairyDustCursor Code Example */}
+          <CodeExample
+            title="Create a FairyDustCursor.tsx Component"
+            code={codeToDisplay}
+            fileName="./FairyDustCursor.tsx"
+            badgeText="TSX"
+          />
 
-                    </div>
-               </ComponentCard>
-          </DocumentLayout>
-     );
+        </div>
+      </ComponentCard>
+    </DocumentLayout>
+  );
 };
 
 export default FairyDustCursorExample;

@@ -13,8 +13,8 @@ const BlobCursor = ({ blobType = 'circle', fillColor = '#fegefe' }) => {
     config: i === 0 ? fast : slow,
   }));
 
-  const ref = useRef();
-
+  
+  const ref = useRef<HTMLDivElement>(null);
   const updatePosition = useCallback(() => {
     if (ref.current) {
       const rect = ref.current.getBoundingClientRect();

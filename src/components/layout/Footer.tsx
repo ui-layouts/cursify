@@ -1,7 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
 import AnimatedText from '../common/cursor-follow-text';
-
 
 function Footer() {
      return (

@@ -3,16 +3,10 @@ import { ComponentCard } from "@/components/common/ComponentCard";
 import { CodeExample } from "@/components/common/CodeExample";
 import { LivePreviewCard } from "@/components/common/LivePreviewCard";
 import BreadcrumbMaker from "../common/Breadcrumb";
-import SEO from "../common/SEO";
 import TextFlagCursor from "../cursor/common/TextFlagCursor";
-import { Separator } from "../ui/separator";
 import { TextFlagCursorCode } from "@/constants/constant-hooks";
 
 const TextFlagCursorExample = () => {
-     const codeToDisplay = `
-  `;
-
-
 
      return (
           <DocumentLayout
@@ -57,7 +51,6 @@ const TextFlagCursorExample = () => {
                               fileName="./TextFlagCursor.tsx"
                               badgeText="TSX"
                          />
-
 
                     </div>
                </ComponentCard>

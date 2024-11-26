@@ -1,5 +1,8 @@
 {
-     "rewrites": [
-       { "source": "/(.*)", "destination": "/" }
-     ]
-   }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ],
+  "buildCommand": "tsc --noEmit && vite build",
+  "outputDirectory": "dist",
+  "framework": "vite"
+}

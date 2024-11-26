@@ -1,13 +1,9 @@
 import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
-
-// Import custom components
 import { DocumentLayout } from "@/components/common/DocumentLayout";
 import { ComponentCard } from "@/components/common/ComponentCard";
 import { CodeExample } from "@/components/common/CodeExample";
 import { LivePreviewCard } from "@/components/common/LivePreviewCard";
 import BreadcrumbMaker from "../common/Breadcrumb";
-import SEO from '../common/SEO';
 import GradientCursor from "../cursor/common/GradientCursor";
 import CommandCode from "../ui/CommandCode";
 import { useMouseCode } from "@/constants/constant-hooks";

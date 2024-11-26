@@ -1,10 +1,8 @@
-import { Separator } from "@/components/ui/separator";
 import { DocumentLayout } from "@/components/common/DocumentLayout";
 import { ComponentCard } from "@/components/common/ComponentCard";
 import { CodeExample } from "@/components/common/CodeExample";
 import { LivePreviewCard } from "@/components/common/LivePreviewCard";
 import BreadcrumbMaker from "../common/Breadcrumb";
-
 import MagneticCursor from "../cursor/common/MagneticCursor";
 import CommandCode from "../ui/CommandCode";
 
@@ -112,7 +110,7 @@ export default MagneticCursor;
             badgeText="TSX"
           />
 
-          
+
         </div>
       </ComponentCard>
     </DocumentLayout>

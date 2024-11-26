@@ -1,4 +1,3 @@
-import { Separator } from "@/components/ui/separator";
 import { DocumentLayout } from "@/components/common/DocumentLayout";
 import { ComponentCard } from "@/components/common/ComponentCard";
 import { CodeExample } from "@/components/common/CodeExample";

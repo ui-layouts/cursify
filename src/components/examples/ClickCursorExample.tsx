@@ -1,4 +1,3 @@
-import { Separator } from "@/components/ui/separator";
 import { DocumentLayout } from "@/components/common/DocumentLayout";
 import { ComponentCard } from "@/components/common/ComponentCard";
 import { CodeExample } from "@/components/common/CodeExample";
@@ -8,7 +7,7 @@ import ClickEffectCursor from "../cursor/common/ClickEffectCursor";
 import CommandCode from "../ui/CommandCode";
 
 const ClickCursorExample = () => {
-     const codeToDisplay = `
+  const codeToDisplay = `
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -167,51 +166,51 @@ export default ClickEffectCursor;
 
 
 
-     return (
-          <DocumentLayout
-               title="Click Cursor"
-               description="Interactive Click cursor tracking component"
-               keywords={['react', 'cursor', 'interaction', 'mouse tracking']}
-          >
-               {/* Breadcrumb */}
-               <BreadcrumbMaker />
+  return (
+    <DocumentLayout
+      title="Click Cursor"
+      description="Interactive Click cursor tracking component"
+      keywords={['react', 'cursor', 'interaction', 'mouse tracking']}
+    >
+      {/* Breadcrumb */}
+      <BreadcrumbMaker />
 
-               {/* Demo Component Card */}
-               <ComponentCard
-                    title="Click Cursor Component"
-                    description="An interactive React component that enhances cursor tracking with dynamic visual effects triggered by clicks."
-               >
-                    <LivePreviewCard className="">
-                         <div className="">
-                              <ClickEffectCursor />
-                         </div>
-                    </LivePreviewCard>
-               </ComponentCard>
+      {/* Demo Component Card */}
+      <ComponentCard
+        title="Click Cursor Component"
+        description="An interactive React component that enhances cursor tracking with dynamic visual effects triggered by clicks."
+      >
+        <LivePreviewCard className="">
+          <div className="">
+            <ClickEffectCursor />
+          </div>
+        </LivePreviewCard>
+      </ComponentCard>
 
 
-               <ComponentCard
-                    title="Installation"
-                    description="Install dependencies"
-               >
-                    <CommandCode >npm i framer-motion</CommandCode>
-               </ComponentCard>
-               {/* Implementation Card */}
-               <ComponentCard
-                    title="Usage"
-                    description="Detailed code breakdown of the Click Cursor component and custom hook."
-               >
-                    <div className="space-y-4">
-                         {/* Code Example: Click Cursor */}
-                         <CodeExample
-                              title="Create ClickEffectCursor.tsx file."
-                              code={codeToDisplay}
-                              fileName="./ClickEffectCursor.tsx"
-                              badgeText="TSX"
-                         />
-                    </div>
-               </ComponentCard>
-          </DocumentLayout>
-     );
+      <ComponentCard
+        title="Installation"
+        description="Install dependencies"
+      >
+        <CommandCode >npm i framer-motion</CommandCode>
+      </ComponentCard>
+      {/* Implementation Card */}
+      <ComponentCard
+        title="Usage"
+        description="Detailed code breakdown of the Click Cursor component and custom hook."
+      >
+        <div className="space-y-4">
+          {/* Code Example: Click Cursor */}
+          <CodeExample
+            title="Create ClickEffectCursor.tsx file."
+            code={codeToDisplay}
+            fileName="./ClickEffectCursor.tsx"
+            badgeText="TSX"
+          />
+        </div>
+      </ComponentCard>
+    </DocumentLayout>
+  );
 };
 
 export default ClickCursorExample;

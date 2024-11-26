@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useMouse } from '@/hooks/use-mouse';
 
 
@@ -36,8 +36,8 @@ const GlitchCursor = () => {
   };
 
   return (
-    <div 
-      className="relative w-full h-screen bg-gray-900" 
+    <div
+      className="relative w-full h-screen bg-gray-900"
       ref={ref}
       onMouseMove={handleMouseSpeed}
     >
@@ -111,7 +111,7 @@ const GlitchCursor = () => {
         </button>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes glitch-overlay {
           0% { transform: translateX(0); }
           25% { transform: translateX(-5px); }

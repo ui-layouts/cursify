@@ -1,5 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 
+interface Particle {
+     rotationSign: number;
+     age: number;
+     initialLifeSpan: number;
+     lifeSpan: number;
+     velocity: { x: number; y: number };
+     position: { x: number; y: number };
+     canv: HTMLCanvasElement;
+     update: (context: CanvasRenderingContext2D) => void;
+}
+
 interface CharacterCursorProps {
      characters?: string[];
      colors?: string[];

@@ -35,7 +35,7 @@ const useFluidCursor = () => {
        this.color = [0, 0, 0];
      }
    
-     let pointers = [];
+     const pointers = [];
      pointers.push(new pointerPrototype());
    
      const { gl, ext } = getWebGLContext(canvas);
@@ -116,7 +116,7 @@ const useFluidCursor = () => {
      }
    
      function supportRenderTextureFormat(gl, internalFormat, format, type) {
-       let texture = gl.createTexture();
+       const texture = gl.createTexture();
        gl.bindTexture(gl.TEXTURE_2D, texture);
        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
@@ -124,11 +124,11 @@ const useFluidCursor = () => {
        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
        gl.texImage2D(gl.TEXTURE_2D, 0, internalFormat, 4, 4, 0, format, type, null);
    
-       let fbo = gl.createFramebuffer();
+       const fbo = gl.createFramebuffer();
        gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
        gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
    
-       let status = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
+       const status = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
        return status == gl.FRAMEBUFFER_COMPLETE;
      }
    
@@ -1114,7 +1114,7 @@ const useFluidCursor = () => {
      }
    
      function wrap(value, min, max) {
-       let range = max - min;
+       const range = max - min;
        if (range == 0) return min;
        return ((value - min) % range) + min;
      }
@@ -1123,15 +1123,15 @@ const useFluidCursor = () => {
        let aspectRatio = gl.drawingBufferWidth / gl.drawingBufferHeight;
        if (aspectRatio < 1) aspectRatio = 1.0 / aspectRatio;
    
-       let min = Math.round(resolution);
-       let max = Math.round(resolution * aspectRatio);
+       const min = Math.round(resolution);
+       const max = Math.round(resolution * aspectRatio);
    
        if (gl.drawingBufferWidth > gl.drawingBufferHeight) return { width: max, height: min };
        else return { width: min, height: max };
      }
    
      function scaleByPixelRatio(input) {
-       let pixelRatio = window.devicePixelRatio || 1;
+       const pixelRatio = window.devicePixelRatio || 1;
        return Math.floor(input * pixelRatio);
      }
    

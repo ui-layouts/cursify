@@ -6,10 +6,10 @@ import cursifyDark from '../../assets/cursify-dark.png';
 import { useTheme } from '@/providers/theme-provider';
 
 const Logo = () => {
-  const { theme, systemTheme } = useTheme();
+  const { theme } = useTheme();
 
   // Get the current theme accounting for system preference
-  const currentTheme = theme === 'system' ? systemTheme : theme;
+  const currentTheme = theme === 'dark' ? "dark" : theme;
 
   // Logo animation variants
   const logoVariants = {

@@ -1,4 +1,3 @@
-import { Separator } from "@/components/ui/separator";
 import { DocumentLayout } from "@/components/common/DocumentLayout";
 import { ComponentCard } from "@/components/common/ComponentCard";
 import { CodeExample } from "@/components/common/CodeExample";
@@ -311,14 +310,14 @@ export const CharacterCursor: React.FC<CharacterCursorProps> = ({
                     <LivePreviewCard className="">
                          <div className="min-h-screen w-full">
                               <CharacterCursor
-                                 characters={[
-                                   '🔥', 
-                                   '🌈', 
-                                   '🎉', 
-                                   '💖', 
-                                   '💎'
-                                 ]}
-                                 
+                                   characters={[
+                                        '🔥',
+                                        '🌈',
+                                        '🎉',
+                                        '💖',
+                                        '💎'
+                                   ]}
+
                                    colors={['#FFD700', '#FFA500', '#FF4500', '#8A2BE2', '#4B0082']}
                                    font="20px Arial"
                               />
@@ -337,7 +336,7 @@ export const CharacterCursor: React.FC<CharacterCursorProps> = ({
                               title="Character Cursor Component"
                               code={codeToDisplay}
                               fileName="./CharacterCursor.tsx"
-                               badgeText="TSX"
+                              badgeText="TSX"
                          />
 
 

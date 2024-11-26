@@ -3,9 +3,7 @@ import { ComponentCard } from "@/components/common/ComponentCard";
 import { CodeExample } from "@/components/common/CodeExample";
 import { LivePreviewCard } from "@/components/common/LivePreviewCard";
 import BreadcrumbMaker from "../common/Breadcrumb";
-import SEO from "../common/SEO";
 import { SpringyCursor } from "../cursor/common/SpringyCursor";
-import { Separator } from "../ui/separator";
 
 const SpringCursorExample = () => {
   const codeToDisplay = `

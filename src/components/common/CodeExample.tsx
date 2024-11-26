@@ -5,13 +5,13 @@ interface CodeExampleProps {
   title: string;
   code: string;
   fileName: string;
-  language?: string;
+  language?: "html" | "ruby" | "typescript" | "javascript" | "python" | "java" | "tsx" | "ts" | "TSX";
   badgeText?: string;
 }
 
 export function CodeExample({
   title,
-  code,
+  code, 
   fileName,
   language = "typescript",
   badgeText = "TSX"

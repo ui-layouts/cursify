@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -26,15 +26,7 @@ const Sidebar = () => {
     a.title.localeCompare(b.title)
   );
 
-  // Flatten categories and subcategories for search
-  const allItems = sortedCategories.flatMap(category =>
-    category.subcategories.map(subcategory => ({
-      category: category.title,
-      categoryId: category.id,
-      ...subcategory,
-      path: formatPath(category.id, subcategory.id)
-    }))
-  );
+ 
 
   // Handle command selection
   const handleSelect = (path) => {
@@ -65,7 +57,7 @@ const Sidebar = () => {
           {CATEGORIES.map((category) => (
             <div key={category.id} className="space-y-2">
               <div className="flex items-center gap-2 px-2 py-2 text-sm font-medium text-muted-foreground/70">
-                {category.icon && <category.icon className="h-4 w-4" />}
+                {category.icon && <category.icon />}
                 <span>{category.title}</span>
               </div>
 

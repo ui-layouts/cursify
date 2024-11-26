@@ -25,7 +25,7 @@ const DocumentPage = () => {
             ref={scrollRef} 
             className="h-[calc(100vh-4rem)] w-full"
           >
-            <div className="p-6">
+            <div className="">
               {Component && <Component />}
             </div>
             <Footer />

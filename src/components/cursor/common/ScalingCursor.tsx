@@ -1,12 +1,33 @@
-import React, { useState } from 'react';
+import { useState, HTMLAttributes } from 'react';
 import { useMouse } from '@/hooks/use-mouse';
 
-const ScalingCursor = () => {
+// Define an interface for the component's props
+interface ScalingCursorProps extends HTMLAttributes<HTMLDivElement> {
+  cursorSize?: number;
+  cursorColor?: string;
+  hoverScale?: number;
+  hoverRotation?: number;
+  blendMode?: 'normal' | 'multiply' | 'screen' | 'overlay' | 'darken' | 'lighten' | 'color-dodge' | 'color-burn';
+}
+
+const ScalingCursor = ({
+  cursorSize = 24, // default to 24px
+  cursorColor = 'bg-purple-500',
+  hoverScale = 2,
+  hoverRotation = 45,
+  blendMode = 'screen',
+  className,
+  ...rest
+}: ScalingCursorProps) => {
   const [mouseState, ref] = useMouse();
   const [isHovering, setIsHovering] = useState(false);
 
   return (
-    <div className="relative w-full h-screen bg-gray-900" ref={ref}>
+    <div 
+      className={`relative w-full h-screen bg-gray-900 ${className}`} 
+      ref={ref} 
+      {...rest}
+    >
       {mouseState.x !== null && mouseState.y !== null && (
         <div
           className="fixed pointer-events-none z-50 transition-all duration-300"
@@ -14,11 +35,17 @@ const ScalingCursor = () => {
             left: mouseState.x,
             top: mouseState.y,
             transform: `translate(-50%, -50%) 
-              scale(${isHovering ? 2 : 1}) 
-              rotate(${isHovering ? '45deg' : '0deg'})`,
+              scale(${isHovering ? hoverScale : 1}) 
+              rotate(${isHovering ? `${hoverRotation}deg` : '0deg'})`,
           }}
         >
-          <div className="w-6 h-6 bg-purple-500 rounded-full mix-blend-screen" />
+          <div 
+            className={`${cursorColor} rounded-full mix-blend-${blendMode}`}
+            style={{
+              width: `${cursorSize}px`,
+              height: `${cursorSize}px`,
+            }}
+          />
         </div>
       )}
 

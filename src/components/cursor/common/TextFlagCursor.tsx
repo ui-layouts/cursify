@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface TextFlagOptions {
   text?: string;
@@ -37,12 +37,12 @@ export const TextFlagCursor: React.FC<TextFlagOptions> = (options) => {
       charArray[i] = { letter: text.charAt(i), x: width / 2, y: width / 2 };
     }
 
-    let canvas: HTMLCanvasElement, 
-        context: CanvasRenderingContext2D | null, 
-        animationFrame: number;
+    let canvas: HTMLCanvasElement,
+      context: CanvasRenderingContext2D | null,
+      animationFrame: number;
 
-    const size = options?.size || 3;
-    let cursorsInitted = false;
+    // const size = options?.size || 3;
+    // let cursorsInitted = false;
 
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
@@ -83,7 +83,7 @@ export const TextFlagCursor: React.FC<TextFlagOptions> = (options) => {
       window.addEventListener("resize", onWindowResize);
     }
 
-    function onWindowResize(e: Event) {
+    function onWindowResize() {
       width = window.innerWidth;
       height = window.innerHeight;
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useMouse } from '@/hooks/use-mouse';
 
 const ThreeDCursor = () => {
@@ -10,10 +10,10 @@ const ThreeDCursor = () => {
     if (mouseState.x && mouseState.y) {
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
-      
+
       const rotateX = ((mouseState.y - centerY) / centerY) * 30;
       const rotateY = ((mouseState.x - centerX) / centerX) * 30;
-      
+
       setRotation({ x: rotateX, y: rotateY });
     }
   }, [mouseState.x, mouseState.y]);
@@ -41,7 +41,7 @@ const ThreeDCursor = () => {
                 boxShadow: '0 0 20px rgba(99, 102, 241, 0.5)',
               }}
             />
-            
+
             {/* Back face */}
             <div
               className="absolute inset-0 bg-indigo-700 rounded-lg mix-blend-screen"

@@ -8,20 +8,20 @@ import ClickCursorExample from "@/components/examples/ClickCursorExample";
 import GlitchCursorExample from "@/components/examples/GlitchCursorExample";
 import GradientCursorExample from "@/components/examples/GradientCursorExample";
 import MagneticCursorExample from "@/components/examples/MagneticCursorExample";
-import MultiCursorExample from "@/components/examples/MultiCursorExample";
-import ScalingCursorExample from "@/components/examples/ScalingCursorExample";
-import TextIconCursorExample from "@/components/examples/TextIconCursorExample";
+// import MultiCursorExample from "@/components/examples/MultiCursorExample";
+// import ScalingCursorExample from "@/components/examples/ScalingCursorExample";
+// import TextIconCursorExample from "@/components/examples/TextIconCursorExample";
 import ThreeDCursorExample from "@/components/examples/ThreeDCursorExample";
-import TrailUpdateCursorExample from "@/components/examples/TrailUpdateCursorExample";
+// import TrailUpdateCursorExample from "@/components/examples/TrailUpdateCursorExample";
 import SpringCursorExample from "@/components/examples/SpringCursorExample";
-import SwirlCursorExample from "@/components/examples/SwirlCursorExample";
+// import SwirlCursorExample from "@/components/examples/SwirlCursorExample";
 import BubbleCursorExample from "@/components/examples/BubbleCursorExample";
 import CharacterCursorExample from "@/components/examples/CharacterCursorExample";
 import FairyDustCursorExample from "@/components/examples/FairyDustCursorExample";
 import TextFlagCursorExample from "@/components/examples/TextFlagCursorExample";
 import SnowflakeCursorExample from "@/components/examples/SnowflakeCursorExample";
 import CanvasCursorExample from "@/components/examples/CanvasCursorExample";
-import FluidCursorExample from "@/components/examples/FluidCursorExample";
+// import FluidCursorExample from "@/components/examples/FluidCursorExample";
 import Introduction from "@/pages/document/common/Introduction";
 import InstallationGuide from "@/pages/document/common/InstallationGuide";
 import RainbowCursorExample from "@/components/examples/RainbowCursorExample";
@@ -178,7 +178,7 @@ export const CATEGORIES: Category[] = [
       },
       {
         id: "snowflake-cursor",
-        title: "snowflake Cursor",
+        title: "Snowflake Cursor",
         description: "Snowflake cursor effect",
         component: SnowflakeCursorExample,
       },

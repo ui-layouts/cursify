@@ -1,10 +1,3 @@
-import React from "react";
-
-// Import UI components from shadcn/ui
-import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
-
-// Import custom components
 import { DocumentLayout } from "@/components/common/DocumentLayout";
 import { ComponentCard } from "@/components/common/ComponentCard";
 import { CodeExample } from "@/components/common/CodeExample";

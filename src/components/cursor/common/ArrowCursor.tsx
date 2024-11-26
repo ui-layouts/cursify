@@ -26,7 +26,7 @@ export const ArrowCursor: React.FC<ArrowCursorProps> = ({
      const isScrolling = useRef(false);
 
      useEffect(() => {
-          const targetElement = element || document.documentElement;
+          // const targetElement = element || document.documentElement;
           let mouseTimeout: NodeJS.Timeout;
 
           const updateCursorVisibility = () => {
