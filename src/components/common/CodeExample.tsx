@@ -20,7 +20,7 @@ export function CodeExample({
     <div>
       <h4 className="scroll-m-20 mb-2  text-xl font-semibold tracking-tight">
         {title}
-
+        <Badge className="ml-4">{badgeText}</Badge>
       </h4>
       <AdvancedCodeBlock
         code={code}
