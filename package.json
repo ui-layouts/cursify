@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "lint": "eslint .",
-    "preview": "vite preview",
     "build": "tsc --noEmit && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
