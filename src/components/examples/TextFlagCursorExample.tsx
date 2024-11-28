@@ -1,13 +1,14 @@
-import { DocumentLayout } from "@/components/common/DocumentLayout";
-import { ComponentCard } from "@/components/common/ComponentCard";
 import { CodeExample } from "@/components/common/CodeExample";
+import { ComponentCard } from "@/components/common/ComponentCard";
+import { DocumentLayout } from "@/components/common/DocumentLayout";
 import { LivePreviewCard } from "@/components/common/LivePreviewCard";
+import { TextFlagCursorCode } from "@/constants/constant-hooks";
 import BreadcrumbMaker from "../common/Breadcrumb";
 import TextFlagCursor from "../cursor/common/TextFlagCursor";
-import { TextFlagCursorCode } from "@/constants/constant-hooks";
+import { useTheme } from "@/providers/theme-provider";
 
 const TextFlagCursorExample = () => {
-
+     const { theme } = useTheme();
      return (
           <DocumentLayout
                title="TextFlag Cursor"
@@ -27,7 +28,7 @@ const TextFlagCursorExample = () => {
                          {/* Example with options */}
                          <TextFlagCursor
                               text="Hello World"
-                              color="#000000"
+                              color={theme === "dark" ? "#FFFFFF" : "#000000"}
                               font="monospace"
                               textSize={12}
                          />
