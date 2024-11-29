@@ -47,7 +47,7 @@ const GitHubButton: React.FC = () => {
      return (
           <div className='flex justify-center'>
                <a
-                    href='https://github.com/durgeshbachhav/cursify'
+                    href='https://github.com/ui-layouts/cursify'
                     target='_blank'
                     className='relative inline-block  w-36 h-[2.7em] mx-auto group dark:bg-black bg-white dark:border-white border-black border-2 rounded-lg'
                >
