@@ -138,7 +138,7 @@ const Navbar = () => {
         <div className="lg:hidden flex items-center gap-2">
           <MobileThemeToggle />
           <a
-            href="https://github.com/durgeshbachhav/cursify"
+            href="https://github.com/ui-layouts/cursify"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:opacity-75 transition-opacity"
