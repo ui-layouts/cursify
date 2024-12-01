@@ -19,6 +19,7 @@ import CanvasCursorExample from "@/components/examples/CanvasCursorExample";
 import Introduction from "@/pages/document/common/Introduction";
 import InstallationGuide from "@/pages/document/common/InstallationGuide";
 import RainbowCursorExample from "@/components/examples/RainbowCursorExample";
+
 import ArrowCursorExample from "@/components/examples/ArrowCursorExample";
 import BrushCursorExample from "@/components/examples/BrushCursorExample";
 import AttractorBackgroundExample from "@/components/examples/AttractorBackgroundExample";
