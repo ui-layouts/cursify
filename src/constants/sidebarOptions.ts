@@ -25,6 +25,7 @@ import CanvasCursorExample from "@/components/examples/CanvasCursorExample";
 import Introduction from "@/pages/document/common/Introduction";
 import InstallationGuide from "@/pages/document/common/InstallationGuide";
 import RainbowCursorExample from "@/components/examples/RainbowCursorExample";
+import RippleCursorExample from "@/components/examples/RippleCursorExample";
 
 export const CATEGORIES: Category[] = [
   {
@@ -187,6 +188,12 @@ export const CATEGORIES: Category[] = [
         title: "Canvas Cursor",
         description: "Canvas cursor effect",
         component: CanvasCursorExample,
+      },
+      {
+      id: "ripple-cursor",
+      title: "Ripple Cursor",
+      description: "Ripple cursor effect with smooth animations",
+      component: RippleCursorExample,
       },
       // {
       //   id: "fluid-cursor",
