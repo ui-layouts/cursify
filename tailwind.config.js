@@ -14,6 +14,9 @@ export default {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      mixBlendMode: {
+        'hard-light': 'hard-light',
+      },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
@@ -73,10 +76,21 @@ export default {
             height: '0',
           },
         },
+        'brushStroke': {
+          '0%': {
+            transform: 'scale(1)',
+            opacity: '0.7'
+          },
+          '100%': {
+            transform: 'scale(3)',
+            opacity: '0'
+          }
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'brush-stroke': 'brushStroke ease-out'
       },
     },
   },

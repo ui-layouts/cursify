@@ -1,150 +1,90 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-interface ArrowCursorProps {
-     element?: HTMLElement;
-     size?: number;
-     color?: string;
-     edgeThreshold?: number; // percentage of viewport height to trigger arrows
-     transitionSpeed?: number;
-     hideTimeout?: number;
-}
-
-export const ArrowCursor: React.FC<ArrowCursorProps> = ({
-     element,
-     size = 24,
-     color = '#000000',
-     edgeThreshold = 15, // percentage
-     transitionSpeed = 0.3,
-     hideTimeout = 2000,
-}) => {
-     const cursorRef = useRef<HTMLDivElement | null>(null);
-     const timeoutRef = useRef<NodeJS.Timeout>();
-     const [cursorVisible, setCursorVisible] = useState(true);
-     const [cursorType, setCursorType] = useState<'default' | 'up' | 'down'>('default');
-     const [position, setPosition] = useState({ x: 0, y: 0 });
-     const lastScrollY = useRef(0);
-     const isScrolling = useRef(false);
+const ArrowCursor: React.FC = () => {
+     const [lastY, setLastY] = useState<number | null>(null);
+     const [direction, setDirection] = useState<'up' | 'down' | null>(null);
+     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
      useEffect(() => {
-          // const targetElement = element || document.documentElement;
-          let mouseTimeout: NodeJS.Timeout;
+          const handleMouseMove = (e: MouseEvent) => {
+               // Track mouse position
+               setMousePosition({ x: e.clientX, y: e.clientY });
 
-          const updateCursorVisibility = () => {
-               setCursorVisible(true);
-               if (timeoutRef.current) {
-                    clearTimeout(timeoutRef.current);
-               }
-               timeoutRef.current = setTimeout(() => {
-                    if (!isScrolling.current) {
-                         setCursorVisible(false);
+               // Determine direction
+               if (lastY !== null) {
+                    if (e.clientY < lastY) {
+                         setDirection('up');
+                    } else if (e.clientY > lastY) {
+                         setDirection('down');
                     }
-               }, hideTimeout);
-          };
-
-          const updateCursorPosition = (e: MouseEvent) => {
-               if (cursorRef.current) {
-                    const x = e.clientX;
-                    const y = e.clientY;
-                    setPosition({ x, y });
-                    updateCursorVisibility();
                }
+               setLastY(e.clientY);
           };
 
-
-          const updateArrowState = () => {
-               const scrollY = window.scrollY;
-               const windowHeight = window.innerHeight;
-               const documentHeight = document.documentElement.scrollHeight;
-               const scrollPercentage = (scrollY / (documentHeight - windowHeight)) * 100;
-
-               isScrolling.current = true;
-               clearTimeout(mouseTimeout);
-
-               if (scrollPercentage <= edgeThreshold) {
-                    setCursorType('down');
-               } else if (scrollPercentage >= (100 - edgeThreshold)) {
-                    setCursorType('up');
-               } else {
-                    setCursorType('default');
-               }
-
-               mouseTimeout = setTimeout(() => {
-                    isScrolling.current = false;
-               }, 150);
-
-               lastScrollY.current = scrollY;
-               updateCursorVisibility();
-          };
-
-          const onMouseEnter = () => {
-               setCursorVisible(true);
-          };
-
-          const onMouseLeave = () => {
-               setCursorVisible(false);
-          };
-
-          document.addEventListener('mousemove', updateCursorPosition);
-          document.addEventListener('scroll', updateArrowState);
-          document.addEventListener('mouseenter', onMouseEnter);
-          document.addEventListener('mouseleave', onMouseLeave);
+          window.addEventListener('mousemove', handleMouseMove);
 
           return () => {
-               document.removeEventListener('mousemove', updateCursorPosition);
-               document.removeEventListener('scroll', updateArrowState);
-               document.removeEventListener('mouseenter', onMouseEnter);
-               document.removeEventListener('mouseleave', onMouseLeave);
-               if (timeoutRef.current) {
-                    clearTimeout(timeoutRef.current);
-               }
+               window.removeEventListener('mousemove', handleMouseMove);
           };
-     }, [size, edgeThreshold, hideTimeout, element]);
+     }, [lastY]);
+
+     const arrowVariants = {
+          initial: {
+               opacity: 0,
+               scale: 0.5,
+               rotate: direction === 'up' ? 0 : 180
+          },
+          animate: {
+               opacity: 1,
+               scale: 1,
+               rotate: direction === 'up' ? 0 : 180
+          },
+          exit: {
+               opacity: 0,
+               scale: 0.5
+          }
+     };
 
      return (
-          <div
-               ref={cursorRef}
-               style={{
-                    position: 'fixed',
-                    pointerEvents: 'none',
-                    zIndex: 9999,
-                    width: size,
-                    height: size,
-                    transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
-                    opacity: cursorVisible ? 1 : 0,
-                    transition: `opacity ${transitionSpeed}s ease, transform ${transitionSpeed}s ease`,
-               }}
-          >
-               <svg
-                    width={size}
-                    height={size}
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    style={{
-                         transition: `transform ${transitionSpeed}s ease`,
-                         transform: `scale(${cursorType === 'default' ? 0.8 : 1}) rotate(${cursorType === 'up' ? '180deg' : cursorType === 'down' ? '0deg' : '45deg'
-                              })`,
-                    }}
-               >
-                    {cursorType === 'default' ? (
-                         // Default cursor (arrow pointer)
-                         <path
-                              d="M12 5L12 19M12 19L5 12M12 19L19 12"
-                              stroke={color}
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                         />
-                    ) : (
-                         // Up/Down arrow
-                         <path
-                              d="M12 5L12 19M12 19L5 12M12 19L19 12"
-                              stroke={color}
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                         />
+          <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-50">
+               <AnimatePresence>
+                    {direction && (
+                         <motion.div
+                              key={`${direction}-arrow`}
+                              style={{
+                                   position: 'fixed',
+                                   top: mousePosition.y - 25,
+                                   left: mousePosition.x + 15  // Offset 15 pixels to the right
+                              }}
+                              initial="initial"
+                              animate="animate"
+                              exit="exit"
+                              variants={arrowVariants}
+                         >
+                              <div className="w-[50px] h-[50px] bg-black dark:bg-white rounded-full flex items-center justify-center">
+                                   <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="30"
+                                        height="30"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="text-white dark:text-black"
+                                   >
+                                        <line x1="12" y1="19" x2="12" y2="5"></line>
+                                        <polyline points="5 12 12 5 19 12"></polyline>
+                                   </svg>
+                              </div>
+
+                         </motion.div>
                     )}
-               </svg>
+               </AnimatePresence>
           </div>
      );
 };
+
+export default ArrowCursor;

@@ -1,3 +1,178 @@
+export const ArrowCursorCode = `
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const ArrowCursor: React.FC = () => {
+     const [lastY, setLastY] = useState<number | null>(null);
+     const [direction, setDirection] = useState<'up' | 'down' | null>(null);
+     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+     useEffect(() => {
+          const handleMouseMove = (e: MouseEvent) => {
+               // Track mouse position
+               setMousePosition({ x: e.clientX, y: e.clientY });
+
+               // Determine direction
+               if (lastY !== null) {
+                    if (e.clientY < lastY) {
+                         setDirection('up');
+                    } else if (e.clientY > lastY) {
+                         setDirection('down');
+                    }
+               }
+               setLastY(e.clientY);
+          };
+
+          window.addEventListener('mousemove', handleMouseMove);
+
+          return () => {
+               window.removeEventListener('mousemove', handleMouseMove);
+          };
+     }, [lastY]);
+
+     const arrowVariants = {
+          initial: {
+               opacity: 0,
+               scale: 0.5,
+               rotate: direction === 'up' ? 0 : 180
+          },
+          animate: {
+               opacity: 1,
+               scale: 1,
+               rotate: direction === 'up' ? 0 : 180
+          },
+          exit: {
+               opacity: 0,
+               scale: 0.5
+          }
+     };
+
+     return (
+          <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-50">
+               <AnimatePresence>
+                    {direction && (
+                         <motion.div
+                              key={\`\${direction}-arrow\`}
+                              style={{
+                                   position: 'fixed',
+                                   top: mousePosition.y - 25,
+                                   left: mousePosition.x + 15  // Offset 15 pixels to the right
+                              }}
+                              initial="initial"
+                              animate="animate"
+                              exit="exit"
+                              variants={arrowVariants}
+                         >
+                              <div className="w-[50px] h-[50px] bg-black dark:bg-white rounded-full flex items-center justify-center">
+                                   <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="30"
+                                        height="30"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="text-white dark:text-black"
+                                   >
+                                        <line x1="12" y1="19" x2="12" y2="5"></line>
+                                        <polyline points="5 12 12 5 19 12"></polyline>
+                                   </svg>
+                              </div>
+
+                         </motion.div>
+                    )}
+               </AnimatePresence>
+          </div>
+     );
+};
+
+export default ArrowCursor;`
+
+export const BrushCursorCode = `
+import React, { useState, useEffect, useRef } from 'react';
+
+interface BrushCursorProps {
+  brushColor?: string;
+  brushSize?: number;
+  fadeTime?: number;
+}
+
+const BrushCursor: React.FC<BrushCursorProps> = ({
+  brushColor = 'rgba(0, 123, 255, 0.5)', 
+  brushSize = 50,
+  fadeTime = 1000
+}) => {
+  const [strokes, setStrokes] = useState<Array<{
+    x: number, 
+    y: number, 
+    id: number
+  }>>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!containerRef.current) return;
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      // Create a new stroke
+      const newStroke = {
+        x, 
+        y, 
+        id: Date.now()
+      };
+
+      // Add new stroke and remove old ones
+      setStrokes(prevStrokes => {
+        const updatedStrokes = [...prevStrokes, newStroke];
+        return updatedStrokes.slice(-10); // Limit number of simultaneous strokes
+      });
+    };
+
+    const currentContainer = containerRef.current;
+    if (currentContainer) {
+      currentContainer.addEventListener('mousemove', handleMouseMove);
+    }
+
+    return () => {
+      if (currentContainer) {
+        currentContainer.removeEventListener('mousemove', handleMouseMove);
+      }
+    };
+  }, []);
+
+  return (
+    <div 
+      ref={containerRef} 
+      className="relative w-full h-full overflow-hidden"
+      style={{
+        cursor: 'none' // Hide default cursor
+      }}
+    >
+      {strokes.map((stroke) => (
+        <div
+          key={stroke.id}
+          className="absolute rounded-full pointer-events-none animate-brush-stroke"
+          style={{
+            left: stroke.x,
+            top: stroke.y,
+            width: \`\${brushSize}px\`,
+            height: \`\${brushSize}px\`,
+            backgroundColor: brushColor,
+            animationDuration: \`\${fadeTime}ms\`
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default BrushCursor;`
+
 export const useMouseCode = `
 "use client";
 import { type RefObject, useLayoutEffect, useRef, useState } from "react";
@@ -633,4 +808,122 @@ const TrailingCursor: React.FC<TrailingCursorProps> = ({
 
 
 export default TrailingCursor;
+`
+
+
+export const FluidMotionCursorCode =  `
+import React, { useEffect, useRef, useState } from 'react';
+
+const TAIL_LENGTH = 20;
+
+interface CursorPosition {
+  x: number;
+  y: number;
+}
+
+const FluidMotionCursor: React.FC = () => {
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState<CursorPosition>({ x: 0, y: 0 });
+  const cursorHistoryRef = useRef<CursorPosition[]>(Array(TAIL_LENGTH).fill({ x: 0, y: 0 }));
+  const animationRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      setMousePosition({ x: event.clientX, y: event.clientY });
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const updateCursor = () => {
+      const cursorHistory = cursorHistoryRef.current;
+      
+      // Shift history and add new position
+      cursorHistory.shift();
+      cursorHistory.push(mousePosition);
+
+      if (cursorRef.current) {
+        const cursorCircles = cursorRef.current.children;
+
+        for (let i = 0; i < TAIL_LENGTH; i++) {
+          const current = cursorHistory[i];
+          const next = cursorHistory[i + 1] || cursorHistory[TAIL_LENGTH - 1];
+          
+          const xDiff = next.x - current.x;
+          const yDiff = next.y - current.y;
+          
+          current.x += xDiff * 0.35;
+          current.y += yDiff * 0.35;
+
+          const circle = cursorCircles[i] as HTMLDivElement;
+          circle.style.transform = \`translate(\${current.x}px, \${current.y}px) scale(\${i/TAIL_LENGTH})\`;
+        }
+      }
+
+      animationRef.current = requestAnimationFrame(updateCursor);
+    };
+
+    animationRef.current = requestAnimationFrame(updateCursor);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [mousePosition]);
+
+  return (
+    <>
+      <svg xmlns="http://www.w3.org/2000/svg" className="goo" version="1.1" width="100%">
+        <defs>
+          <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+            <feColorMatrix 
+              in="blur" 
+              mode="matrix" 
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -15" 
+              result="goo" 
+            />
+            <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+          </filter>
+        </defs>
+      </svg>
+
+      <div 
+        ref={cursorRef} 
+        id="cursor"
+        className="fixed top-0 left-0 pointer-events-none mix-blend-mode-difference"
+      >
+        {[...Array(TAIL_LENGTH)].map((_, index) => (
+          <div 
+            key={index} 
+            className="cursor-circle absolute top-0 left-0 w-7 h-7 rounded-full bg-[#FAF7EE]"
+            style={{ 
+              width: '28px', 
+              height: '28px',
+              borderRadius: '28px',
+              transformOrigin: 'center center'
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="page-wrap min-h-screen bg-[#FAF7EE] overflow-x-hidden">
+        <h1 className="m-0 py-12 text-center text-5xl uppercase font-sans select-none">
+          Fluid <br /> Motion
+        </h1>
+      </div>
+    </>
+  );
+};
+
+export default FluidMotionCursor;
 `

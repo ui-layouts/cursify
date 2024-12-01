@@ -10,14 +10,14 @@ import { Badge } from "@/components/ui/badge";
 import SEO from '../common/SEO';
 import { AdvancedCodeBlock } from '@/pages/document/components/AdvanceCodeBlock';
 import Preview from '@/pages/document/components/Preview';
-import { ArrowCursor } from "../cursor/common/ArrowCursor";
+import ArrowCursor from "../cursor/common/ArrowCursor";
+import { ArrowCursorCode } from "@/constants/constant-hooks";
+import { ComponentCard } from "../common/ComponentCard";
+import CommandCode from "../ui/CommandCode";
 
 
 
 const ArrowCursorExample = () => {
-     const codeToDisplay = ``;
-
-     const codeToDisplayHook = ``;
 
      return (
           <div className="container mx-auto px-4 py-8 space-y-6">
@@ -40,16 +40,23 @@ const ArrowCursorExample = () => {
                               title="Live Preview"
                               className="min-h-screen"
                          >
-                               <ArrowCursor 
-        size={32} // Larger cursor
-        color="#FF0000" // Red cursor
-        edgeThreshold={20} // Larger edge detection area
-        transitionSpeed={0.5} // Slower transitions
-        hideTimeout={3000} // Longer visibility duration
-      />
+                              <ArrowCursor
+                                   size={32} // Larger cursor
+                                   color="#FF0000" // Red cursor
+                                   edgeThreshold={20} // Larger edge detection area
+                                   transitionSpeed={0.5} // Slower transitions
+                                   hideTimeout={3000} // Longer visibility duration
+                              />
                          </Preview>
                     </CardContent>
                </Card>
+
+               <ComponentCard
+                    title="Installation"
+                    description="Install dependencies"
+               >
+                    <CommandCode >npm i framer-motion</CommandCode>
+               </ComponentCard>
 
                <Card className='border-none shadow-none'>
                     <CardHeader>
@@ -66,25 +73,13 @@ const ArrowCursorExample = () => {
                                         <Badge variant="secondary" className="ml-2">TSX</Badge>
                                    </h4>
                                    <AdvancedCodeBlock
-                                        code={codeToDisplay}
-                                        fileName="./ArrowCursorExample.tsx"
+                                        code={ArrowCursorCode}
+                                        fileName="./ArrowCursor.tsx"
                                         lang="typescript"
                                    />
                               </div>
 
-                              <Separator className="my-4" />
 
-                              <div>
-                                   <h4 className="text-lg font-semibold mb-2">
-                                        Custom Mouse Hook
-                                        <Badge variant="secondary" className="ml-2">TS</Badge>
-                                   </h4>
-                                   <AdvancedCodeBlock
-                                        code={codeToDisplayHook}
-                                        fileName="./use-mouse.ts"
-                                        lang="typescript"
-                                   />
-                              </div>
                          </div>
                     </CardContent>
                </Card>

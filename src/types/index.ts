@@ -3,6 +3,7 @@ export interface SubCategory {
      title: string;
      description?: string;
      component: React.ComponentType;
+     new: boolean;
    }
    
    export interface Category {

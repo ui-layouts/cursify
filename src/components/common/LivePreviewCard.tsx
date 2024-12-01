@@ -14,7 +14,7 @@ export function LivePreviewCard({ children, className }: LivePreviewCardProps) {
                <Separator className="my-4" />
                <Preview
                     title="Live Preview"
-                    className={cn(" border rounded-lg", className)}
+                    className={cn(" border rounded-lg relative ", className)}
                >
                     {children}
                </Preview>

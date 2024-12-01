@@ -1,7 +1,10 @@
 import ArrowCursorExample from "@/components/examples/ArrowCursorExample";
+import AttractorBackgroundExample from "@/components/examples/AttractorBackgroundExample";
 import BlobCursorExample from "@/components/examples/BlobCursorExample";
+import BrushCursorExample from "@/components/examples/BrushCursorExample";
 import BubbleCursorExample from "@/components/examples/BubbleCursorExample";
 import CanvasCursorExample from "@/components/examples/CanvasCursorExample";
+import CarouselExample from "@/components/examples/CarouselExample";
 import CharacterCursorExample from "@/components/examples/CharacterCursorExample";
 import ClickCursorExample from "@/components/examples/ClickCursorExample";
 import FairyDustCursorExample from "@/components/examples/FairyDustCursorExample";
@@ -10,26 +13,28 @@ import FollowCursorExample from "@/components/examples/FollowCursorExample";
 import GlitchCursorExample from "@/components/examples/GlitchCursorExample";
 import GradientCursorExample from "@/components/examples/GradientCursorExample";
 import MagneticCursorExample from "@/components/examples/MagneticCursorExample";
-import MultiCursorExample from "@/components/examples/MultiCursorExample";
 import NeonCursorExample from "@/components/examples/NeonCursorExample";
+import ParticleNetworkExample from "@/components/examples/ParticleNetworkExample";
 import RainbowCursorExample from "@/components/examples/RainbowCursorExample";
-
-import ScalingCursorExample from "@/components/examples/ScalingCursorExample";
 import SnowflakeCursorExample from "@/components/examples/SnowflakeCursorExample";
+import SpherePackingExample from "@/components/examples/SpherePackingExample";
 import SpotLightCursorExample from "@/components/examples/SpotLightCursorExample";
 import SpringCursorExample from "@/components/examples/SpringCursorExample";
-import SwirlCursorExample from "@/components/examples/SwirlCursorExample";
 import TExtFlagCursorExample from "@/components/examples/TextFlagCursorExample";
-import TextIconCursorExample from "@/components/examples/TextIconCursorExample";
 import ThreeDCursorExample from "@/components/examples/ThreeDCursorExample";
 import TrailCursorExample from "@/components/examples/TrailCursorExample";
-import TrailUpdateCursorExample from "@/components/examples/TrailUpdateCursorExample";
+import WebGLParticlesExample from "@/components/examples/WebGLParticlesExample";
 import InstallationGuide from "@/pages/document/common/InstallationGuide";
 import Introduction from "@/pages/document/common/Introduction";
 
 export const ComponentMapping = {
   introduction: Introduction,
   installation: InstallationGuide,
+  "attractor-background": AttractorBackgroundExample,
+  "particle-network-background":ParticleNetworkExample,
+  "webgl":WebGLParticlesExample,
+  'carousel':CarouselExample,
+  "sphere-background": SpherePackingExample,
   "follow-cursor": FollowCursorExample,
   "neon-cursor": NeonCursorExample,
   "spotlight-cursor": SpotLightCursorExample,
@@ -39,13 +44,8 @@ export const ComponentMapping = {
   "glitch-cursor": GlitchCursorExample,
   "gradient-cursor": GradientCursorExample,
   "magnetic-cursor": MagneticCursorExample,
-  "multi-cursor": MultiCursorExample,
-  "scaling-cursor": ScalingCursorExample,
-  "texticon-cursor": TextIconCursorExample,
   "3d-cursor": ThreeDCursorExample,
-  "trail-cursor-update": TrailUpdateCursorExample,
   "springy-cursor": SpringCursorExample,
-  "swirl-cursor": SwirlCursorExample,
   "rainbow-cursor": RainbowCursorExample,
   "bubble-cursor": BubbleCursorExample,
   "character-cursor": CharacterCursorExample,
@@ -55,4 +55,5 @@ export const ComponentMapping = {
   "canvas-cursor": CanvasCursorExample,
   "fluid-cursor": FluidCursorExample,
   "arrow-cursor": ArrowCursorExample,
+  "brush-cursor": BrushCursorExample,
 };

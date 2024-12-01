@@ -15,6 +15,7 @@ import {
 import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { CATEGORIES } from "@/constants/sidebarOptions";
+import { Badge } from '../ui/badge';
 
 const Sidebar = () => {
   const location = useLocation();
@@ -26,7 +27,7 @@ const Sidebar = () => {
     a.title.localeCompare(b.title)
   );
 
- 
+
 
   // Handle command selection
   const handleSelect = (path) => {
@@ -69,13 +70,18 @@ const Sidebar = () => {
                       key={subcategory.id}
                       to={formatPath(category.id, subcategory.id)}
                       className={cn(
-                        "block px-2 py-1.5 text-sm rounded-md transition-colors",
+                        "block px-2 py-1.5 text-sm rounded-md transition-colors ",
                         location.pathname === formatPath(category.id, subcategory.id)
                           ? "bg-primary/10 text-primary font-medium"
-                          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                          : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
                       )}
                     >
                       {subcategory.title}
+                      {subcategory.new && (
+                        <Badge variant="default" className="ml-2">
+                          New
+                        </Badge>
+                      )}
                     </Link>
                   ))}
               </div>
