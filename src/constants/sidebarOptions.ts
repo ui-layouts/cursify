@@ -29,6 +29,9 @@ import SpherePackingExample from "@/components/examples/SpherePackingExample";
 import ThreeJSSphereExample from "@/components/examples/ThreeJSSphereExample";
 import WebGLParticlesExample from "@/components/examples/WebGLParticlesExample";
 import CarouselExample from "@/components/examples/CarouselExample";
+import RippleCursorExample from "@/components/examples/RippleCursorExample";
+
+
 
 export const CATEGORIES: Category[] = [
   {
@@ -275,6 +278,26 @@ export const CATEGORIES: Category[] = [
         component: FluidMotionCursorExample,
         new: true,
       },
+      {
+      id: "ripple-cursor",
+      title: "Ripple Cursor",
+      description: "Ripple cursor effect with smooth animations",
+      component: RippleCursorExample,
+      new: true,
+      },
+      // {
+      //   id: "fluid-cursor",
+      //   title: "Fluid Cursor",
+      //   description: "Fluid cursor effect",
+      //   component: FluidCursorExample,
+      // },
+      // {
+      //   id: "arrow-cursor",
+      //   title: "Arrow Cursor",
+      //   description: "Arrow cursor effect",
+      //   component: ArrowCursorExample,
+      // },
+
     ],
   },
 ];
