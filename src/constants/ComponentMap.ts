@@ -13,6 +13,8 @@ import MagneticCursorExample from "@/components/examples/MagneticCursorExample";
 import MultiCursorExample from "@/components/examples/MultiCursorExample";
 import NeonCursorExample from "@/components/examples/NeonCursorExample";
 import RainbowCursorExample from "@/components/examples/RainbowCursorExample";
+import RippleCursorExample from "@/components/examples/RippleCursorExample";
+
 
 import ScalingCursorExample from "@/components/examples/ScalingCursorExample";
 import SnowflakeCursorExample from "@/components/examples/SnowflakeCursorExample";
@@ -55,4 +57,5 @@ export const ComponentMapping = {
   "canvas-cursor": CanvasCursorExample,
   "fluid-cursor": FluidCursorExample,
   "arrow-cursor": ArrowCursorExample,
+  "ripple-cursor": RippleCursorExample, 
 };
