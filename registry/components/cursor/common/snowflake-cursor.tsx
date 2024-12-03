@@ -12,11 +12,16 @@ const SnowflakeCursor: React.FC<SnowflakeCursorOptions> = ({ element }) => {
   const canvImages = useRef<HTMLCanvasElement[]>([]);
   const animationFrame = useRef<number | null>(null);
   const possibleEmoji = ['❄️'];
-  const prefersReducedMotion = window.matchMedia(
-    '(prefers-reduced-motion: reduce)'
-  );
+  const prefersReducedMotion = useRef<MediaQueryList | null>(null);
 
   useEffect(() => {
+    // Check if window is defined (to ensure code runs on client-side)
+    if (typeof window === 'undefined') return;
+
+    prefersReducedMotion.current = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    );
+
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
     if (!context) return;
@@ -100,7 +105,7 @@ const SnowflakeCursor: React.FC<SnowflakeCursorOptions> = ({ element }) => {
     };
 
     const init = () => {
-      if (prefersReducedMotion.matches) return;
+      if (prefersReducedMotion.current?.matches) return;
 
       setCanvasSize();
       createEmojiImages();
@@ -122,8 +127,8 @@ const SnowflakeCursor: React.FC<SnowflakeCursorOptions> = ({ element }) => {
       window.removeEventListener('resize', setCanvasSize);
     };
 
-    prefersReducedMotion.onchange = () => {
-      if (prefersReducedMotion.matches) {
+    prefersReducedMotion.current.onchange = () => {
+      if (prefersReducedMotion.current?.matches) {
         destroy();
       } else {
         init();

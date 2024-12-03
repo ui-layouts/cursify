@@ -11,8 +11,14 @@ function Header() {
 
   return (
     <>
-      <header className=' fixed left-0 top-0 z-50 w-full  border-b border-x rounded-b-lg  border-border dark:bg-black/40 bg-white/40 px-2 py-2  backdrop-blur-md'>
-        <div className='mx-auto flex items-center justify-between gap-2 container  '>
+      <header className=' fixed left-0 top-0 z-50 w-full  border-b border-x rounded-b-lg  border-border dark:bg-black/40 bg-white/40  backdrop-blur-md'>
+        <div className='bg-primary w-full text-background text-center text-base p-1 font-medium '>
+          Explore Components that are really needed for your website,{' '}
+          <a href='https://www.ui-layout.com/' className='underline'>
+            Ui-layouts
+          </a>
+        </div>
+        <div className='mx-auto flex items-center justify-between gap-2 container px-2 py-2  '>
           <Link href='/' className='hidden lg:block'>
             <div className='relative hidden gap-2 lg:flex pl-2'>
               <svg
@@ -53,10 +59,7 @@ function Header() {
             <button
               className={`sm:flex hidden flex-shrink-0 items-center space-x-2 group  px-2 rounded-md bg-primary text-primary-foreground border`}
               onClick={() =>
-                window.open(
-                  `https://github.com/naymurdev/mdx-starter-repo`,
-                  '_blank'
-                )
+                window.open(`https://github.com/ui-layouts/cursify`, '_blank')
               }
             >
               <svg
@@ -77,7 +80,7 @@ function Header() {
             </button>
             <a
               target='_blank'
-              href='https://github.com/naymurdev/mdx-starter-repo'
+              href='https://github.com/ui-layouts/cursify'
               className='border w-10 flex-shrink-0  place-content-center rounded-md sm:hidden grid bg-primary text-primary-foreground'
             >
               <Github />
@@ -85,7 +88,7 @@ function Header() {
 
             <a
               target='_blank'
-              href='https://x.com/naymur_dev'
+              href='https://x.com/uilayout'
               className='border flex-shrink-0 bg-primary  text-primary-foreground text-2xl w-12   grid  place-content-center    rounded-md'
             >
               <svg

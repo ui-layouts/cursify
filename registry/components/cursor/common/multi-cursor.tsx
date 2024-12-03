@@ -1,4 +1,5 @@
 // @ts-nocheck
+'use client';
 
 import { useState, useEffect } from 'react';
 import { useMouse } from '@/hooks/use-mouse';
@@ -56,7 +57,7 @@ const MultiCursor = () => {
   }, [mouseState, pattern, rotation]);
 
   return (
-    <div className='relative w-full h-screen bg-gray-900' ref={ref}>
+    <div className='relative w-full h-full' ref={ref}>
       {mouseState.x !== null && mouseState.y !== null && (
         <>
           {/* Multi-cursors */}

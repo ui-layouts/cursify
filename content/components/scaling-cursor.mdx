@@ -1,0 +1,18 @@
+export const metadata = {
+  title: '3d Cursor Effect',
+  description:
+    'An interactive React component that adds a dynamic bubble effect, visually tracking cursor movement in real time.',
+};
+
+<ComponentCodePreview name='scaling-cursor' />
+
+## Props
+
+| Prop            | Type      | Default           | Description                                                            |
+| --------------- | --------- | ----------------- | ---------------------------------------------------------------------- | --------- | -------- | --------- | ------------- | ------------- | ---------- | ------------------------------------- |
+| `cursorSize`    | `number`  | `24`              | The size of the cursor in pixels.                                      |
+| `cursorColor`   | `string`  | `'bg-purple-500'` | The background color of the cursor.                                    |
+| `hoverScale`    | `number`  | `2`               | The scale factor applied when hovering over an element.                |
+| `hoverRotation` | `number`  | `45`              | The rotation angle (in degrees) applied when hovering over an element. |
+| `blendMode`     | `'normal' | 'multiply'        | 'screen'                                                               | 'overlay' | 'darken' | 'lighten' | 'color-dodge' | 'color-burn'` | `'screen'` | The blend mode applied to the cursor. |
+| `className`     | `string`  | `undefined`       | Additional class names to apply to the cursor element.                 |

@@ -1,4 +1,5 @@
 // @ts-nocheck
+'use client';
 
 import React, { useState } from 'react';
 import { useMouse } from '@/hooks/use-mouse';
@@ -16,7 +17,7 @@ const TextIconCursor = () => {
   };
 
   return (
-    <div className='relative w-full h-screen bg-gray-900' ref={ref}>
+    <div className='relative w-full h-full ' ref={ref}>
       {mouseState.x !== null && mouseState.y !== null && (
         <div
           className='fixed pointer-events-none z-50'

@@ -1,0 +1,185 @@
+{
+  "dataArray": [
+    {
+      "name": "cursor",
+      "componentArray": [
+        {
+          "componentName": "bubble-cursor",
+          "iframeSrc": "live-components/bubble-cursor",
+          "filesrc": "components/cursor/common/bubble-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor"
+        },
+        {
+          "componentName": "snowflake-cursor",
+          "filesrc": "components/cursor/common/snowflake-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "rainbow-cursor",
+          "filesrc": "components/cursor/common/rainbow-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "blob-cursor",
+          "filesrc": "components/cursor/blob-cursor/index.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "character-cursor",
+          "filesrc": "components/cursor/common/character-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "clickeffect-cursor",
+          "filesrc": "components/cursor/common/clickeffect-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "follow-cursor",
+          "filesrc": "components/cursor/common/follow-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "magnetic-cursor",
+          "filesrc": "components/cursor/common/magnetic-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "springy-cursor",
+          "filesrc": "components/cursor/common/springy-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "arrow-cursor",
+          "filesrc": "components/cursor/common/arrow-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "trail-cursor",
+          "filesrc": "components/cursor/common/trail-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "fairydust-cursor",
+          "filesrc": "components/cursor/fairydust/index.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "neon-cursor",
+          "filesrc": "components/cursor/neoncursor/index.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "textflag-cursor",
+          "filesrc": "components/cursor/text-flag/index.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "canvas-cursor",
+          "filesrc": "components/cursor/common/canvas-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "fluid-cursor",
+          "filesrc": "components/cursor/common/fluid-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "fluid-cursor",
+          "filesrc": "components/cursor/common/fluid-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "glitch-cursor",
+          "filesrc": "components/cursor/common/glitch-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "gradient-cursor",
+          "filesrc": "components/cursor/common/gradient-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "multi-cursor",
+          "filesrc": "components/cursor/common/multi-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "scaling-cursor",
+          "filesrc": "components/cursor/common/scaling-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "texticon-cursor",
+          "filesrc": "components/cursor/common/text-icon-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "3d-cursor",
+          "filesrc": "components/cursor/common/threed-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "ripple-cursor",
+          "filesrc": "components/cursor/common/ripple-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "spotlight-cursor",
+          "filesrc": "components/cursor/common/spotlight-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        }
+      ],
+      "type": "cursor"
+    }
+  ]
+}

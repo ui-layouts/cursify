@@ -9,6 +9,7 @@ import { useMouse } from '@/hooks/use-mouse';
 const GradientCursor = () => {
   const [mouseState, ref] = useMouse();
   const [hue, setHue] = useState(0);
+
   const [particles, setParticles] = useState<
     { id: number; x: number; y: number; size: number; intensity: number }[]
   >([]);
@@ -32,7 +33,7 @@ const GradientCursor = () => {
   }, [mouseState.x, mouseState.y]);
 
   return (
-    <div className='relative w-full h-screen ' ref={ref}>
+    <div className='relative w-full h-full ' ref={ref}>
       {mouseState.x !== null && mouseState.y !== null && (
         <>
           {/* Main cursor with gradient */}

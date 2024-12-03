@@ -1,9 +1,19 @@
-//@ts-nocheck
 'use client';
 
-import { Check, Copy, RotateCw } from 'lucide-react';
-import React, { useState, Suspense } from 'react';
+import { cn } from '@/lib/utils';
+import {
+  Check,
+  Copy,
+  ExternalLink,
+  Monitor,
+  RotateCw,
+  Smartphone,
+  Tablet,
+} from 'lucide-react';
+import React, { useState, useEffect, useRef, Suspense, useMemo } from 'react';
 import { TCurrComponentProps } from './component-code-preview';
+import dynamic from 'next/dynamic';
+import { AllComponens } from '@/configs/docs';
 
 type ComponentPreviewProps = {
   component?: TCurrComponentProps;
@@ -11,21 +21,24 @@ type ComponentPreviewProps = {
   className?: string;
   code: string;
   responsive?: boolean;
-  isFitheight?: boolean;
   isNotCopy?: boolean;
   iframeComponent?: string;
 };
+type DynamicComponentType = React.ComponentType<any>;
 
 export default function ComponentPreview({
   component,
-  hasReTrigger = true,
+  hasReTrigger = false,
   className,
   code,
-  isFitheight,
+  responsive,
   isNotCopy,
+  iframeComponent,
 }: ComponentPreviewProps) {
   const [reTriggerKey, setReTriggerKey] = useState<number>(0);
   const [hasCheckIcon, setHasCheckIcon] = useState(false);
+  const [width, setWidth] = useState('100%');
+  const [mode, setMode] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
 
   const handleReTrigger = () => {
     if (hasReTrigger) {
@@ -41,10 +54,15 @@ export default function ComponentPreview({
       setHasCheckIcon(false);
     }, 1000);
   };
+  // console.log(component);
+  const currentComponentData = AllComponens.find(
+    (com) => com.id === component?.componentName
+  );
+  // Memoize the ComponentPreview to prevent re-rendering
 
   return (
     <>
-      <div className='absolute right-1 top-0 z-[10] flex h-12 items-center gap-2'>
+      <div className='absolute right-10 top-7 z-[10] flex h-12 items-center gap-2'>
         {!isNotCopy && (
           <button
             className='relative grid cursor-pointer place-content-center rounded-lg border bg-background p-2 px-2.5'
@@ -75,19 +93,18 @@ export default function ComponentPreview({
       </div>
 
       <>
-        <div
-          className={` '2xl:h-[350px] h-[300px]  relative overflow-auto' border w-full rounded-lg dark:bg-[#080b11] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:20px_20px] overflow-hidden pt-8 p-8`}
-        >
-          <div className='h-full w-full mx-auto p-5 not-prose'>
-            <Suspense fallback={<div>Loading component...</div>}>
-              <div key={reTriggerKey}>
-                <component.componentSrc />
-              </div>
-            </Suspense>
-            {component?.comMessage && (
-              <p className='text-xl w-full grid place-content-center absolute top-0 h-full left-0'>
-                {component?.comMessage}
-              </p>
+        <div className={` h-full overflow-auto  pt-0 p-0`}>
+          <div
+            className='h-full  mx-auto p-0 not-prose'
+            style={{ width: responsive ? width : '100%' }}
+          >
+            {currentComponentData ? (
+              React.createElement(
+                currentComponentData.componentSrc as DynamicComponentType,
+                { key: reTriggerKey }
+              )
+            ) : (
+              <>Component Not Found</>
             )}
           </div>
         </div>

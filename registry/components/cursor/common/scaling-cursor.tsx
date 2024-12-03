@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, HTMLAttributes } from 'react';
 import { useMouse } from '@/hooks/use-mouse';
 
@@ -7,7 +9,15 @@ interface ScalingCursorProps extends HTMLAttributes<HTMLDivElement> {
   cursorColor?: string;
   hoverScale?: number;
   hoverRotation?: number;
-  blendMode?: 'normal' | 'multiply' | 'screen' | 'overlay' | 'darken' | 'lighten' | 'color-dodge' | 'color-burn';
+  blendMode?:
+    | 'normal'
+    | 'multiply'
+    | 'screen'
+    | 'overlay'
+    | 'darken'
+    | 'lighten'
+    | 'color-dodge'
+    | 'color-burn';
 }
 
 const ScalingCursor = ({
@@ -23,14 +33,10 @@ const ScalingCursor = ({
   const [isHovering, setIsHovering] = useState(false);
 
   return (
-    <div 
-      className={`relative w-full h-screen bg-gray-900 ${className}`} 
-      ref={ref} 
-      {...rest}
-    >
+    <div className={`relative w-full h-full  ${className}`} ref={ref} {...rest}>
       {mouseState.x !== null && mouseState.y !== null && (
         <div
-          className="fixed pointer-events-none z-50 transition-all duration-300"
+          className='fixed pointer-events-none z-50 transition-all duration-300'
           style={{
             left: mouseState.x,
             top: mouseState.y,
@@ -39,7 +45,7 @@ const ScalingCursor = ({
               rotate(${isHovering ? `${hoverRotation}deg` : '0deg'})`,
           }}
         >
-          <div 
+          <div
             className={`${cursorColor} rounded-full mix-blend-${blendMode}`}
             style={{
               width: `${cursorSize}px`,
@@ -49,9 +55,9 @@ const ScalingCursor = ({
         </div>
       )}
 
-      <div className="flex items-center justify-center h-full gap-8">
+      <div className='flex items-center justify-center h-full gap-8'>
         <button
-          className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+          className='px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors'
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >

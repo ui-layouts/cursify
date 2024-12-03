@@ -2,7 +2,7 @@
 import React from 'react';
 import FairyDustCursor from './FairyDustCursor';
 
-function index() {
+function FairyDustIndex() {
   return (
     <>
       <FairyDustCursor
@@ -18,4 +18,4 @@ function index() {
   );
 }
 
-export default index;
+export default FairyDustIndex;

@@ -4,7 +4,7 @@ import { getDocBySlug, getAllDocs } from '@/lib/docs';
 import { cn } from '@/lib/utils';
 import { Component } from 'lucide-react';
 import TableOfContents from '@/components/website/tableof-compoents';
-// import { ComponentPagination } from '@/components/website/code-components/pagination';
+import { ComponentPagination } from '@/components/website/code-components/pagination';
 
 export async function generateStaticParams() {
   const docs = await getAllDocs();
@@ -15,34 +15,30 @@ export async function generateStaticParams() {
   }));
 }
 
-interface PageProps {
-  params: Promise<{ slug: string[] }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}
-
 export async function generateMetadata({
   params,
-  searchParams,
-}: PageProps): Promise<Metadata> {
-  const resolvedParams = await params;
-  const slug = resolvedParams.slug?.join('/') || '';
+}: {
+  params: { slug?: string[] };
+}): Promise<Metadata> {
+  const slug = params.slug?.join('/') || '';
   const doc = await getDocBySlug(slug);
-
   if (!doc) {
     return {};
   }
-
   return {
     title: `${doc.content.metadata.title}`,
     description: doc.content.metadata.description,
   };
 }
 
-export default async function DocPage({ params, searchParams }: PageProps) {
-  const resolvedParams = await params;
-  const resolvedSearchParams = await searchParams;
-  const slug = resolvedParams.slug?.join('/') || '';
+export default async function DocPage({
+  params,
+}: {
+  params: { slug?: string[] };
+}) {
+  const slug = params.slug?.join('/') || '';
   const doc = await getDocBySlug(slug);
+  // console.log(doc);
 
   if (!doc) {
     notFound();
@@ -50,11 +46,13 @@ export default async function DocPage({ params, searchParams }: PageProps) {
 
   const { default: Content } = doc.content;
 
+  // console.log(doc.toc);
+
   return (
     <>
-      <div className='container mx-auto mt-14'>
+      <div className='container mx-auto mt-24'>
         <div className='flex w-full lg:gap-3'>
-          <section className='prose w-full prose-zinc min-w-0 max-w-full pb-14  pt-4 dark:prose-invert prose-h1:text-2xl prose-h1:font-semibold prose-h2:text-2xl prose-h2:my-4  prose-h2:py-1  prose-h2:border-b prose-h3:py-1  prose-h2:mt-3 prose-h2:font-medium prose-h3:text-2xl prose-h3:mt-4 prose-h3:mb-2 prose-h3:font-medium prose-strong:font-medium prose-table:block prose-table:overflow-y-auto lg:pt-4'>
+          <section className='xl:mr-0 mr-3 prose w-full prose-zinc min-w-0 max-w-full pb-14  pt-4 dark:prose-invert prose-h1:text-2xl prose-h1:font-semibold prose-h2:text-2xl prose-h2:my-4  prose-h2:py-1  prose-h2:border-b prose-h3:py-1  prose-h2:mt-3 prose-h2:font-medium prose-h3:text-2xl prose-h3:mt-4 prose-h3:mb-2 prose-h3:font-medium prose-strong:font-medium prose-table:block prose-table:overflow-y-auto lg:pt-4'>
             <article className='mb-4 mt-0 rounded-lg bg-primary-foreground dark:border-none border p-6'>
               <div className='space-y-2 rounded-md dark:text-white text-black'>
                 <h1
@@ -71,7 +69,7 @@ export default async function DocPage({ params, searchParams }: PageProps) {
               </div>
             </article>
             <Content />
-            {/* <ComponentPagination doc={doc} /> */}
+            <ComponentPagination doc={doc} />
           </section>
           <TableOfContents toc={doc.toc} />
         </div>

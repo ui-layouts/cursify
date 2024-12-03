@@ -27,7 +27,6 @@ const config: Config = {
       '2xl': '1536px',
       // => @media (min-width: 1536px) { ... }
     },
-
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -63,6 +62,7 @@ const config: Config = {
         'infinite-scroll': 'infinite-scroll 25s linear infinite',
         marquee: 'marquee var(--duration) linear infinite',
         'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
+        ripple: 'ripple 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards',
       },
       keyframes: {
         border: {
@@ -79,6 +79,10 @@ const config: Config = {
         'marquee-vertical': {
           from: { transform: 'translateY(0)' },
           to: { transform: 'translateY(calc(-100% - var(--gap)))' },
+        },
+        ripple: {
+          '0%': { transform: 'scale(0)', opacity: '1' },
+          '100%': { transform: 'scale(1)', opacity: '0' },
         },
       },
     },

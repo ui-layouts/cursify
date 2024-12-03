@@ -218,12 +218,13 @@ export default FairyDustCursor;
 
 ## Props
 
-| Prop               | Type              | Default | Description                                                  |
-| ------------------ | ----------------- | ------- | ------------------------------------------------------------ |
-| `classname`        | `string`          |         | Optional CSS class for styling the main vignette container.  |
-| `children`         | `React.ReactNode` |         | The content to display inside the vignette effect.           |
-| `radius`           | `string`          | `24px`  | The radius for the vignette effect.                          |
-| `inset`            | `string`          | `20px`  | The inset value for the vignette effect.                     |
-| `transitionLength` | `string`          | `44px`  | The length of the transition effect applied to the vignette. |
-| `blur`             | `string`          | `6px`   | The blur amount for the vignette effect.                     |
-| `blurclassname`    | `string`          |         | Optional CSS class for styling the blur effect container.    |
+| Prop              | Type                           | Default                             | Description                                                                                                     |
+| ----------------- | ------------------------------ | ----------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `colors`          | `string[]`                     | `['#D61C59', '#E7D84B', '#1B8798']` | Array of colors for the particles.                                                                              |
+| `element`         | `HTMLElement`                  | `undefined`                         | The HTML element where the cursor effect will be applied. If not specified, the effect applies to the document. |
+| `characterSet`    | `string[]`                     | `['✨', '⭐', '🌟', '★', '*']`      | Array of characters used for particles.                                                                         |
+| `particleSize`    | `number`                       | `21`                                | Size of the particles in pixels.                                                                                |
+| `particleCount`   | `number`                       | `1`                                 | Number of particles generated per cursor movement event.                                                        |
+| `gravity`         | `number`                       | `0.02`                              | Gravity effect applied to the particles.                                                                        |
+| `fadeSpeed`       | `number`                       | `0.98`                              | The fade-out speed of the particles (value between 0 and 1).                                                    |
+| `initialVelocity` | `{ min: number, max: number }` | `{ min: 0.5, max: 1.5 }`            | The initial velocity range for particles.                                                                       |

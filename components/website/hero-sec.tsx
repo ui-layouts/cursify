@@ -3,25 +3,18 @@ import { ArrowRight, ChevronsRight, Component, MoveRight } from 'lucide-react';
 import { Button } from '@/components/website/ui/button';
 import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import BlobCursor from '@/registry/components/cursor/BlobCursor';
 import { Spotlight, SpotLightItem } from './ui/spotlight';
-import CanvasCursor from '@/registry/components/cursor/common/CanvasCursor';
-import CharacterCursor from '@/registry/components/cursor/common/CharacterCursor';
-import ClickEffectCursor from '@/registry/components/cursor/common/ClickEffectCursor';
-import FairyDustCursor from '@/registry/components/cursor/fairydust/FairyDustCursor';
-import FollowCursor from '@/registry/components/cursor/common/FollowCursor';
-import GlitchCursor from '@/registry/components/cursor/common/GlitchCursor';
-import GradientCursor from '@/registry/components/cursor/common/GradientCursor';
-import MagneticCursor from '@/registry/components/cursor/common/MagneticCursor';
-import NeonCursor from '@/registry/components/cursor/neoncursor/NeonCursor';
-import RainbowCursor from '@/registry/components/cursor/common/RainbowCursor';
-import SnowflakeCursor from '@/registry/components/cursor/common/SnowflakeCursor';
-import SpotlightCursor from '@/registry/components/cursor/common/SpotLightCursor';
-import SpringyCursor from '@/registry/components/cursor/common/SpringyCursor';
-import TextFlagCursor from '@/registry/components/cursor/text-flag/TextFlagCursor';
-import ThreeDCursor from '@/registry/components/cursor/common/ThreeDCursor';
-import TrailCursor from '@/registry/components/cursor/common/TrailCursor';
-import BubbleCursor from '@/registry/components/cursor/common/BubbleCursor';
+import CanvasCursor from '@/registry/components/cursor/common/canvas-cursor';
+import CharacterCursor from '@/registry/components/cursor/common/character-cursor';
+import FairyDustIndex from '@/registry/components/cursor/fairydust';
+import FollowCursor from '@/registry/components/cursor/common/follow-cursor';
+
+import RainbowCursor from '@/registry/components/cursor/common/rainbow-cursor';
+import SnowflakeCursor from '@/registry/components/cursor/common/snowflake-cursor';
+import SpotlightCursor from '@/registry/components/cursor/common/spotlight-cursor';
+import SpringyCursor from '@/registry/components/cursor/common/springy-cursor';
+
+import BubbleCursor from '@/registry/components/cursor/common/bubble-cursor';
 
 function HeroSec() {
   const [blocks, setBlocks] = useState([]);
@@ -75,20 +68,58 @@ function HeroSec() {
 
   const components = [
     // { title: 'Blog Cursor', link: '', component: <BlobCursor /> },
-    { title: 'Canvas Cursor', link: '', component: <CanvasCursor /> },
-    { title: 'Bubble Cursor', link: '', component: <BubbleCursor /> },
-    { title: 'Character Cursor', link: '', component: <CharacterCursor /> },
-    { title: 'Snowflake Cursor', link: '', component: <SnowflakeCursor /> },
-    // { title: 'Click Cursor', link: '', component: <ClickEffectCursor /> },
-    { title: 'FairyDust Cursor', link: '', component: <FairyDustCursor /> },
-    { title: 'Rainbow Cursor', link: '', component: <RainbowCursor /> },
-    { title: 'Follow Cursor', link: '', component: <FollowCursor /> },
+    {
+      title: 'Fairydust Cursor',
+      link: '/components/fairydust-cursor',
+      component: <FairyDustIndex />,
+    },
+    {
+      title: 'Canvas Cursor',
+      link: '/components/canvas-cursor',
+      component: <CanvasCursor />,
+    },
+    {
+      title: 'Bubble Cursor',
+      link: '/components/bubble-cursor',
+      component: <BubbleCursor />,
+    },
+    {
+      title: 'Character Cursor',
+      link: '/components/character-cursor',
+      component: <CharacterCursor />,
+    },
+    {
+      title: 'Snowflake Cursor',
+      link: '/components/character-cursor',
+      component: <SnowflakeCursor />,
+    },
+
+    {
+      title: 'Rainbow Cursor',
+      link: '/components/rainbow-cursor',
+
+      component: <RainbowCursor />,
+    },
+    {
+      title: 'Follow Cursor',
+      link: '/components/follow-cursor',
+
+      component: <FollowCursor />,
+    },
     // { title: 'Glitch Cursor', link: '', component: <GlitchCursor /> },
     // { title: 'Gradient Cursor', link: '', component: <GradientCursor /> },
     // { title: 'Magnetic Cursor', link: '', component: <MagneticCursor /> },
     // { title: 'Neon Cursor', link: '', component: <NeonCursor /> },
-    { title: 'Spotlight Cursor', link: '', component: <SpotlightCursor /> },
-    { title: 'Springy Cursor', link: '', component: <SpringyCursor /> },
+    {
+      title: 'Spotlight Cursor',
+      link: '/components/spotlight-cursor',
+      component: <SpotlightCursor />,
+    },
+    {
+      title: 'Springy Cursor',
+      link: '/components/springy-cursor',
+      component: <SpringyCursor />,
+    },
     // { title: 'TextFlag Cursor', link: '', component: <TextFlagCursor /> },
     // { title: 'ThreeD Cursor', link: '', component: <ThreeDCursor /> },
     // { title: 'Trail Cursor', link: '', component: <TrailCursor /> },
@@ -186,16 +217,16 @@ function HeroSec() {
               <p className='text-balance text-center text-sm leading-loose text-muted-foreground md:text-left'>
                 Built by{' '}
                 <a
-                  href='https://x.com/naymur_dev'
+                  href='https://x.com/uilayout'
                   target='_blank'
                   rel='noreferrer'
                   className='font-medium underline underline-offset-4'
                 >
-                  naymur
+                  ui-layouts
                 </a>{' '}
                 . The source code is available on{' '}
                 <a
-                  href='https://github.com/naymurdev/uilayout'
+                  href='https://github.com/ui-layouts'
                   target='_blank'
                   rel='noreferrer'
                   className='font-medium underline underline-offset-4'

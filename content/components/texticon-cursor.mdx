@@ -1,15 +1,15 @@
 export const metadata = {
-  title: 'Gradient Cursor Effect',
+  title: 'Text Icons Effect',
   description:
     'An interactive React component that adds a dynamic bubble effect, visually tracking cursor movement in real time.',
 };
 
-<ComponentCodePreview name='gradient-cursor' />
+<ComponentCodePreview name='texticon-cursor' />
 
 ## Installtion
 
 ```bash
-npm install framer-motion
+npm install lucide-react
 ```
 
 ## useMouse
@@ -75,3 +75,15 @@ export function useMouse(): [MouseState, RefObject<HTMLDivElement>] {
   return [state, ref];
 }
 ```
+
+## Props
+
+| Prop       | Type          | Default               | Description                                                                                                     |
+| ---------- | ------------- | --------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `text`     | `string`      | `'Hello!'`            | The text to display next to the cursor.                                                                         |
+| `color`    | `string`      | `'#000'`              | The color of the text and the dot.                                                                              |
+| `font`     | `string`      | `'Arial, sans-serif'` | The font of the text.                                                                                           |
+| `textSize` | `number`      | `14`                  | The size of the text in pixels.                                                                                 |
+| `gap`      | `number`      | `5`                   | The gap between the dot and the text in pixels.                                                                 |
+| `element`  | `HTMLElement` | `undefined`           | The HTML element where the cursor effect will be applied. If not specified, the effect applies to the document. |
+| `size`     | `number`      | `10`                  | The size of the dot in pixels.                                                                                  |

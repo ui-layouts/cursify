@@ -69,7 +69,7 @@ body {
     --radius: 0.5rem;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --codebg: #011727f0;
+    --codebg: #04080cdc;
 
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
@@ -108,7 +108,7 @@ body {
     @apply border-border;
   }
   body {
-    @apply dark:bg-black bg-white text-foreground;
+    @apply bg-background text-foreground;
   }
 }
 @layer utilities {

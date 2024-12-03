@@ -11,18 +11,21 @@ import {
   SunIcon,
 } from 'lucide-react';
 import { Command } from 'cmdk';
+
 import { Dialog, DialogContent } from '@/components/website/ui/dialog';
 import { ScrollArea } from '@/components/website/ui//scroll-area';
+import { generateSidebarData } from './constant';
+import docsData from '@/configs/docs.json' assert { type: 'json' };
 import { cn } from '@/lib/utils';
 import { basePath } from './sidebar';
-import { MainComponents, cursorAnimations } from '@/configs/docs';
+import { AllComponens, SpecialComponents } from '@/configs/docs';
 
 // import { componentsArr } from './sidebar';
 
 export function SearchDialog({ classname }: { classname?: string }) {
   const router = useRouter();
   const { setTheme } = useTheme();
-  const searchbardata = [...basePath, ...cursorAnimations, ...MainComponents];
+  const searchbardata = [...basePath, ...AllComponens];
   console.log(searchbardata);
 
   const [searchOpen, setSearchOpen] = React.useState(false);
@@ -120,7 +123,7 @@ export function SearchDialog({ classname }: { classname?: string }) {
                         <div className='mr-2 flex h-4 w-4 items-center justify-center'>
                           <CircleIcon className='h-3 w-3' />
                         </div>
-                        {category.name}
+                        {category.componentName}
                       </Command.Item>
                     </React.Fragment>
                   ))}

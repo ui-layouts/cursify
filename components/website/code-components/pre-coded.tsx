@@ -9,7 +9,7 @@ import {
 import { CopyButton } from './copy-button';
 import { cn } from '@/lib/utils';
 import ts from 'typescript';
-import { callout, wordWrap } from '../constant';
+import { callout, lineNumbers, wordWrap } from '../constant';
 
 export async function PreCoded({
   codeblock,
@@ -60,11 +60,11 @@ export async function PreCoded({
   const jshighlighted = await highlight(jsCodeblock, 'github-from-css');
 
   return (
-    <div className='relative'>
+    <div className='relative '>
       <Tabs defaultValue={'typescript'}>
         <TabsList
           className={cn(
-            'absolute  right-20 top-6 z-[1] h-9 p-0.5 border dark:border-background ',
+            'absolute  right-[8rem] top-8 z-[1] h-9 p-0.5 border dark:border-background ',
             tabclassname
           )}
         >
@@ -76,30 +76,30 @@ export async function PreCoded({
           </TabsTrigger>
         </TabsList>
         <TabsContent value={'typescript'}>
-          <div className={cn('relative pt-4', classname)}>
+          <div className={cn('relative p-4 ', classname)}>
             <CopyButton
               code={tshighlighted.code}
-              classname={cn('top-6 right-10  ', copyclass)}
+              classname={cn('top-[1.68rem] right-[5.3em]  ', copyclass)}
             />
-            <div className=' p-2 max-h-[500px] overflow-x-hidden  rounded-md text-sm  bg-codebg border'>
+            <div className=' p-2 max-h-[500px] pt-8 overflow-x-hidden  rounded-md text-sm  bg-codebg border'>
               <Pre
                 code={tshighlighted}
-                handlers={[callout, wordWrap]}
+                handlers={[callout, wordWrap, lineNumbers]}
                 className={cn('m-0', classname)}
               />
             </div>
           </div>
         </TabsContent>
         <TabsContent value={'javascript'}>
-          <div className={cn('relative pt-4', classname)}>
+          <div className={cn('relative p-4', classname)}>
             <CopyButton
               code={jshighlighted.code}
-              classname={cn('top-6 right-10  ', copyclass)}
+              classname={cn('top-[1.68rem] right-[5.3em]  ', copyclass)}
             />
-            <div className='p-2 max-h-[500px] overflow-x-hidden  rounded-md text-sm bg-codebg border'>
+            <div className='p-2 max-h-[500px] overflow-x-hidden pt-8  rounded-md text-sm bg-codebg border'>
               <Pre
                 code={jshighlighted}
-                handlers={[callout, wordWrap]}
+                handlers={[callout, wordWrap, lineNumbers]}
                 className={cn(' m-0', classname)}
               />
             </div>

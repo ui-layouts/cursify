@@ -5,43 +5,14 @@ import Link from 'next/link';
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 import Image from 'next/image';
 import preview from '@/assets/preview';
-const appsDesign = [
-  {
-    id: 'motionNumber',
-    name: 'motion number',
-    url: '/components/motion-number',
-    imgSrc: preview.motionNumber,
-  },
-  {
-    id: 'buttons',
-    url: '/components/buttons',
-    name: 'buttons',
-    imgSrc: preview.buttons,
-  },
-  {
-    id: 'horizontal-scrolling',
-    url: '/components/horizontal-scroll',
-    name: 'scrolling',
-    imgSrc: preview.horizontascroll,
-  },
-  {
-    id: 'clip-path',
-    url: '/components/clip-path',
-    name: 'Clip-Path',
-    imgSrc: preview.clippath,
-  },
-  {
-    id: 'image-reveal',
-    url: '/components/product-cards',
-    name: 'Cards',
-    imgSrc: preview.card,
-  },
-];
+import { AllComponens } from '@/configs/docs';
+import { Spotlight, SpotLightItem } from '@/components/website/ui/spotlight';
+import { ArrowRight } from 'lucide-react';
 
 export default function Home() {
   return (
     <>
-      <div className='pt-20 pb-5'>
+      <div className='pt-28 pb-5'>
         <h1
           className={'sm:text-3xl text-2xl font-semibold tracking-tight pb-1'}
         >
@@ -53,35 +24,27 @@ export default function Home() {
           apps. Accessible. Customizable. Open Source.
         </p>
         <>
-          <div className='grid md:grid-cols-3 grid-cols-2 gap-6 py-4'>
-            {appsDesign.map((component, index) => {
-              return (
+          <Spotlight className=' grid md:grid-cols-3 grid-cols-2 gap-4 py-2'>
+            {AllComponens.map((component, index) => (
+              <SpotLightItem key={index}>
                 <>
                   <Link
-                    href={component?.url}
-                    className='border p-2    transition-all rounded-lg'
+                    href={component.href}
+                    className='p-2 pl-5 dark:bg-[#070707] bg-gray-50 transition-all rounded-md dark:border-none border backdrop-blur-md relative flex justify-between items-center'
                   >
-                    <>
-                      <AspectRatio.Root ratio={16 / 9}>
-                        <Image
-                          src={component.imgSrc}
-                          alt='hero-sec'
-                          width={100}
-                          height={100}
-                          className='w-full h-full   rounded-md'
-                        />
-                      </AspectRatio.Root>
-                    </>
-                    <div className='sm:py-2 py-1 sm:px-4 px-2'>
-                      <h1 className='2xl:text-xl xl:text-xl md:text-lg text-sm font-medium leading-[140%] capitalize'>
-                        {component.name}
+                    <div>
+                      <h1 className='font-medium text-xl'>
+                        {component.componentName}
                       </h1>
                     </div>
+                    <button className='h-full dark:bg-gray-900 bg-gray-100 border p-3 rounded-md'>
+                      <ArrowRight />
+                    </button>
                   </Link>
                 </>
-              );
-            })}
-          </div>
+              </SpotLightItem>
+            ))}
+          </Spotlight>
         </>
       </div>
     </>

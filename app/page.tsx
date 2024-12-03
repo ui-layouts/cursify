@@ -4,9 +4,11 @@ import HeroSec from '@/components/website/hero-sec';
 
 export default function Home() {
   return (
-    <Background>
-      <Header />
-      <HeroSec />
-    </Background>
+    <>
+      <Background>
+        <Header />
+        <HeroSec />
+      </Background>
+    </>
   );
 }

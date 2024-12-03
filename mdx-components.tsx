@@ -3,6 +3,10 @@ import Image, { ImageProps } from 'next/image';
 import { cn } from './lib/utils';
 import { PreCode } from '@/components/website/code-components/pre-code';
 import ComponentCodePreview from '@/components/website/code-components/component-code-preview';
+import DrawerCodePreview from '@/components/website/code-components/drawer-code-preview';
+import TabCodePreview from '@/components/website/code-components/tab-codepreview';
+import IframeComponentPrieview from '@/components/website/code-components/iframe-component-preview';
+import CodeBlock from '@/components/website/code-components/code-block';
 
 import {
   Tabs,
@@ -10,6 +14,7 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/components/website/ui/tabs';
+import IframeTabCodePreview from './components/website/code-components/iframe-tab-codepreview';
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     Tabs: ({ className, ...props }: React.ComponentProps<typeof Tabs>) => (
@@ -33,7 +38,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     }: React.ComponentProps<typeof TabsContent>) => (
       <TabsContent className={cn('', className)} {...props} />
     ),
+    IframeTabCodePreview: IframeTabCodePreview,
+    TabCodePreview: TabCodePreview,
+    DrawerCodePreview: DrawerCodePreview,
     ComponentCodePreview: ComponentCodePreview,
+    IframeComponentPrieview: IframeComponentPrieview,
+    CodeBlock: CodeBlock,
     img: (props) => (
       <Image
         sizes='100vw'
@@ -42,14 +52,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
     PreCode: PreCode,
-    table: ({
-      className,
-      ...props
-    }: React.HTMLAttributes<HTMLTableElement>) => (
-      <div className='m-0 w-full overflow-x-auto  not-prose  '>
-        <table className={cn('w-full mb-8', className)} {...props} />
-      </div>
-    ),
+
     p: ({
       className,
       ...props
@@ -64,9 +67,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <div className={cn('', className)} {...props}>
         {children}
       </div>
-    ),
-    a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
-      <a className={cn('font-medium ', className)} {...props} />
     ),
     code: ({
       className,
@@ -92,13 +92,21 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     hr: ({ className, ...props }: React.HTMLAttributes<HTMLHRElement>) => (
       <hr className={cn('my-4 md:my-8', className)} {...props} />
     ),
+    table: ({
+      className,
+      ...props
+    }: React.HTMLAttributes<HTMLTableElement>) => (
+      <div className='m-0 w-full overflow-auto not-prose  '>
+        <table className={cn('w-full mb-2', className)} {...props} />
+      </div>
+    ),
     tr: ({
       className,
       ...props
     }: React.HTMLAttributes<HTMLTableRowElement>) => (
       <tr
         className={cn(
-          'm-0  w-ful border-t p-0 text-sm [&>td:last-child]:w-full',
+          'm-0  w-ful overflow-auto border-t p-0 text-sm [&>td:last-child]:w-full',
           className
         )}
         {...props}
@@ -128,7 +136,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     }: React.HTMLAttributes<HTMLTableCellElement>) => (
       <td
         className={cn(
-          'border px-4  py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right',
+          'border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right whitespace-nowrap ',
           className
         )}
         {...props}

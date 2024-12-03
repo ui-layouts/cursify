@@ -46,7 +46,7 @@ const MagneticCursor: React.FC = () => {
   }, [x, y]);
 
   return (
-    <div className='relative w-full h-fit flex items-center justify-center'>
+    <div className='relative w-full h-full flex items-center justify-center'>
       <motion.button
         ref={buttonRef}
         className={`px-6 py-3 rounded-lg text-white font-semibold transition-transform ${

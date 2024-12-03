@@ -57,7 +57,7 @@ export const Spotlight = ({
         CursorFlowGradient,
       }}
     >
-      <div className={cn(className, 'group relative z-10 rounded-md   gap-2 ')}>
+      <div className={cn('group relative z-10 rounded-md   gap-2 ', className)}>
         {children}
       </div>
     </SpotLightContext.Provider>
