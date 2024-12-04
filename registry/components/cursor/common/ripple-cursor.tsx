@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useReducer, useEffect } from 'react';
 
 // Define the shape of a ripple object

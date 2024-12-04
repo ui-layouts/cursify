@@ -2,14 +2,12 @@ export const metadata = {
   title: 'Get Started',
 };
 
-<div className='mt-28'>
+<div className='mt-[5.5rem]'>
   <h4 className='text-4xl font-semibold'>Introdcution</h4>
 </div>
 
-Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.
-
-UI-LAYOUT is a collection of reusable components, each with a bunch of examples in different styles that can be used in various positions.
-**I wondered how users would enjoy the journey of scrolling through a website if they didn't feel there was something special about it.**
+Create Stunning Cursor Animations with Ease.
+Cursify is a powerful library designed to elevate your React and Next.js projects. With an extensive collection of cursor animations, pre-built components, code blocks, and design templates, Cursify empowers you to craft visually stunning landing pages and marketing interfaces effortlessly.
 
 ##### Installation
 
@@ -30,36 +28,74 @@ export function cn(...inputs: ClassValue[]) {
 }
 ```
 
-use this hooks for mediaQueries:
+we're using this hooks for most of our components:
 
-```tsx use-media-query.tsx
-import { useEffect, useState } from 'react';
+```tsx use-mouse.tsx
+'use client';
+import { type RefObject, useLayoutEffect, useRef, useState } from 'react';
 
-export function useMediaQuery(query: string) {
-  const [value, setValue] = useState(false);
+interface MouseState {
+  x: number | null;
+  y: number | null;
+  elementX: number | null;
+  elementY: number | null;
+  elementPositionX: number | null;
+  elementPositionY: number | null;
+}
 
-  useEffect(() => {
-    function onChange(event: MediaQueryListEvent) {
-      setValue(event.matches);
-    }
+export function useMouse(): [MouseState, RefObject<HTMLDivElement>] {
+  const [state, setState] = useState<MouseState>({
+    x: null,
+    y: null,
+    elementX: null,
+    elementY: null,
+    elementPositionX: null,
+    elementPositionY: null,
+  });
 
-    const result = matchMedia(query);
-    result.addEventListener('change', onChange);
-    setValue(result.matches);
+  const ref = useRef<HTMLDivElement | null>(null);
 
-    return () => result.removeEventListener('change', onChange);
-  }, [query]);
+  useLayoutEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      const newState: Partial<MouseState> = {
+        x: event.pageX,
+        y: event.pageY,
+      };
 
-  return value;
+      if (ref.current instanceof Element) {
+        const { left, top } = ref.current.getBoundingClientRect();
+        const elementPositionX = left + window.scrollX;
+        const elementPositionY = top + window.scrollY;
+        const elementX = event.pageX - elementPositionX;
+        const elementY = event.pageY - elementPositionY;
+
+        newState.elementX = elementX;
+        newState.elementY = elementY;
+        newState.elementPositionX = elementPositionX;
+        newState.elementPositionY = elementPositionY;
+      }
+
+      setState((s) => ({
+        ...s,
+        ...newState,
+      }));
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  return [state, ref];
 }
 ```
 
-##### Motivation
+##### Story
 
-The main reason for **creating this component was to help myself.** I've been creating web pages for the last couple of years and love building websites that are reactive and user-friendly. Some components are really reusable for different websites, and I have to search through files to find the code and it's really annoying. So, I thought, what if I create something where all of my animations or components will be in one place?
+I was exploring **[Ui-Layouts](https://www.ui-layout.com/)** components and noticed they didn’t have any mouse events or cursor animations. So, I thought, why not create a Cursor Components Library? I went ahead and built it, but the UI and design process were all manual. I wasn’t using developer-friendly tools like MDX. That’s when **Naymur** reached out to me and said he could completely change the structure—how components are added, how users view and copy them—just like he did in **[Ui-Layouts](https://www.ui-layout.com/)**. Now, you’re checking out the new version of **Cursify**, which has become an exciting project under **[Ui-Layouts](https://www.ui-layout.com/)**.
 
-I gained hope and belief after seeing component libraries like https://ui.shadcn.com and https://ui.aceternity.com I want to give them credit for encouraging me to create free components library like this.
-
-I want to thank https://magicui.design and https://x.com/jakubkrehel for what they have done. When I first completed some components, I realized that I needed to make text animations. Then I discovered **MagicUI** already have done it, and they had a bunch of components that I wanted to create myself. So, thanks again! 🔥
+You can follow **[me](https://x.com/bachhav36741)** and **[Naymur](https://x.com/naymur_dev)** to see what we’ve been working on.
 
 <div className='mb-4'></div>

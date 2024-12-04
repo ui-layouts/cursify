@@ -2,23 +2,43 @@
 import { useTheme } from 'next-themes';
 import React from 'react';
 import Link from 'next/link';
-import { Github } from 'lucide-react';
+import { ArrowUpRight, Github } from 'lucide-react';
 import { SearchDialog } from './searchbar';
 import ThemeSwitch from './theme-switch';
-
+import { usePathname } from 'next/navigation';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/website/ui/dropdown';
+import GitHubButton from './github-btn';
 function Header() {
   const { setTheme } = useTheme();
+  const pathname = usePathname();
 
   return (
     <>
-      <header className=' fixed left-0 top-0 z-50 w-full  border-b border-x rounded-b-lg  border-border dark:bg-black/40 bg-white/40  backdrop-blur-md'>
-        <div className='bg-primary w-full text-background text-center text-base p-1 font-medium '>
-          Explore Components that are really needed for your website,{' '}
-          <a href='https://www.ui-layout.com/' className='underline'>
-            Ui-layouts
-          </a>
-        </div>
-        <div className='mx-auto flex items-center justify-between gap-2 container px-2 py-2  '>
+      <header
+        className={`fixed left-0 top-0  z-50 xl:px-0 px-1.5 w-full ${pathname === '/' ? '' : 'pt-2 bg-background'}`}
+      >
+        {pathname === '/' && (
+          <div className='bg-primary  max-w-screen-xl mx-auto w-full text-background text-center text-base p-1 font-medium '>
+            Explore Components that are really needed for your website,{' '}
+            <a
+              href='https://www.ui-layout.com/'
+              className='underline'
+              target='_blank'
+            >
+              Ui-layouts
+            </a>
+          </div>
+        )}
+        <div
+          className={` ${pathname === '/' ? 'rounded-b-lg max-w-screen-xl' : 'rounded-lg  xl:container'}  border border-x   border-border dark:bg-black/40 bg-primary-foreground  backdrop-blur-md mx-auto flex items-center justify-between gap-2 px-2 py-2  `}
+        >
           <Link href='/' className='hidden lg:block'>
             <div className='relative hidden gap-2 lg:flex pl-2'>
               <svg
@@ -56,28 +76,8 @@ function Header() {
           {/* <MobileHeader /> */}
           <div className='flex gap-2 '>
             <SearchDialog classname='w-60' />
-            <button
-              className={`sm:flex hidden flex-shrink-0 items-center space-x-2 group  px-2 rounded-md bg-primary text-primary-foreground border`}
-              onClick={() =>
-                window.open(`https://github.com/ui-layouts/cursify`, '_blank')
-              }
-            >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                width='24'
-                height='24'
-                viewBox='0 0 24 24'
-                fill='none'
-                stroke='currentColor'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                className='lucide lucide-star group-hover:fill-yellow-500 group-hover:stroke-yellow-500 transition-colors duration-300 '
-              >
-                <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2' />
-              </svg>
-              <span className='font-medium'>Star on github</span>
-            </button>
+
+            <GitHubButton />
             <a
               target='_blank'
               href='https://github.com/ui-layouts/cursify'
@@ -85,23 +85,70 @@ function Header() {
             >
               <Github />
             </a>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                {/* <a
+                  target='_blank'
+                  href='https://x.com/uilayout'
+                  className='border flex-shrink-0 bg-primary  text-primary-foreground text-2xl w-12   grid  place-content-center    rounded-md'
+                > */}
+                <div className='border flex-shrink-0 bg-primary  text-primary-foreground text-2xl w-12  h-11  grid  place-content-center    rounded-md'>
+                  <svg
+                    width='120'
+                    height='109'
+                    viewBox='0 0 120 109'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                    className=' fill-primary-foreground w-6 h-5'
+                  >
+                    <path d='M94.5068 0H112.907L72.7076 46.172L120 109H82.9692L53.9674 70.8942L20.7818 109H2.3693L45.3666 59.6147L0 0H37.9685L64.1848 34.8292L94.5068 0ZM88.0484 97.9318H98.2448L32.4288 10.4872H21.4882L88.0484 97.9318Z' />
+                  </svg>
+                </div>
+                {/* </a> */}
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className='w-44 mt-3 dark:bg-black/40 bg-primary-foreground  backdrop-blur-xl  py-1'>
+                <DropdownMenuItem className='group'>
+                  <a
+                    target='_blank'
+                    href='https://x.com/bachhav36741'
+                    className='flex  items-center  rounded-md justify-between w-full'
+                  >
+                    Drugesh{' '}
+                    <ArrowUpRight
+                      className='group-focus:opacity-100 opacity-0'
+                      size={16}
+                    />
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem className='group'>
+                  <a
+                    target='_blank'
+                    href='https://x.com/naymur_dev'
+                    className='flex items-center   rounded-md justify-between w-full'
+                  >
+                    Naymur{' '}
+                    <ArrowUpRight
+                      className='group-focus:opacity-100 opacity-0'
+                      size={16}
+                    />
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem className='group'>
+                  <a
+                    target='_blank'
+                    href='https://x.com/uilayout'
+                    className='flex  items-center  rounded-md justify-between w-full'
+                  >
+                    Ui-Layouts{' '}
+                    <ArrowUpRight
+                      className='group-focus:opacity-100 opacity-0'
+                      size={16}
+                    />
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
-            <a
-              target='_blank'
-              href='https://x.com/uilayout'
-              className='border flex-shrink-0 bg-primary  text-primary-foreground text-2xl w-12   grid  place-content-center    rounded-md'
-            >
-              <svg
-                width='120'
-                height='109'
-                viewBox='0 0 120 109'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-                className=' fill-primary-foreground w-6 h-5'
-              >
-                <path d='M94.5068 0H112.907L72.7076 46.172L120 109H82.9692L53.9674 70.8942L20.7818 109H2.3693L45.3666 59.6147L0 0H37.9685L64.1848 34.8292L94.5068 0ZM88.0484 97.9318H98.2448L32.4288 10.4872H21.4882L88.0484 97.9318Z' />
-              </svg>
-            </a>
             <ThemeSwitch className='bg-background border w-12 rounded-md h-11 flex-shrink-0' />
           </div>
         </div>

@@ -14,11 +14,9 @@ import { Command } from 'cmdk';
 
 import { Dialog, DialogContent } from '@/components/website/ui/dialog';
 import { ScrollArea } from '@/components/website/ui//scroll-area';
-import { generateSidebarData } from './constant';
-import docsData from '@/configs/docs.json' assert { type: 'json' };
 import { cn } from '@/lib/utils';
 import { basePath } from './sidebar';
-import { AllComponens, SpecialComponents } from '@/configs/docs';
+import { AllComponens } from '@/configs/docs';
 
 // import { componentsArr } from './sidebar';
 

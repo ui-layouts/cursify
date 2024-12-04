@@ -137,35 +137,6 @@ interface SidebarCategory {
   items: SidebarItem[];
 }
 
-export const generateSidebarData = (data: Category[]): SidebarCategory[] => {
-  const sidebarData: SidebarCategory[] = [];
-  const processedCategories = new Set<string>();
-
-  data.forEach((category) => {
-    if (!processedCategories.has(category.name)) {
-      const sidebarCategory: SidebarCategory = {
-        name: category.name,
-        items: category.componentArray.map((component) => ({
-          name: component.parentName,
-          href: `/components/${component.parentlink}`,
-          isNew: component.isNew ? true : false, // You might want to determine this based on some criteria
-        })),
-      };
-
-      // Remove duplicates and sort items
-      sidebarCategory.items = Array.from(
-        new Set(sidebarCategory.items.map((item) => JSON.stringify(item)))
-      )
-        .map((item) => JSON.parse(item))
-        .sort((a, b) => a.name.localeCompare(b.name));
-
-      sidebarData.push(sidebarCategory);
-      processedCategories.add(category.name);
-    }
-  });
-
-  return sidebarData.sort((a, b) => a.name.localeCompare(b.name));
-};
 export const CardArr = [
   {
     img: 'https://images.unsplash.com/photo-1543508282-6319a3e2621f?q=80&w=1200&auto=format&fit=crop',

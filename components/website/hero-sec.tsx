@@ -15,6 +15,7 @@ import SpotlightCursor from '@/registry/components/cursor/common/spotlight-curso
 import SpringyCursor from '@/registry/components/cursor/common/springy-cursor';
 
 import BubbleCursor from '@/registry/components/cursor/common/bubble-cursor';
+import Footer from './footer';
 
 function HeroSec() {
   const [blocks, setBlocks] = useState([]);
@@ -192,7 +193,7 @@ function HeroSec() {
                         onMouseEnter={() => setHoveredIndex(index)}
                         onMouseLeave={() => setHoveredIndex(null)}
                         href={component.link}
-                        className='p-2 pl-2 dark:bg-[#070707] bg-gray-50 transition-all rounded-md dark:border-none border backdrop-blur-md relative flex justify-between items-center'
+                        className='p-2 pl-4 dark:bg-[#010101] bg-gray-50 transition-all rounded-md dark:border-none border backdrop-blur-md relative flex justify-between items-center'
                       >
                         <div>
                           <h1 className='font-medium text-xl'>
@@ -213,29 +214,7 @@ function HeroSec() {
                 ))}
               </Spotlight>
             </div>
-            <footer className=' mt-14 px-3 border-x border-t  pt-2 xl:pb-4 z-[2] relative rounded-md bg-background/40 backdrop-blur-md'>
-              <p className='text-balance text-center text-sm leading-loose text-muted-foreground md:text-left'>
-                Built by{' '}
-                <a
-                  href='https://x.com/uilayout'
-                  target='_blank'
-                  rel='noreferrer'
-                  className='font-medium underline underline-offset-4'
-                >
-                  ui-layouts
-                </a>{' '}
-                . The source code is available on{' '}
-                <a
-                  href='https://github.com/ui-layouts'
-                  target='_blank'
-                  rel='noreferrer'
-                  className='font-medium underline underline-offset-4'
-                >
-                  GitHub
-                </a>
-                .
-              </p>
-            </footer>
+            <Footer className='mt-8' />
           </div>
         </section>
         <div className='flex h-screen overflow-hidden top-0 left-0  inset-0  -z-10 absolute'>

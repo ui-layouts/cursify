@@ -79,7 +79,7 @@ export async function PreCoded({
           <div className={cn('relative p-4 ', classname)}>
             <CopyButton
               code={tshighlighted.code}
-              classname={cn('top-[1.68rem] right-[5.3em]  ', copyclass)}
+              classname={cn('top-[1.58rem] right-[5.1em]  ', copyclass)}
             />
             <div className=' p-2 max-h-[500px] pt-8 overflow-x-hidden  rounded-md text-sm  bg-codebg border'>
               <Pre
@@ -94,7 +94,7 @@ export async function PreCoded({
           <div className={cn('relative p-4', classname)}>
             <CopyButton
               code={jshighlighted.code}
-              classname={cn('top-[1.68rem] right-[5.3em]  ', copyclass)}
+              classname={cn('top-[1.58rem] right-[5.1em]   ', copyclass)}
             />
             <div className='p-2 max-h-[500px] overflow-x-hidden pt-8  rounded-md text-sm bg-codebg border'>
               <Pre

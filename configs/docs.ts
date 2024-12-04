@@ -1,43 +1,5 @@
 import React from 'react';
 
-export const SpecialComponents = [
-  {
-    href: '/components/bubble-cursor',
-    name: 'Bubble Cursor',
-    new: true,
-  },
-  {
-    href: '/components/rainbow-cursor',
-    name: 'Rainbow Cursor',
-    new: true,
-  },
-  {
-    href: '/components/blob-cursor',
-    name: 'Blob Cursor',
-    new: true,
-  },
-  {
-    href: '/components/clickeffect-cursor',
-    name: 'Click Cursor',
-    new: true,
-  },
-  {
-    href: '/components/character-cursor',
-    name: 'Character Cursor',
-    new: true,
-  },
-  {
-    href: '/components/follow-cursor',
-    name: 'Follow Cursor',
-    new: true,
-  },
-  {
-    href: '/components/snowflake-cursor',
-    name: 'Snowflake Cursor',
-    new: true,
-  },
-];
-
 export const AllComponens = [
   {
     href: '/components/bubble-cursor',

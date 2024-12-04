@@ -8,11 +8,14 @@ import preview from '@/assets/preview';
 import { AllComponens } from '@/configs/docs';
 import { Spotlight, SpotLightItem } from '@/components/website/ui/spotlight';
 import { ArrowRight } from 'lucide-react';
+import Footer from '@/components/website/footer';
+import CanvasCursor from '@/registry/components/cursor/common/canvas-cursor';
 
 export default function Home() {
   return (
     <>
-      <div className='pt-28 pb-5'>
+      <CanvasCursor />
+      <div className='pt-[5.4rem] pb-5'>
         <h1
           className={'sm:text-3xl text-2xl font-semibold tracking-tight pb-1'}
         >
@@ -30,7 +33,7 @@ export default function Home() {
                 <>
                   <Link
                     href={component.href}
-                    className='p-2 pl-5 dark:bg-[#070707] bg-gray-50 transition-all rounded-md dark:border-none border backdrop-blur-md relative flex justify-between items-center'
+                    className='p-2 pl-5 dark:bg-[#01040e] backdrop-blur-sm bg-gray-50 transition-all rounded-md dark:border-none border  relative flex justify-between items-center'
                   >
                     <div>
                       <h1 className='font-medium text-xl'>
@@ -47,6 +50,7 @@ export default function Home() {
           </Spotlight>
         </>
       </div>
+      <Footer />
     </>
   );
 }

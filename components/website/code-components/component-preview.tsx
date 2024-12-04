@@ -1,18 +1,8 @@
 'use client';
 
-import { cn } from '@/lib/utils';
-import {
-  Check,
-  Copy,
-  ExternalLink,
-  Monitor,
-  RotateCw,
-  Smartphone,
-  Tablet,
-} from 'lucide-react';
-import React, { useState, useEffect, useRef, Suspense, useMemo } from 'react';
+import { Check, Copy, RotateCw } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 import { TCurrComponentProps } from './component-code-preview';
-import dynamic from 'next/dynamic';
 import { AllComponens } from '@/configs/docs';
 
 type ComponentPreviewProps = {
@@ -22,7 +12,6 @@ type ComponentPreviewProps = {
   code: string;
   responsive?: boolean;
   isNotCopy?: boolean;
-  iframeComponent?: string;
 };
 type DynamicComponentType = React.ComponentType<any>;
 
@@ -33,15 +22,14 @@ export default function ComponentPreview({
   code,
   responsive,
   isNotCopy,
-  iframeComponent,
 }: ComponentPreviewProps) {
   const [reTriggerKey, setReTriggerKey] = useState<number>(0);
   const [hasCheckIcon, setHasCheckIcon] = useState(false);
   const [width, setWidth] = useState('100%');
-  const [mode, setMode] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
 
   const handleReTrigger = () => {
     if (hasReTrigger) {
+      // Safeguard to avoid rapid key updates
       setReTriggerKey((prevKey) => prevKey + 1);
     }
   };
@@ -54,11 +42,10 @@ export default function ComponentPreview({
       setHasCheckIcon(false);
     }, 1000);
   };
-  // console.log(component);
+
   const currentComponentData = AllComponens.find(
     (com) => com.id === component?.componentName
   );
-  // Memoize the ComponentPreview to prevent re-rendering
 
   return (
     <>
@@ -92,23 +79,21 @@ export default function ComponentPreview({
         )}
       </div>
 
-      <>
-        <div className={` h-full overflow-auto  pt-0 p-0`}>
-          <div
-            className='h-full  mx-auto p-0 not-prose'
-            style={{ width: responsive ? width : '100%' }}
-          >
-            {currentComponentData ? (
-              React.createElement(
-                currentComponentData.componentSrc as DynamicComponentType,
-                { key: reTriggerKey }
-              )
-            ) : (
-              <>Component Not Found</>
-            )}
-          </div>
+      <div className={`h-full overflow-auto pt-0 p-0`}>
+        <div
+          className='h-full mx-auto p-0 not-prose'
+          style={{ width: responsive ? width : '100%' }}
+        >
+          {currentComponentData ? (
+            React.createElement(
+              currentComponentData.componentSrc as DynamicComponentType,
+              { key: reTriggerKey }
+            )
+          ) : (
+            <div>Component Not Found</div>
+          )}
         </div>
-      </>
+      </div>
     </>
   );
 }

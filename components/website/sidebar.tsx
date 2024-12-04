@@ -7,8 +7,7 @@ import { Component, Rocket } from 'lucide-react';
 import { IRecentPage, useRecentPagesStore } from '@/hooks/useZustStore';
 import docsData from '@/configs/docs.json' assert { type: 'json' };
 import { useTheme } from 'next-themes';
-import { generateSidebarData } from './constant';
-import { AllComponens, SpecialComponents } from '@/configs/docs';
+import { AllComponens } from '@/configs/docs';
 
 export const basePath = [
   {
@@ -41,7 +40,6 @@ function DocsSidebar() {
   //   return acc;
   // }, {});
 
-  const sidebarData = generateSidebarData(docsData.dataArray);
   // console.log(sidebarData);
 
   useEffect(() => {
@@ -50,9 +48,9 @@ function DocsSidebar() {
   }, [getRecentPages]);
 
   return (
-    <aside className='h-full border-r'>
-      <div className='sticky top-0 h-screen w-full rounded-md pt-[5.6em]'>
-        <ScrollArea className='h-full py-4'>
+    <aside className='h-full '>
+      <div className='sticky top-0 h-screen w-full  pt-[5.2em]'>
+        <ScrollArea className='h-[98%] px-3 py-3 dark:bg-black/40 bg-primary-foreground  backdrop-blur-md rounded-md border'>
           <ul className='pb-1'>
             {basePath?.map((link, index) => {
               return (
