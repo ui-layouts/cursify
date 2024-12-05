@@ -17,12 +17,12 @@ interface TableOfContentsProps {
 
 const images = [
   {
-    src: '/image-masking.svg',
-    alt: 'image-masking',
-    className: 'rotate-6 scale-100',
+    src: '/tabs.svg',
+    alt: 'tabs',
+    className: 'rotate-12 scale-100',
   },
-  { src: '/globe.svg', alt: 'globe', className: '-rotate-6 scale-100' },
-  { src: '/gallery.svg', alt: 'gallery', className: 'rotate-6 scale-100' },
+  { src: '/globe.svg', alt: 'globe', className: '-rotate-12 scale-100' },
+  { src: '/gallery.svg', alt: 'gallery', className: 'rotate-12 scale-100' },
 ];
 export default function TableOfContents({ toc }: TableOfContentsProps) {
   const [tocItems, setTocItems] = useState<TocItem[]>([]);
@@ -41,7 +41,6 @@ export default function TableOfContents({ toc }: TableOfContentsProps) {
     const interval = setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 3000); // Change image every 3 seconds
-    return () => clearInterval(interval);
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -58,6 +57,7 @@ export default function TableOfContents({ toc }: TableOfContentsProps) {
 
     return () => {
       headers.forEach((header) => observer.unobserve(header));
+      clearInterval(interval);
     };
   }, []);
 
@@ -111,19 +111,25 @@ export default function TableOfContents({ toc }: TableOfContentsProps) {
                     {images.map((image, index) => {
                       const isActive = index === activeIndex;
                       const baseClasses =
-                        'absolute bottom-4  bg-background border-2 rounded-md transition-transform duration-500 ease-in-out';
-                      const activeClasses = 'scale-90';
+                        'absolute bottom-4 shadow-[0_3px_10px_rgb(0,0,0,0.2)]  bg-background border-blue-500 border-2 rounded-md transition-transform duration-500 ease-in-out';
+                      const activeClasses = ' rotate-0 scale-100 z-[2]';
                       return (
-                        <Image
-                          key={index}
-                          src={image.src}
-                          alt={image.alt}
-                          width={400}
-                          height={400}
+                        <a
+                          href='https://github.com/ui-layouts/uilayouts'
+                          target='_blank'
                           className={`${baseClasses} ${
                             isActive ? activeClasses : image.className
                           }`}
-                        />
+                          key={index}
+                        >
+                          <Image
+                            src={image.src}
+                            alt={image.alt}
+                            width={400}
+                            height={400}
+                            className='w-full h-full'
+                          />
+                        </a>
                       );
                     })}
                   </div>

@@ -47,9 +47,9 @@ export function throttle(fn: (...args: any[]) => any, wait: number) {
 }
 
 export const siteConfig = {
-  name: 'UI-Layout-starter-kit',
-  url: 'https://cursify.ui-layouts.com/',
-  ogImage: 'https://cursify.ui-layouts.com/og.jpg',
+  name: 'Cursify',
+  url: 'https://cursify.vercel.app',
+  ogImage: 'https://cursify.vercel.app/og.jpg',
   description: 'The Ultimate Cursor Animation Library for React & Next.js',
   links: {
     twitter: 'https://twitter.com/naymur_dev',
