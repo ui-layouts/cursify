@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import FairyDustCursor from './FairyDustCursor';
+import {FairyDustCursor} from './FairyDustCursor';
 
 function FairyDustIndex() {
   return (
