@@ -162,7 +162,7 @@ function HeroSec() {
             the only cursor animation you need
           </h1>
           <p className='mx-auto  w-3/5 text-center sm:text-lg text-sm'>
-            A open-source animated cusor component built with{' '}
+            A open-source animated cursor component built with{' '}
             <strong>React</strong>, <strong>TypeScript</strong>,{' '}
             <strong>Tailwind CSS</strong>, and <strong>Framer Motion</strong>.
           </p>
