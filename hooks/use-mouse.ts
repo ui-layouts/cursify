@@ -20,7 +20,7 @@ export function useMouse(): [MouseState, RefObject<HTMLDivElement>] {
     elementPositionY: null,
   });
 
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLDivElement>(null as unknown as HTMLDivElement);
 
   useLayoutEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
