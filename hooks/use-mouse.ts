@@ -1,5 +1,5 @@
-"use client";
-import { type RefObject, useLayoutEffect, useRef, useState } from "react";
+'use client';
+import { type RefObject, useLayoutEffect, useRef, useState } from 'react';
 
 interface MouseState {
   x: number | null;
@@ -10,7 +10,7 @@ interface MouseState {
   elementPositionY: number | null;
 }
 
-export function useMouse(): [MouseState, RefObject<HTMLDivElement>] {
+export function useMouse(): [MouseState, RefObject<HTMLDivElement | null>] {
   const [state, setState] = useState<MouseState>({
     x: null,
     y: null,
@@ -48,10 +48,10 @@ export function useMouse(): [MouseState, RefObject<HTMLDivElement>] {
       }));
     };
 
-    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener('mousemove', handleMouseMove);
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
