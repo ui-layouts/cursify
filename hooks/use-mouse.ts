@@ -10,7 +10,7 @@ interface MouseState {
   elementPositionY: number | null;
 }
 
-export function useMouse(): [MouseState, RefObject<HTMLDivElement>] {
+export function useMouse(): [MouseState, RefObject<HTMLDivElement | null>] {
   const [state, setState] = useState<MouseState>({
     x: null,
     y: null,
