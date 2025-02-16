@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface FairyDustCursorProps {
   colors?: string[];
@@ -44,16 +44,16 @@ export const FairyDustCursor: React.FC<FairyDustCursorProps> = ({
   const cursorRef = useRef({ x: 0, y: 0 });
   const lastPosRef = useRef({ x: 0, y: 0 });
   const [canvasSize, setCanvasSize] = useState({
-    width: element ? element.clientWidth : window.innerWidth,
-    height: element ? element.clientHeight : window.innerHeight,
+    width: typeof window !== 'undefined' ? (element ? element.clientWidth : window.innerWidth) : 0,
+    height: typeof window !== 'undefined' ? (element ? element.clientHeight : window.innerHeight) : 0,
   });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const updateCanvasSize = () => {
       const newWidth = element ? element.clientWidth : window.innerWidth;
       const newHeight = element ? element.clientHeight : window.innerHeight;
-  
-      console.log('vavva updateCanvasSize', newWidth, newHeight);
       setCanvasSize({ width: newWidth, height: newHeight });
     };
   
@@ -63,9 +63,11 @@ export const FairyDustCursor: React.FC<FairyDustCursorProps> = ({
     return () => {
       window.removeEventListener('resize', updateCanvasSize);
     };
-  },[element])
+  }, [element]);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
