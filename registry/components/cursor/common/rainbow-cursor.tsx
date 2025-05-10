@@ -34,7 +34,7 @@ const RainbowCursor: React.FC<RainbowCursorProps> = ({
   const particlesRef = useRef<Array<{ position: { x: number; y: number } }>>(
     []
   );
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number>(undefined);
   const cursorsInittedRef = useRef(false);
   const timeRef = useRef(0);
 

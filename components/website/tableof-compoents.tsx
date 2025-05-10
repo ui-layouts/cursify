@@ -115,7 +115,7 @@ export default function TableOfContents({ toc }: TableOfContentsProps) {
                       const activeClasses = ' rotate-0 scale-100 z-[2]';
                       return (
                         <a
-                          href='https://github.com/ui-layouts/uilayouts'
+                          href='https://www.ui-layouts.com'
                           target='_blank'
                           className={`${baseClasses} ${
                             isActive ? activeClasses : image.className

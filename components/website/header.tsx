@@ -22,13 +22,13 @@ function Header() {
   return (
     <>
       <header
-        className={`fixed left-0 top-0  z-50 xl:px-0 px-1.5 w-full ${pathname === '/' ? '' : 'pt-2 bg-background'}`}
+        className={`fixed left-0 top-0   z-50 xl:px-0 px-1.5 w-full ${pathname === '/' ? '' : 'pt-2 dark:bg-zinc-950 bg-zinc-50'}`}
       >
         {pathname === '/' && (
           <div className='bg-primary  max-w-screen-xl mx-auto w-full text-background text-center text-base p-1 font-medium '>
             Explore Components that are really needed for your website,{' '}
             <a
-              href='https://www.ui-layout.com/'
+              href='https://www.ui-layouts.com/'
               className='underline'
               target='_blank'
             >
@@ -70,11 +70,25 @@ function Header() {
                   stroke='black'
                 />
               </svg>
+              
             </div>
           </Link>
 
           {/* <MobileHeader /> */}
           <div className='flex gap-2 '>
+            {pathname === '/' && (
+              <a
+                href='https://tools.ui-layouts.com/'
+                target='_blank'
+                className='p-2.5 text-white bg-gradient-to-t from-blue-500 to-blue-800  inline-block font-semibold uppercase rounded-lg px-3 border dark:border-0 dark:shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.15)]'
+              >
+                Tools{' '}
+                <span className='text-xs font-normal inline-block -translate-y-2 text-blue-200 '>
+                  New
+                </span>
+              </a>
+            )}
+
             <SearchDialog classname='w-60' />
 
             <GitHubButton />
@@ -113,7 +127,7 @@ function Header() {
                     href='https://x.com/bachhav36741'
                     className='flex  items-center  rounded-md justify-between w-full'
                   >
-                    Drugesh{' '}
+                    Durgesh{' '}
                     <ArrowUpRight
                       className='group-focus:opacity-100 opacity-0'
                       size={16}

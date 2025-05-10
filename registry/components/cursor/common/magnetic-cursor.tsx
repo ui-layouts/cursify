@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useRef, useEffect, useState } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'motion/react';
 
 const MagneticCursor: React.FC = () => {
   const buttonRef = useRef<HTMLButtonElement | null>(null);

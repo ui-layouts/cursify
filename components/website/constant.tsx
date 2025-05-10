@@ -1,5 +1,3 @@
-import preview from '@/assets/preview';
-import { Pre, RawCode, highlight } from 'codehike/code';
 import {
   InlineAnnotation,
   AnnotationHandler,

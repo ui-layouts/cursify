@@ -2,7 +2,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation } from 'motion/react';
 import './NeonCursor.css';
 // Attach your `neoncursor.css` file in your project.
 // If you are using React, you can import the CSS directly into your `index.css` or another relevant CSS file.

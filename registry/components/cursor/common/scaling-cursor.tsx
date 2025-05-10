@@ -33,7 +33,9 @@ const ScalingCursor = ({
   const [isHovering, setIsHovering] = useState(false);
 
   return (
-    <div className={`relative w-full h-full  ${className}`} ref={ref} {...rest}>
+    <div className={`relative w-full h-full  ${className}`}
+    // @ts-ignore
+    ref={ref} {...rest}>
       {mouseState.x !== null && mouseState.y !== null && (
         <div
           className='fixed pointer-events-none z-50 transition-all duration-300'

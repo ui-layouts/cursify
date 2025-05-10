@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @next/next/no-html-link-for-pages */
 'use client';
 import { ArrowRight, ChevronsRight, Component, MoveRight } from 'lucide-react';
 import { Button } from '@/components/website/ui/button';
@@ -16,6 +18,7 @@ import SpringyCursor from '@/registry/components/cursor/common/springy-cursor';
 
 import BubbleCursor from '@/registry/components/cursor/common/bubble-cursor';
 import Footer from './footer';
+import SmoothFollower from '../../registry/components/cursor/common/smooth-following-cursor';
 
 function HeroSec() {
   const [blocks, setBlocks] = useState([]);
@@ -75,6 +78,11 @@ function HeroSec() {
       component: <FairyDustIndex />,
     },
     {
+      title: 'Smooth Following Cursor',
+      link: '/components/smooth-follower',
+      component: <SmoothFollower />,
+    },
+    {
       title: 'Canvas Cursor',
       link: '/components/canvas-cursor',
       component: <CanvasCursor />,
@@ -107,10 +115,6 @@ function HeroSec() {
 
       component: <FollowCursor />,
     },
-    // { title: 'Glitch Cursor', link: '', component: <GlitchCursor /> },
-    // { title: 'Gradient Cursor', link: '', component: <GradientCursor /> },
-    // { title: 'Magnetic Cursor', link: '', component: <MagneticCursor /> },
-    // { title: 'Neon Cursor', link: '', component: <NeonCursor /> },
     {
       title: 'Spotlight Cursor',
       link: '/components/spotlight-cursor',
@@ -121,9 +125,6 @@ function HeroSec() {
       link: '/components/springy-cursor',
       component: <SpringyCursor />,
     },
-    // { title: 'TextFlag Cursor', link: '', component: <TextFlagCursor /> },
-    // { title: 'ThreeD Cursor', link: '', component: <ThreeDCursor /> },
-    // { title: 'Trail Cursor', link: '', component: <TrailCursor /> },
   ];
   return (
     <>
@@ -132,7 +133,7 @@ function HeroSec() {
         {/* <div className='absolute inset-0 top-0 left-0  h-screen w-full items-center px-5 py-24 bg-gradient-to-r from-gray-800'></div> */}
         <article className='grid gap-4 py-20 relative z-10 sm:px-0 px-4 max-w-screen-xl mx-auto'>
           <a
-            href={'/components/blur-vignette'}
+            href={'/components/smooth-follower'}
             className='inline-flex w-fit mx-auto items-center gap-1 rounded-full  bg-[#334cec] border-4  shadow-[#6175f8]  py-0.5 pl-0.5 pr-3 text-xs '
           >
             <div className='rounded-full bg-[#fcfdff] px-2 py-1 text-xs text-black '>
@@ -140,7 +141,7 @@ function HeroSec() {
             </div>
             <p className='text-white sm:text-base text-xs inline-block'>
               ✨ Introducing
-              <span className='px-1 font-semibold'>Blur Vignette</span>
+              <span className='px-1 font-semibold'>Smooth Following</span>
             </p>
 
             <svg

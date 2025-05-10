@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @next/next/no-html-link-for-pages */
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
-import AnimatedText from '@/components/core/cursor-follow-text';
 import { cn } from '@/lib/utils';
 
 function Footer({ className }: { className?: string }) {
@@ -30,16 +30,6 @@ function Footer({ className }: { className?: string }) {
             </svg>
           </a>
         </div>
-        {/* <div className='flex w-fit gap-2 items-center'>
-          <ul>
-            <li>
-              <Link href='/components'>Componets</Link>
-            </li>
-            <li>
-              <a href='#'>Layouts Componets</a>
-            </li>
-          </ul>
-        </div> */}
         <article className='py-2  w-fit space-y-2  '>
           <a
             href='https://x.com/bachhav36741'

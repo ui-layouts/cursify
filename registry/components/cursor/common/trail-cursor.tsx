@@ -24,7 +24,8 @@ const TrailingCursor: React.FC<TrailingCursorProps> = ({
       move: (context: CanvasRenderingContext2D) => void;
     }>
   >([]);
-  const animationFrameRef = useRef<number>();
+  // @ts-ignore
+  const animationFrameRef = useRef<number>(undefined);
   const cursorsInittedRef = useRef(false);
 
   class Particle {

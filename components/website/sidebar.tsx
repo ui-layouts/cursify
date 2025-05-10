@@ -3,12 +3,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ScrollArea } from '@/components/website/ui/scroll-area';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Component, Rocket } from 'lucide-react';
+import { Component, Rocket, PenTool, LayoutPanelTop } from 'lucide-react';
 import { IRecentPage, useRecentPagesStore } from '@/hooks/useZustStore';
 import docsData from '@/configs/docs.json' assert { type: 'json' };
 import { useTheme } from 'next-themes';
 import { AllComponens } from '@/configs/docs';
-
 export const basePath = [
   {
     href: '/get-started',
@@ -28,19 +27,7 @@ function DocsSidebar() {
   const { addVisitedPage, getRecentPages, removeAllRecentPages } =
     useRecentPagesStore();
   const [recentPages, setRecentPages] = useState<IRecentPage[]>([]);
-  // const groupedComponents = MainComponents.reduce((acc, component) => {
-  //   const group = component.component || null;
-  //   //@ts-ignore
-  //   if (!acc[group]) {
-  //     //@ts-ignore
-  //     acc[group] = [];
-  //   }
-  //   //@ts-ignore
-  //   acc[group].push(component);
-  //   return acc;
-  // }, {});
 
-  // console.log(sidebarData);
 
   useEffect(() => {
     const recentPage = getRecentPages();
@@ -81,6 +68,30 @@ function DocsSidebar() {
                 </>
               );
             })}
+            <li>
+              <a
+                href={'https://ui-layouts.com/'}
+                target='_blank'
+                className={`flex gap-2 group font-medium items-center py-1  transition-all text-slate-600 hover:text-slate-900  dark:text-slate-400 dark:hover:text-white`}
+              >
+        <LayoutPanelTop
+                  className={`dark:bg-gray-800 dark:text-white group-hover:bg-base-dark group-hover:text-white  dark:group-hover:bg-white dark:group-hover:text-base-dark h-7 w-7 border transition-all rounded-md p-1`}
+                />
+                Layouts
+              </a>
+            </li>
+            <li>
+              <a
+                href={'https://tools.ui-layouts.com/'}
+                target='_blank'
+                className={`flex gap-2 group font-medium items-center py-1  transition-all text-slate-600 hover:text-slate-900  dark:text-slate-400 dark:hover:text-white`}
+              >
+                <PenTool
+                  className={`dark:bg-gray-800 dark:text-white group-hover:bg-base-dark group-hover:text-white  dark:group-hover:bg-white dark:group-hover:text-base-dark h-7 w-7 border transition-all rounded-md p-1`}
+                />
+                Tools
+              </a>
+            </li>
           </ul>
           <h1 className='text-lg font-semibold pb-1'>Components</h1>
           {AllComponens?.map((link) => {

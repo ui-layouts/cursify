@@ -2,6 +2,19 @@ import React from 'react';
 
 export const AllComponens = [
   {
+    href: '/components/smooth-follower',
+    id: 'smooth-follower-cursor',
+    componentName: 'Smooth Follower Cursor',
+    iframe:true,
+    filePath: 'registry/components/cursor/common/smooth-following-cursor.tsx',
+    componentSrc: React.lazy(
+      () => import('@/registry/components/cursor/common/smooth-following-cursor')
+    ),
+    comMessage: 'Move Mouse To see the Effect',
+    isAlert: 'New',
+
+  },
+  {
     href: '/components/bubble-cursor',
     id: 'bubble-cursor',
     componentName: 'Bubble Cursor',

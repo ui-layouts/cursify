@@ -1,10 +1,4 @@
-// import { TabsProvider, TabsBtn, TabsContent } from './tabs';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@/components/website/ui/tabs';
+
 import docs from '@/configs/docs.json';
 
 import ComponentPreview from './component-preview';
@@ -14,7 +8,7 @@ import { Code, Eye } from 'lucide-react';
 import { PreCoded } from './pre-coded';
 
 type ComponentCodePreview = {
-  component: React.ReactElement;
+  component: React.ReactElement<any>;
   hasReTrigger?: boolean;
   name: string;
   children: React.ReactNode; //
@@ -77,42 +71,7 @@ export default async function ComponentCodePreview({
         isNotCopy={isNotCopy}
       />
 
-      {<PreCoded codeblock={fileContent} />}
-      {/* <Tabs
-        defaultValue={`${name}preview`}
-        className='relative mt-1 w-full border-2 rounded-lg'
-      >
-        <TabsList className='absolute left-0 pl-1 top-0 z-10 flex h-12 w-full justify-start rounded-b-none rounded-t-lg border-b-2 border-t-0 border-x-0  bg-border/40 backdrop-blur-lg dark:bg-gray-900'>
-          <TabsTrigger
-            value={`${name}preview`}
-            className='flex gap-2 items-center data-[state=active]:bg-white data-[state=active]:border-b-2 '
-          >
-            <Eye className='w-5 h-5' /> Preview
-          </TabsTrigger>
-          <TabsTrigger
-            value={`${name}code`}
-            className='flex gap-2 items-center data-[state=active]:bg-white data-[state=active]:border-b-2'
-          >
-            <Code className='w-5 h-5' /> Code
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent
-          className='mt-0  px-0 pb-0 pt-12 ring-offset-background '
-          value={`${name}preview`}
-        >
-          <ComponentPreview
-            hasReTrigger={hasReTrigger}
-            component={currComponent}
-            code={fileContent}
-            responsive={responsive}
-            isNotCopy={isNotCopy}
-            isFitheight={isFitheight}
-          />
-        </TabsContent>
-        <TabsContent className='mt-11  ' value={`${name}code`}>
-         
-        </TabsContent>
-      </Tabs> */}
+      <PreCoded codeblock={fileContent} />
     </div>
   );
 }

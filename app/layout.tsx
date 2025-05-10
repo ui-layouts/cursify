@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     'Next.js',
     'React',
     'Tailwind CSS',
-    'framer-motion',
+    'motion/react',
     'gsap',
     'lenis react',
     'reactscroll animation',
@@ -80,12 +80,24 @@ export default async function RootLayout({
   return (
     <>
       <html lang='en' suppressHydrationWarning>
+      <head>
+        <Script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
+        />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}');
+          `}
+        </Script>
+      </head>
         <body className={poppins.className}>
           <Progressbar>
             <ThemeProvider attribute='class'>
-              <div className='isolate min-h-screen' vaul-drawer-wrapper=''>
                 {children}
-              </div>
             </ThemeProvider>
           </Progressbar>
         </body>

@@ -4,6 +4,13 @@
       "name": "cursor",
       "componentArray": [
         {
+          "componentName": "smooth-follower-cursor",
+          "iframeSrc": "live-components/smooth-follower",
+          "filesrc": "components/cursor/common/smooth-following-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor"
+        },
+        {
           "componentName": "bubble-cursor",
           "iframeSrc": "live-components/bubble-cursor",
           "filesrc": "components/cursor/common/bubble-cursor.tsx",

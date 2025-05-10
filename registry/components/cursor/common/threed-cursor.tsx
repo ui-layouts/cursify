@@ -21,7 +21,9 @@ const ThreeDCursor = () => {
   }, [mouseState.x, mouseState.y]);
 
   return (
-    <div className='relative w-full h-full  overflow-hidden' ref={ref}>
+    <div className='relative w-full h-full  overflow-hidden'
+    // @ts-ignore
+    ref={ref}>
       {mouseState.x !== null && mouseState.y !== null && (
         <div
           className='fixed pointer-events-none z-50 transition-transform duration-100'
