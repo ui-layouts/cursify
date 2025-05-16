@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 
 interface BubbleCursorProps {
   wrapperElement?: HTMLElement;
+  zIndex?: number;
 }
 
 class Particle {
@@ -49,7 +50,7 @@ class Particle {
     context.closePath();
   }
 }
-const BubbleCursor: React.FC<BubbleCursorProps> = ({ wrapperElement }) => {
+const BubbleCursor: React.FC<BubbleCursorProps> = ({ wrapperElement, zIndex }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const particlesRef = useRef<Particle[]>([]);
   const cursorRef = useRef({ x: 0, y: 0 });
@@ -81,6 +82,7 @@ const BubbleCursor: React.FC<BubbleCursorProps> = ({ wrapperElement }) => {
       canvas.style.top = '0px';
       canvas.style.left = '0px';
       canvas.style.pointerEvents = 'none';
+      canvas.style.zIndex = zIndex ? zIndex.toString() : '';
 
       if (wrapperElement) {
         canvas.style.position = 'absolute';
