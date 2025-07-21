@@ -24,7 +24,6 @@ const TrailingCursor: React.FC<TrailingCursorProps> = ({
       move: (context: CanvasRenderingContext2D) => void;
     }>
   >([]);
-  // @ts-ignore
   const animationFrameRef = useRef<number>(undefined);
   const cursorsInittedRef = useRef(false);
 

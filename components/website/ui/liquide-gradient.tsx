@@ -194,7 +194,7 @@ const GradientSvg: React.FC<GradientSvgProps> = ({
           cy='0'
           r='1'
           gradientUnits='userSpaceOnUse'
-          animate={isHovered ? variants.hovered : variants.notHovered}
+          // animate={isHovered ? variants.hovered : variants.notHovered}
         >
           {stopsAnimationArray.map((stopConfigs, index) => (
             <AnimatePresence key={index}>

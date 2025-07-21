@@ -66,8 +66,8 @@ export default function TableOfContents({ toc }: TableOfContentsProps) {
   return (
     <>
       {tocItems?.length !== 0 && (
-        <aside className='hidden lg:block  2xl:w-[170px] w-[150px] shrink-0'>
-          <div className='sticky top-0 h-screen  pt-[5.2em]'>
+        <aside className='hidden lg:block 2xl:w-[170px] w-[150px] shrink-0'>
+          <div className='sticky top-16 h-screen pt-3'>
             <ScrollArea className='h-[98%] px-3 py-3 dark:bg-black/40 bg-primary-foreground  backdrop-blur-md rounded-md border'>
               <>
                 <span className='text-sm px-1 text-primary font-semibold pb-1 inline-block'>

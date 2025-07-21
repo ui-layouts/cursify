@@ -133,7 +133,7 @@ function HeroSec() {
         {/* <div className='absolute inset-0 top-0 left-0  h-screen w-full items-center px-5 py-24 bg-gradient-to-r from-gray-800'></div> */}
         <article className='grid gap-4 py-20 relative z-10 sm:px-0 px-4 max-w-screen-xl mx-auto'>
           <a
-            href={'/components/smooth-follower'}
+            href={'/components/verticle-bars'}
             className='inline-flex w-fit mx-auto items-center gap-1 rounded-full  bg-[#334cec] border-4  shadow-[#6175f8]  py-0.5 pl-0.5 pr-3 text-xs '
           >
             <div className='rounded-full bg-[#fcfdff] px-2 py-1 text-xs text-black '>

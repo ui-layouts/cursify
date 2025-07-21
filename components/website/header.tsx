@@ -15,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/website/ui/dropdown';
 import GitHubButton from './github-btn';
+import MobileHeader from './moibile-header';
 function Header() {
   const { setTheme } = useTheme();
   const pathname = usePathname();
@@ -22,9 +23,9 @@ function Header() {
   return (
     <>
       <header
-        className={`fixed left-0 top-0   z-50 xl:px-0 px-1.5 w-full ${pathname === '/' ? '' : 'pt-2 dark:bg-zinc-950 bg-zinc-50'}`}
+        className={`sticky left-0 top-0 z-50 xl:px-0 px-1.5 w-full ${pathname === '/' ? '' : 'pt-2 dark:bg-zinc-950 bg-zinc-50'}`}
       >
-        {pathname === '/' && (
+        {/* {pathname === '/' && (
           <div className='bg-primary  max-w-screen-xl mx-auto w-full text-background text-center text-base p-1 font-medium '>
             Explore Components that are really needed for your website,{' '}
             <a
@@ -35,7 +36,7 @@ function Header() {
               Ui-layouts
             </a>
           </div>
-        )}
+        )} */}
         <div
           className={` ${pathname === '/' ? 'rounded-b-lg max-w-screen-xl' : 'rounded-lg  xl:container'}  border border-x   border-border dark:bg-black/40 bg-primary-foreground  backdrop-blur-md mx-auto flex items-center justify-between gap-2 px-2 py-2  `}
         >
@@ -75,12 +76,23 @@ function Header() {
           </Link>
 
           {/* <MobileHeader /> */}
+          <MobileHeader classname='lg:hidden block' />
+
           <div className='flex gap-2 '>
+            {pathname === '/' && (
+              <a
+                href='https://ui-layouts.com/'
+                target='_blank'
+                className='p-2.5 text-white bg-gradient-to-t from-zinc-900 to-neutral-950 md:inline-block hidden font-semibold uppercase rounded-lg px-3 border dark:border-0 dark:shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.15)]'
+              >
+                Ui-Layouts{' '}
+              </a>
+            )}
             {pathname === '/' && (
               <a
                 href='https://tools.ui-layouts.com/'
                 target='_blank'
-                className='p-2.5 text-white bg-gradient-to-t from-blue-500 to-blue-800  inline-block font-semibold uppercase rounded-lg px-3 border dark:border-0 dark:shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.15)]'
+                className='p-2.5 text-white bg-gradient-to-t from-blue-500 to-blue-800  md:inline-block hidden font-semibold uppercase rounded-lg px-3 border dark:border-0 dark:shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.15)]'
               >
                 Tools{' '}
                 <span className='text-xs font-normal inline-block -translate-y-2 text-blue-200 '>
@@ -89,16 +101,9 @@ function Header() {
               </a>
             )}
 
-            <SearchDialog classname='w-60' />
+            <SearchDialog classname='sm:w-32 xl:w-72' />
 
             <GitHubButton />
-            <a
-              target='_blank'
-              href='https://github.com/ui-layouts/cursify'
-              className='border w-10 flex-shrink-0  place-content-center rounded-md sm:hidden grid bg-primary text-primary-foreground'
-            >
-              <Github />
-            </a>
             <DropdownMenu>
               <DropdownMenuTrigger>
                 {/* <a

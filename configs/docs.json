@@ -187,6 +187,89 @@
         }
       ],
       "type": "cursor"
+    },
+    {
+      "name": "Pattern",
+      "componentArray": [
+        {
+          "componentName": "verticle-bars",
+          "iframeSrc": "live-components/verticle-bars",
+          "filesrc": "components/pattern/verticle-bars/verticle-bars.tsx",
+          "parentlink": "pattern",
+          "parentName": "pattern"
+        },
+        {
+          "componentName": "horizontal-bars",
+          "iframeSrc": "live-components/horizontal-bars",
+          "filesrc": "components/pattern/horizontal-bars/horizontal-bars.tsx",
+          "parentlink": "pattern",
+          "parentName": "pattern"
+        },
+        {
+          "componentName": "interactive-dots",
+          "iframeSrc": "live-components/interactive-dots",
+          "filesrc": "components/pattern/interactive-dots/interactive-dots.tsx",
+          "parentlink": "pattern",
+          "parentName": "pattern"
+        },
+        {
+          "componentName": "sliding-ease",
+          "iframeSrc": "live-components/sliding-ease",
+          "filesrc": "components/pattern/sliding-ease/sliding-ease.tsx",
+          "parentlink": "pattern",
+          "parentName": "pattern"
+        },
+        {
+          "componentName": "delicate-ascii-dots",
+          "iframeSrc": "live-components/delicate-ascii-dots",
+          "filesrc": "components/pattern/delicate-ascii-dots/delicate-ascii-dots.tsx",
+          "parentlink": "pattern",
+          "parentName": "pattern"
+        },
+        {
+          "componentName": "blinking-ascii-dots",
+          "iframeSrc": "live-components/blinking-ascii-dots",
+          "filesrc": "components/pattern/blinking-ascii-dots/blinking-ascii-dots.tsx",
+          "parentlink": "pattern",
+          "parentName": "pattern"
+        },
+        {
+          "componentName": "dot-particles",
+          "iframeSrc": "live-components/dot-particles",
+          "filesrc": "components/pattern/dot-particles/dot-particles.tsx",
+          "parentlink": "pattern",
+          "parentName": "pattern"
+        },
+        {
+          "componentName": "smooth-wavy-canvas",
+          "iframeSrc": "live-components/smooth-wavy-canvas",
+          "filesrc": "components/pattern/smooth-wavy-canvas/smooth-wavy-canvas.tsx",
+          "parentlink": "pattern",
+          "parentName": "pattern"
+        },
+        {
+          "componentName": "black-white-blobs",
+          "iframeSrc": "live-components/black-white-blobs",
+          "filesrc": "components/pattern/black-white-blobs/black-white-blobs.tsx",
+          "parentlink": "pattern",
+          "parentName": "pattern"
+        },
+        {
+          "componentName": "flowing-ribbons",
+          "iframeSrc": "live-components/flowing-ribbons",
+          "filesrc": "components/pattern/flowing-ribbons/flowing-ribbons.tsx",
+          "parentlink": "pattern",
+          "parentName": "pattern"
+        },
+        {
+          "componentName": "flowing-dots",
+          "iframeSrc": "live-components/flowing-dots",
+          "filesrc": "components/pattern/flowing-dots/flowing-dots.tsx",
+          "parentlink": "pattern",
+          "parentName": "pattern"
+        }
+      ],
+      "type": "pattern"
     }
   ]
 }

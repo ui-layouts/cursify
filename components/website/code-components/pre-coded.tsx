@@ -16,11 +16,13 @@ export async function PreCoded({
   classname,
   tabclassname,
   copyclass,
+  type,
 }: {
   codeblock: string;
   classname?: string;
   tabclassname?: string;
   copyclass?: string;
+  type?: string;
 }) {
   const result = ts.transpileModule(codeblock, {
     compilerOptions: {
@@ -75,13 +77,17 @@ export async function PreCoded({
             Js{' '}
           </TabsTrigger>
         </TabsList>
-        <TabsContent value={'typescript'}>
+        <TabsContent value={'typescript'} className='bg-transparent'>
           <div className={cn('relative p-4 ', classname)}>
             <CopyButton
               code={tshighlighted.code}
-              classname={cn('top-[1.58rem] right-[5.1em]  ', copyclass)}
+              classname={cn('top-[1.58rem] right-[5.1em]', copyclass)}
             />
-            <div className=' p-2 max-h-[500px] pt-8 overflow-x-hidden  rounded-md text-sm  bg-codebg border'>
+            <div
+              className={cn(
+                'p-2 max-h-[500px] pt-8 overflow-x-hidden rounded-md text-sm bg-codebg border',
+              )}
+            >
               <Pre
                 code={tshighlighted}
                 handlers={[callout, wordWrap, lineNumbers]}
@@ -90,13 +96,17 @@ export async function PreCoded({
             </div>
           </div>
         </TabsContent>
-        <TabsContent value={'javascript'}>
+        <TabsContent value={'javascript'} className='bg-transparent'>
           <div className={cn('relative p-4', classname)}>
             <CopyButton
               code={jshighlighted.code}
-              classname={cn('top-[1.58rem] right-[5.1em]   ', copyclass)}
+              classname={cn('top-[1.58rem] right-[5.1em]', copyclass)}
             />
-            <div className='p-2 max-h-[500px] overflow-x-hidden pt-8  rounded-md text-sm bg-codebg border'>
+            <div
+              className={cn(
+                'p-2 max-h-[500px] overflow-x-hidden pt-8 rounded-md text-sm bg-codebg border'
+              )}
+            >
               <Pre
                 code={jshighlighted}
                 handlers={[callout, wordWrap, lineNumbers]}

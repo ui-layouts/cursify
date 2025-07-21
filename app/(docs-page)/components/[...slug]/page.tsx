@@ -52,9 +52,9 @@ export default async function DocPage(
 
   return (
     <>
-      <div className='container mx-auto '>
+      <div className='lg:container mx-auto lg:px-0 px-2'>
         <div className='flex w-full lg:gap-3'>
-          <section className='xl:mr-0 mr-3 mt-[4.34rem] prose w-full prose-zinc min-w-0 max-w-full pb-5  pt-4 dark:prose-invert prose-h1:text-2xl prose-h1:font-semibold prose-h2:text-2xl prose-h2:my-4  prose-h2:py-1  prose-h2:border-b prose-h3:py-1  prose-h2:mt-3 prose-h2:font-medium prose-h3:text-2xl prose-h3:mt-4 prose-h3:mb-2 prose-h3:font-medium prose-strong:font-medium prose-table:block prose-table:overflow-y-auto lg:pt-4'>
+          <section className='xl:mr-0 lg:mr-3 mt-2 prose w-full prose-zinc min-w-0 max-w-full pb-5 dark:prose-invert prose-h1:text-2xl prose-h1:font-semibold prose-h2:text-2xl prose-h2:my-4  prose-h2:py-1  prose-h2:border-b prose-h3:py-1  prose-h2:mt-3 prose-h2:font-medium prose-h3:text-2xl prose-h3:mt-4 prose-h3:mb-2 prose-h3:font-medium prose-strong:font-medium prose-table:block prose-table:overflow-y-auto lg:pt-1'>
             <article className='mb-4 mt-0 rounded-lg dark:bg-black/40  bg-primary-foreground  border backdrop-blur-md p-6'>
               <div className='space-y-2 rounded-md dark:text-white text-black'>
                 <h1
