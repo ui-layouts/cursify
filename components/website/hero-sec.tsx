@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @next/next/no-html-link-for-pages */
 'use client';
-import { ArrowRight, ChevronsRight, Component, MoveRight } from 'lucide-react';
+import { ArrowRight, ChevronsRight, Component, Divide, MoveRight } from 'lucide-react';
 import { Button } from '@/components/website/ui/button';
 import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
@@ -90,29 +90,27 @@ function HeroSec() {
     {
       title: 'Bubble Cursor',
       link: '/components/bubble-cursor',
-      component: <BubbleCursor />,
+      component: <BubbleCursor zIndex={1} />,
     },
     {
       title: 'Character Cursor',
       link: '/components/character-cursor',
-      component: <CharacterCursor />,
+      component: <CharacterCursor zIndex={1} />,
     },
     {
       title: 'Snowflake Cursor',
       link: '/components/character-cursor',
-      component: <SnowflakeCursor />,
+      component: <SnowflakeCursor zIndex={1} />,
     },
 
     {
       title: 'Rainbow Cursor',
       link: '/components/rainbow-cursor',
-
-      component: <RainbowCursor />,
+      component: <RainbowCursor zIndex={1} />,
     },
     {
       title: 'Follow Cursor',
       link: '/components/follow-cursor',
-
       component: <FollowCursor />,
     },
     {
@@ -123,7 +121,7 @@ function HeroSec() {
     {
       title: 'Springy Cursor',
       link: '/components/springy-cursor',
-      component: <SpringyCursor />,
+      component: <SpringyCursor zIndex={1} />,
     },
   ];
   return (
