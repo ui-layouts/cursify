@@ -16,12 +16,53 @@ import {
 } from '@/components/website/ui/dropdown';
 import GitHubButton from './github-btn';
 import MobileHeader from './moibile-header';
+import { Banner } from './ui/banner';
 function Header() {
   const { setTheme } = useTheme();
   const pathname = usePathname();
 
   return (
     <>
+      {pathname === '/' && (
+        <a
+          href={'https://pro.ui-layouts.com'}
+          target='_blank'
+          className='block group w-full relative'
+        >
+          <Banner
+            variant='rainbow'
+            className='h-11 md:text-base sm:text-sm text-xs'
+          >
+            <p className='group-hover:underline underline-offset-4 flex flex-wrap gap-1 items-center'>
+              <picture>
+                <source
+                  srcSet='https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/512.webp'
+                  type='image/webp'
+                />
+                <img
+                  src='https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/512.gif'
+                  alt='🚀'
+                  className='w-6 h-6'
+                  width='32'
+                  height='32'
+                />
+              </picture>
+              Ship faster with{' '}
+              <span className='font-semibold'>UI-Layouts Pro</span>
+              <span className='lg:inline-block hidden'>
+                – 100+ Tailwind & React components for production-ready UIs
+              </span>
+              <span className='lg:hidden sm:inline-block hidden'>
+                – 50+ battle-tested components.
+              </span>
+            </p>
+            <ArrowUpRight
+              className='size-5 ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 ease-out shrink-0'
+              strokeWidth={2}
+            />
+          </Banner>
+        </a>
+      )}
       <header
         className={`sticky left-0 top-0 z-50 xl:px-0 px-1.5 w-full ${pathname === '/' ? '' : 'pt-2 dark:bg-zinc-950 bg-zinc-50'}`}
       >
@@ -37,6 +78,7 @@ function Header() {
             </a>
           </div>
         )} */}
+
         <div
           className={` ${pathname === '/' ? 'rounded-b-lg max-w-screen-xl' : 'rounded-lg  xl:container'}  border border-x   border-border dark:bg-black/40 bg-primary-foreground  backdrop-blur-md mx-auto flex items-center justify-between gap-2 px-2 py-2  `}
         >
@@ -71,7 +113,6 @@ function Header() {
                   stroke='black'
                 />
               </svg>
-              
             </div>
           </Link>
 

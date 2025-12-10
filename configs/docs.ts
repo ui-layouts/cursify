@@ -156,6 +156,16 @@ export const AllComponens = [
     comMessage: 'Move Mouse To see the Effect',
   },
   {
+    href: '/components/neural-glow',
+    id: 'neural-glow',
+    componentName: 'Neural Glow Cursor',
+    filePath: 'registry/components/cursor/neural-glow/index.tsx',
+    componentSrc: React.lazy(
+      () => import('@/registry/components/cursor/neural-glow')
+    ),
+    comMessage: 'Move Mouse To see the Effect',
+  },
+  {
     href: '/components/bubble-cursor',
     id: 'bubble-cursor',
     componentName: 'Bubble Cursor',

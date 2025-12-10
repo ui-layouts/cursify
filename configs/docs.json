@@ -4,6 +4,20 @@
       "name": "cursor",
       "componentArray": [
         {
+          "componentName": "neural-glow",
+          "iframeSrc": "live-components/neural-glow",
+          "filesrc": "components/cursor/neural-glow/index.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor"
+        },
+        {
+          "componentName": "smooth-follower-cursor",
+          "iframeSrc": "live-components/smooth-follower",
+          "filesrc": "components/cursor/common/smooth-following-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor"
+        },
+        {
           "componentName": "smooth-follower-cursor",
           "iframeSrc": "live-components/smooth-follower",
           "filesrc": "components/cursor/common/smooth-following-cursor.tsx",
