@@ -14,6 +14,7 @@ interface RainbowCursorProps {
   pulseSpeed?: number;
   pulseMin?: number;
   pulseMax?: number;
+  zIndex?: number;
 }
 
 const RainbowCursor: React.FC<RainbowCursorProps> = ({
@@ -27,6 +28,7 @@ const RainbowCursor: React.FC<RainbowCursorProps> = ({
   pulseSpeed = 0.01,
   pulseMin = 0.8,
   pulseMax = 1.2,
+  zIndex
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
@@ -99,6 +101,7 @@ const RainbowCursor: React.FC<RainbowCursorProps> = ({
     canvas.style.left = '0px';
     canvas.style.pointerEvents = 'none';
     canvas.style.position = hasWrapperEl ? 'absolute' : 'fixed';
+    canvas.style.zIndex = zIndex ? zIndex.toString() : '';
 
     if (hasWrapperEl) {
       element?.appendChild(canvas);

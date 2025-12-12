@@ -17,6 +17,7 @@ interface CharacterCursorProps {
   characters?: string[];
   colors?: string[];
   cursorOffset?: { x: number; y: number };
+  zIndex?: number;
   font?: string;
   characterLifeSpanFunction?: () => number;
   initialCharacterVelocityFunction?: () => { x: number; y: number };
@@ -50,6 +51,7 @@ const CharacterCursor: React.FC<CharacterCursorProps> = ({
     Math.max(((lifeSpan - age) / lifeSpan) * 2, 0),
   characterNewRotationDegreesFunction = (age, lifeSpan) => (lifeSpan - age) / 5,
   wrapperElement,
+  zIndex,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const particlesRef = useRef<Particle[]>([]);
@@ -146,6 +148,7 @@ const CharacterCursor: React.FC<CharacterCursorProps> = ({
       canvas.style.top = '0px';
       canvas.style.left = '0px';
       canvas.style.pointerEvents = 'none';
+      canvas.style.zIndex = zIndex ? zIndex.toString() : '';
 
       if (wrapperElement) {
         canvas.style.position = 'absolute';
