@@ -194,19 +194,18 @@ function HeroSec() {
                         onMouseEnter={() => setHoveredIndex(index)}
                         onMouseLeave={() => setHoveredIndex(null)}
                         href={component.link}
-                        className='p-2 pl-4 dark:bg-[#010101] bg-gray-50 transition-all rounded-md dark:border-none border backdrop-blur-md relative flex justify-between items-center'
+                        className='p-2 pl-4 dark:bg-neutral-900 bg-neutral-50 transition-all rounded-md dark:border-none border backdrop-blur-md relative flex justify-between items-center'
                       >
                         <div>
                           <h1 className='font-medium text-xl'>
                             {component.title}
                           </h1>
                         </div>
-                        <button className='h-full dark:bg-gray-900 bg-gray-100 border p-3 rounded-md'>
+                        <button className='h-full dark:bg-neutral-800 bg-neutral-100 border p-3 rounded-md'>
                           <ArrowRight />
                         </button>
                       </Link>
 
-                      {/* Render component only when hovered */}
                       {hoveredIndex === index && (
                         <div className=''>{component.component}</div>
                       )}
