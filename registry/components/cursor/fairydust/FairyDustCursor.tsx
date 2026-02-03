@@ -43,9 +43,31 @@ export const FairyDustCursor: React.FC<FairyDustCursorProps> = ({
   const particlesRef = useRef<Particle[]>([]);
   const cursorRef = useRef({ x: 0, y: 0 });
   const lastPosRef = useRef({ x: 0, y: 0 });
-  const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
+  const [canvasSize, setCanvasSize] = useState({
+    width: typeof window !== 'undefined' ? (element ? element.clientWidth : window.innerWidth) : 0,
+    height: typeof window !== 'undefined' ? (element ? element.clientHeight : window.innerHeight) : 0,
+  });
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const updateCanvasSize = () => {
+      const newWidth = element ? element.clientWidth : window.innerWidth;
+      const newHeight = element ? element.clientHeight : window.innerHeight;
+      setCanvasSize({ width: newWidth, height: newHeight });
+    };
+  
+    updateCanvasSize();
+    window.addEventListener('resize', updateCanvasSize);
+  
+    return () => {
+      window.removeEventListener('resize', updateCanvasSize);
+    };
+  }, [element]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -53,16 +75,8 @@ export const FairyDustCursor: React.FC<FairyDustCursorProps> = ({
     const context = canvas.getContext('2d');
     if (!context) return;
 
-    const updateCanvasSize = () => {
-      const newWidth = element ? targetElement.clientWidth : window.innerWidth;
-      const newHeight = element
-        ? targetElement.clientHeight
-        : window.innerHeight;
-      setCanvasSize({ width: newWidth, height: newHeight });
-    };
-
-    updateCanvasSize();
-    window.addEventListener('resize', updateCanvasSize);
+    canvas.width = canvasSize.width;
+    canvas.height = canvasSize.height;
 
     // Animation frame setup
     let animationFrameId: number;
@@ -170,7 +184,6 @@ export const FairyDustCursor: React.FC<FairyDustCursorProps> = ({
     animate();
 
     return () => {
-      window.removeEventListener('resize', updateCanvasSize);
       targetElement.removeEventListener('mousemove', handleMouseMove);
       targetElement.removeEventListener('touchmove', handleTouchMove);
       cancelAnimationFrame(animationFrameId);
@@ -184,6 +197,7 @@ export const FairyDustCursor: React.FC<FairyDustCursorProps> = ({
     gravity,
     fadeSpeed,
     initialVelocity,
+    canvasSize,
   ]);
 
   return (
