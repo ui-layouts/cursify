@@ -2,6 +2,8 @@ export const metadata = {
   title: 'Fairy Dust Cursor Effect',
   description:
     'An interactive React component that creates a magical fairy dust effect, generating a trail of sparkling emoji particles that follow the cursor in real time. ✨',
+  tags: ['cursor', 'fairy-dust', 'particles', 'magical', 'trail'],
+  category: 'cursor',
 };
 
 <ComponentCodePreview name='fairydust-cursor' />
@@ -63,18 +65,18 @@ export const FairyDustCursor: React.FC<FairyDustCursorProps> = ({
     const updateCanvasSize = () => {
       const newWidth = element ? element.clientWidth : window.innerWidth;
       const newHeight = element ? element.clientHeight : window.innerHeight;
-  
+
       console.log('vavva updateCanvasSize', newWidth, newHeight);
       setCanvasSize({ width: newWidth, height: newHeight });
     };
-  
+
     updateCanvasSize();
     window.addEventListener('resize', updateCanvasSize);
-  
+
     return () => {
       window.removeEventListener('resize', updateCanvasSize);
     };
-  },[element])
+  }, [element]);
 
   useEffect(() => {
     const canvas = canvasRef.current;

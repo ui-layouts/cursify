@@ -1,7 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @next/next/no-html-link-for-pages */
 'use client';
-import { ArrowRight, ChevronsRight, Component, Divide, MoveRight } from 'lucide-react';
+import {
+  ArrowRight,
+  ChevronsRight,
+  Component,
+  Divide,
+  MoveRight,
+} from 'lucide-react';
 import { Button } from '@/components/website/ui/button';
 import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
@@ -18,7 +24,7 @@ import SpringyCursor from '@/registry/components/cursor/common/springy-cursor';
 
 import BubbleCursor from '@/registry/components/cursor/common/bubble-cursor';
 import Footer from './footer';
-import SmoothFollower from '../../registry/components/cursor/common/smooth-following-cursor';
+import SmoothFollower from '../../registry/components/cursor/common/smooth-cursor-follower';
 
 function HeroSec() {
   const [blocks, setBlocks] = useState([]);
@@ -111,7 +117,7 @@ function HeroSec() {
     {
       title: 'Follow Cursor',
       link: '/components/follow-cursor',
-      component: <FollowCursor />,
+      component: <FollowCursor zIndex={1} />,
     },
     {
       title: 'Spotlight Cursor',

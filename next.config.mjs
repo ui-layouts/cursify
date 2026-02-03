@@ -6,11 +6,6 @@ import remarkGfm from 'remark-gfm';
 import createMDX from '@next/mdx';
 import { remarkCodeHike, recmaCodeHike } from 'codehike/mdx';
 import rehypeSlug from 'rehype-slug';
-// Import the JSON file
-const docsData = JSON.parse(
-  fs.readFileSync(path.resolve('./configs/docs.json'), 'utf8')
-);
-const { dataArray } = docsData;
 
 const chConfig = {
   components: { code: 'PreCode' },

@@ -1,66 +1,92 @@
-// @ts-nocheck
 'use client';
+import { useRef, useEffect, useState, useCallback, ReactNode } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
-import React, { useRef, useEffect, useState } from 'react';
-import { motion, useMotionValue, useSpring } from 'motion/react';
+interface MagneticProps {
+  magneticDistance?: number;
+  strength?: number;
+  stiffness?: number;
+  damping?: number;
+  children: ReactNode | ((isHovering: boolean) => ReactNode);
+}
 
-const MagneticCursor: React.FC = () => {
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
+function Magnetic({
+  magneticDistance = 200,
+  strength = 0.9,
+  stiffness = 80,
+  damping = 10,
+  children,
+}: MagneticProps) {
+  const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 200, damping: 20 });
-  const springY = useSpring(y, { stiffness: 200, damping: 20 });
+  const springX = useSpring(x, { stiffness, damping });
+  const springY = useSpring(y, { stiffness, damping });
   const [isHovering, setIsHovering] = useState(false);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (buttonRef.current) {
-        const button = buttonRef.current.getBoundingClientRect();
-        const centerX = button.left + button.width / 2;
-        const centerY = button.top + button.height / 2;
-        const deltaX = e.pageX - centerX;
-        const deltaY = e.pageY - centerY;
+  const onMouseMove = useCallback(
+    (e: MouseEvent) => {
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      const dist = Math.sqrt(dx * dx + dy * dy);
 
-        const distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
-        const magneticDistance = 120; // Distance for magnetic attraction
-        const attractionStrength = 0.45; // Magnetic strength
-
-        if (distance < magneticDistance) {
-          const strength = 1 - distance / magneticDistance;
-          x.set(deltaX * strength * attractionStrength);
-          y.set(deltaY * strength * attractionStrength);
-          setIsHovering(true);
-        } else {
-          x.set(0);
-          y.set(0);
-          setIsHovering(false);
-        }
+      if (dist < magneticDistance) {
+        const pull = Math.pow(1 - dist / magneticDistance, 0.5);
+        x.set(dx * pull * strength);
+        y.set(dy * pull * strength);
+        setIsHovering(true);
+      } else {
+        x.set(0);
+        y.set(0);
+        setIsHovering(false);
       }
-    };
+    },
+    [x, y, magneticDistance, strength]
+  );
 
-    window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, [x, y]);
+  useEffect(() => {
+    window.addEventListener('mousemove', onMouseMove);
+    return () => window.removeEventListener('mousemove', onMouseMove);
+  }, [onMouseMove]);
 
   return (
-    <div className='relative w-full h-full flex items-center justify-center'>
-      <motion.button
-        ref={buttonRef}
-        className={`px-6 py-3 rounded-lg text-white font-semibold transition-transform ${
-          isHovering ? 'bg-green-500' : 'bg-green-600'
-        }`}
-        style={{
-          x: springX,
-          y: springY,
-        }}
-      >
-        Hover on me!
-      </motion.button>
+    <motion.div
+      ref={ref}
+      style={{ x: springX, y: springY, display: 'inline-block' }}
+    >
+      {typeof children === 'function' ? children(isHovering) : children}
+    </motion.div>
+  );
+}
+
+export default function MagneticCursor() {
+  return (
+    <div className='grid place-items-center h-full'>
+      <Magnetic>
+        {(hovering) => (
+          <button
+            onClick={() => alert('clicked!')}
+            className={cn(
+              `
+              w-36 h-36 border-red-500 border rounded-full text-xs tracking-widest uppercase font-semibold 
+              cursor-pointer transition-all duration-400 outline-none
+            
+            `,
+              hovering
+                ? 'shadow-[0_0_60px_rgba(255,140,120,0.45),0_0_120px_rgba(255,140,120,0.15)]'
+                : 'shadow-[0_4px_28px_rgba(255,140,120,0.22)]',
+              hovering && 'scale-105 bg-red-500 text-white'
+            )}
+          >
+            ENTER
+          </button>
+        )}
+      </Magnetic>
     </div>
   );
-};
-
-export default MagneticCursor;
+}

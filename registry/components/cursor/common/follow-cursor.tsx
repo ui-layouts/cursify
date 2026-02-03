@@ -4,9 +4,13 @@ import React, { useEffect } from 'react';
 
 interface FollowCursorProps {
   color?: string;
+  zIndex?: number;
 }
 
-const FollowCursor: React.FC<FollowCursorProps> = ({ color = '#323232a6' }) => {
+const FollowCursor: React.FC<FollowCursorProps> = ({
+  color = '#323232a6',
+  zIndex,
+}) => {
   useEffect(() => {
     let canvas: HTMLCanvasElement;
     let context: CanvasRenderingContext2D | null;
@@ -88,6 +92,7 @@ const FollowCursor: React.FC<FollowCursorProps> = ({ color = '#323232a6' }) => {
       canvas.style.pointerEvents = 'none';
       canvas.width = width;
       canvas.height = height;
+      canvas.style.zIndex = zIndex ? zIndex.toString() : '';
       document.body.appendChild(canvas);
 
       window.addEventListener('mousemove', onMouseMove);

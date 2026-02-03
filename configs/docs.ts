@@ -5,153 +5,157 @@ export const AllComponens = [
     href: '/components/verticle-bars',
     id: 'verticle-bars',
     componentName: 'Verticle Bars',
-    iframe:true,
+    iframe: true,
     filePath: 'registry/components/pattern/verticle-bars/verticle-bars.tsx',
     componentSrc: React.lazy(
       () => import('@/registry/components/pattern/verticle-bars')
     ),
     comMessage: 'Move Mouse To see the Effect',
     isAlert: 'New',
-    type:"pattern"
+    type: 'pattern',
   },
   {
     href: '/components/horizontal-bars',
     id: 'horizontal-bars',
     componentName: 'Horizontal Bars',
-    iframe:true,
+    iframe: true,
     filePath: 'registry/components/pattern/horizontal-bars/horizontal-bars.tsx',
     componentSrc: React.lazy(
       () => import('@/registry/components/pattern/horizontal-bars')
     ),
     comMessage: 'Move Mouse To see the Effect',
     isAlert: 'New',
-    type:"pattern"
+    type: 'pattern',
   },
   {
     href: '/components/interactive-dots',
     id: 'interactive-dots',
     componentName: 'Dots Pattern',
-    iframe:true,
-    filePath: 'registry/components/pattern/interactive-dots/interactive-dots.tsx',
+    iframe: true,
+    filePath:
+      'registry/components/pattern/interactive-dots/interactive-dots.tsx',
     componentSrc: React.lazy(
       () => import('@/registry/components/pattern/interactive-dots')
     ),
     comMessage: 'Move Mouse To see the Effect',
     isAlert: 'New',
-    type:"pattern"
+    type: 'pattern',
   },
   {
     href: '/components/sliding-ease',
     id: 'sliding-ease',
     componentName: 'Sliding Ease',
-    iframe:true,
+    iframe: true,
     filePath: 'registry/components/pattern/sliding-ease/sliding-ease.tsx',
     componentSrc: React.lazy(
       () => import('@/registry/components/pattern/sliding-ease')
     ),
     comMessage: 'Move Mouse To see the Effect',
     isAlert: 'New',
-    type:"pattern"
+    type: 'pattern',
   },
   {
     href: '/components/delicate-ascii-dots',
     id: 'delicate-ascii-dots',
     componentName: 'Delicate Ascii Dots',
-    iframe:true,
-    filePath: 'registry/components/pattern/delicate-ascii-dots/delicate-ascii-dots.tsx',
+    iframe: true,
+    filePath:
+      'registry/components/pattern/delicate-ascii-dots/delicate-ascii-dots.tsx',
     componentSrc: React.lazy(
       () => import('@/registry/components/pattern/delicate-ascii-dots')
     ),
     comMessage: 'Move Mouse To see the Effect',
     isAlert: 'New',
-    type:"pattern"
+    type: 'pattern',
   },
   {
     href: '/components/blinking-ascii-dots',
     id: 'blinking-ascii-dots',
     componentName: 'Blinking Ascii Dots',
-    iframe:true,
+    iframe: true,
     filePath: 'registry/components/pattern/blinking-ascii-dots.tsx',
     componentSrc: React.lazy(
       () => import('@/registry/components/pattern/blinking-ascii-dots')
     ),
     comMessage: 'Move Mouse To see the Effect',
     isAlert: 'New',
-    type:"pattern"
+    type: 'pattern',
   },
   {
     href: '/components/dot-particles',
     id: 'dot-particles',
     componentName: 'Dot Particles',
-    iframe:true,
+    iframe: true,
     filePath: 'registry/components/pattern/dot-particles/dot-particles.tsx',
     componentSrc: React.lazy(
       () => import('@/registry/components/pattern/dot-particles')
     ),
     comMessage: 'Move Mouse To see the Effect',
     isAlert: 'New',
-    type:"pattern"
+    type: 'pattern',
   },
   {
     href: '/components/smooth-wavy-canvas',
     id: 'smooth-wavy-canvas',
     componentName: 'Smooth Wavy',
-    iframe:true,
-    filePath: 'registry/components/pattern/smooth-wavy-canvas/smooth-wavy-canvas.tsx',
+    iframe: true,
+    filePath:
+      'registry/components/pattern/smooth-wavy-canvas/smooth-wavy-canvas.tsx',
     componentSrc: React.lazy(
       () => import('@/registry/components/pattern/smooth-wavy-canvas')
     ),
     comMessage: 'Move Mouse To see the Effect',
     isAlert: 'New',
-    type:"pattern"
+    type: 'pattern',
   },
   {
     href: '/components/black-white-blobs',
     id: 'black-white-blobs',
     componentName: 'Black White Blobs',
-    iframe:true,
-    filePath: 'registry/components/pattern/black-white-blobs/black-white-blobs.tsx',
+    iframe: true,
+    filePath:
+      'registry/components/pattern/black-white-blobs/black-white-blobs.tsx',
     componentSrc: React.lazy(
       () => import('@/registry/components/pattern/black-white-blobs')
     ),
     comMessage: 'Move Mouse To see the Effect',
     isAlert: 'New',
-    type:"pattern"
+    type: 'pattern',
   },
   {
     href: '/components/flowing-ribbons',
     id: 'flowing-ribbons',
     componentName: 'Flowing Ribbons',
-    iframe:true,
+    iframe: true,
     filePath: 'registry/components/pattern/flowing-ribbons/flowing-ribbons.tsx',
     componentSrc: React.lazy(
       () => import('@/registry/components/pattern/flowing-ribbons')
     ),
     comMessage: 'Move Mouse To see the Effect',
     isAlert: 'New',
-    type:"pattern"
+    type: 'pattern',
   },
   {
     href: '/components/flowing-dots',
     id: 'flowing-dots',
     componentName: 'Flowing Dots',
-    iframe:true,
+    iframe: true,
     filePath: 'registry/components/pattern/flowing-dots/flowing-dots.tsx',
     componentSrc: React.lazy(
       () => import('@/registry/components/pattern/flowing-dots')
     ),
     comMessage: 'Move Mouse To see the Effect',
     isAlert: 'New',
-    type:"pattern"
+    type: 'pattern',
   },
   {
-    href: '/components/smooth-follower',
-    id: 'smooth-follower-cursor',
-    componentName: 'Smooth Follower Cursor',
-    iframe:true,
-    filePath: 'registry/components/cursor/common/smooth-following-cursor.tsx',
+    href: '/components/smooth-cursor-follower',
+    id: 'smooth-cursor-follower',
+    componentName: 'Smooth Cursor Follower',
+    iframe: true,
+    filePath: 'registry/components/cursor/common/smooth-cursor-follower.tsx',
     componentSrc: React.lazy(
-      () => import('@/registry/components/cursor/common/smooth-following-cursor')
+      () => import('@/registry/components/cursor/common/smooth-cursor-follower')
     ),
     comMessage: 'Move Mouse To see the Effect',
   },

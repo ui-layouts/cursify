@@ -2,14 +2,15 @@ export const metadata = {
   title: 'Neural Glow Cursor Effect',
   description:
     'An interactive React component that adds a dynamic bubble effect, visually tracking cursor movement in real time.',
+  tags: ['cursor', 'neural', 'glow', 'webgl', 'shader'],
+  category: 'cursor',
 };
 
-<ComponentCodePreview name='neural-glow' type="separate" />
+<ComponentCodePreview name='neural-glow' type='separate' />
 
-```tsx  neural-glow.tsx
-
+```tsx neural-glow.tsx
 // @ts-nocheck
-"use client"
+'use client';
 import React, { useEffect, useRef, useState } from 'react';
 
 const NeuralGlow = () => {
@@ -100,7 +101,10 @@ const NeuralGlow = () => {
     gl.compileShader(shader);
 
     if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-      console.error("An error occurred compiling the shaders: " + gl.getShaderInfoLog(shader));
+      console.error(
+        'An error occurred compiling the shaders: ' +
+          gl.getShaderInfoLog(shader)
+      );
       gl.deleteShader(shader);
       return null;
     }
@@ -108,14 +112,21 @@ const NeuralGlow = () => {
     return shader;
   };
 
-  const createShaderProgram = (gl: any, vertexShader: any, fragmentShader: any) => {
+  const createShaderProgram = (
+    gl: any,
+    vertexShader: any,
+    fragmentShader: any
+  ) => {
     const program = gl.createProgram();
     gl.attachShader(program, vertexShader);
     gl.attachShader(program, fragmentShader);
     gl.linkProgram(program);
 
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-      console.error("Unable to initialize the shader program: " + gl.getProgramInfoLog(program));
+      console.error(
+        'Unable to initialize the shader program: ' +
+          gl.getProgramInfoLog(program)
+      );
       return null;
     }
 
@@ -134,20 +145,25 @@ const NeuralGlow = () => {
 
   const initShader = () => {
     const canvas = canvasRef.current;
-    const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+    const gl =
+      canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
 
     if (!gl) {
-      alert("WebGL is not supported by your browser.");
+      alert('WebGL is not supported by your browser.');
       return null;
     }
 
     const vertexShader = createShader(gl, vertexShaderSource, gl.VERTEX_SHADER);
-    const fragmentShader = createShader(gl, fragmentShaderSource, gl.FRAGMENT_SHADER);
+    const fragmentShader = createShader(
+      gl,
+      fragmentShaderSource,
+      gl.FRAGMENT_SHADER
+    );
 
     const shaderProgram = createShaderProgram(gl, vertexShader, fragmentShader);
     uniformsRef.current = getUniforms(gl, shaderProgram);
 
-    const vertices = new Float32Array([-1., -1., 1., -1., -1., 1., 1., 1.]);
+    const vertices = new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]);
 
     const vertexBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
@@ -155,7 +171,7 @@ const NeuralGlow = () => {
 
     gl.useProgram(shaderProgram);
 
-    const positionLocation = gl.getAttribLocation(shaderProgram, "a_position");
+    const positionLocation = gl.getAttribLocation(shaderProgram, 'a_position');
     gl.enableVertexAttribArray(positionLocation);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
@@ -172,7 +188,7 @@ const NeuralGlow = () => {
     const devicePixelRatio = Math.min(window.devicePixelRatio, 2);
     canvas.width = window.innerWidth * devicePixelRatio;
     canvas.height = window.innerHeight * devicePixelRatio;
-    
+
     gl.uniform1f(uniformsRef.current.u_ratio, canvas.width / canvas.height);
     gl.viewport(0, 0, canvas.width, canvas.height);
   };
@@ -190,8 +206,15 @@ const NeuralGlow = () => {
     pointer.y += (pointer.tY - pointer.y) * 0.2;
 
     gl.uniform1f(uniforms.u_time, currentTime);
-    gl.uniform2f(uniforms.u_pointer_position, pointer.x / window.innerWidth, 1 - pointer.y / window.innerHeight);
-    gl.uniform1f(uniforms.u_scroll_progress, window.pageYOffset / (2 * window.innerHeight));
+    gl.uniform2f(
+      uniforms.u_pointer_position,
+      pointer.x / window.innerWidth,
+      1 - pointer.y / window.innerHeight
+    );
+    gl.uniform1f(
+      uniforms.u_scroll_progress,
+      window.pageYOffset / (2 * window.innerHeight)
+    );
 
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     animationRef.current = requestAnimationFrame(render);
@@ -223,19 +246,19 @@ const NeuralGlow = () => {
       resizeCanvas();
     };
 
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("pointermove", handlePointerMove);
-    window.addEventListener("touchmove", handleTouchMove);
-    window.addEventListener("click", handleClick);
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('pointermove', handlePointerMove);
+    window.addEventListener('touchmove', handleTouchMove);
+    window.addEventListener('click', handleClick);
 
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("pointermove", handlePointerMove);
-      window.removeEventListener("touchmove", handleTouchMove);
-      window.removeEventListener("click", handleClick);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('click', handleClick);
     };
   }, []);
 
@@ -243,7 +266,7 @@ const NeuralGlow = () => {
     <>
       <canvas
         ref={canvasRef}
-        className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-95"
+        className='absolute top-0 left-0 w-full h-full pointer-events-none opacity-95'
         style={{ backgroundColor: '#000000' }}
       />
     </>
@@ -251,5 +274,4 @@ const NeuralGlow = () => {
 };
 
 export default NeuralGlow;
-
 ```
