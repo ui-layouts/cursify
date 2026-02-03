@@ -4,9 +4,10 @@ import React, { useEffect, useRef } from 'react';
 
 interface SnowflakeCursorOptions {
   element?: HTMLElement;
+  zIndex?: number;
 }
 
-const SnowflakeCursor: React.FC<SnowflakeCursorOptions> = ({ element }) => {
+const SnowflakeCursor: React.FC<SnowflakeCursorOptions> = ({ element, zIndex }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const particles = useRef<any[]>([]);
   const canvImages = useRef<HTMLCanvasElement[]>([]);
@@ -32,6 +33,7 @@ const SnowflakeCursor: React.FC<SnowflakeCursorOptions> = ({ element }) => {
     canvas.style.top = '0';
     canvas.style.left = '0';
     canvas.style.pointerEvents = 'none';
+    canvas.style.zIndex = zIndex ? zIndex.toString() : '';
 
     targetElement.appendChild(canvas);
     canvasRef.current = canvas;

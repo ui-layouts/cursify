@@ -5,11 +5,13 @@ import React, { useEffect, useRef } from 'react';
 interface SpringyCursorProps {
   emoji?: string;
   wrapperElement?: HTMLElement;
+  zIndex?: number;
 }
 
 const SpringyCursor: React.FC<SpringyCursorProps> = ({
   emoji = '⚽',
   wrapperElement,
+  zIndex,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const particlesRef = useRef<any[]>([]);
@@ -52,6 +54,7 @@ const SpringyCursor: React.FC<SpringyCursorProps> = ({
       canvas.style.top = '0px';
       canvas.style.left = '0px';
       canvas.style.pointerEvents = 'none';
+      canvas.style.zIndex = zIndex ? zIndex.toString() : '';
 
       if (wrapperElement) {
         canvas.style.position = 'absolute';
