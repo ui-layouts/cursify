@@ -11,8 +11,8 @@
           "parentName": "cursor"
         },
         {
-          "componentName": "smooth-follower-cursor",
-          "iframeSrc": "live-components/smooth-follower",
+          "componentName": "smooth-cursor-follower",
+          "iframeSrc": "live-components/smooth-cursor-follower",
           "filesrc": "components/cursor/common/smooth-cursor-follower.tsx",
           "parentlink": "cursor",
           "parentName": "cursor"

@@ -16,11 +16,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata(
-  props: {
-    params: Promise<{ slug?: string[] }>;
-  }
-): Promise<Metadata> {
+export async function generateMetadata(props: {
+  params: Promise<{ slug?: string[] }>;
+}): Promise<Metadata> {
   const params = await props.params;
   const slug = params.slug?.join('/') || '';
   const doc = await getDocBySlug(slug);
@@ -33,22 +31,18 @@ export async function generateMetadata(
   };
 }
 
-export default async function DocPage(
-  props: {
-    params: Promise<{ slug?: string[] }>;
-  }
-) {
+export default async function DocPage(props: {
+  params: Promise<{ slug?: string[] }>;
+}) {
   const params = await props.params;
   const slug = params.slug?.join('/') || '';
   const doc = await getDocBySlug(slug);
-  // console.log(doc);
 
   if (!doc) {
     notFound();
   }
 
   const { default: Content } = doc.content;
-
 
   return (
     <>
