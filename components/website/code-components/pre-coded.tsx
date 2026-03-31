@@ -7,7 +7,7 @@ import {
   TabsTrigger,
 } from '@/components/website/ui/tabs';
 import { CopyButton } from './copy-button';
-import { cn } from '@/lib/utils';
+import { cn } from 'clswind';
 import ts from 'typescript';
 import { callout, lineNumbers, wordWrap } from '../constant';
 
@@ -85,7 +85,7 @@ export async function PreCoded({
             />
             <div
               className={cn(
-                'p-2 max-h-[500px] pt-8 overflow-x-hidden rounded-md text-sm bg-codebg border',
+                'p-2 max-h-[500px] pt-8 overflow-x-hidden rounded-md text-sm bg-codebg border'
               )}
             >
               <Pre

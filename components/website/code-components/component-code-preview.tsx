@@ -5,7 +5,7 @@ import { extractCodeFromFilePath } from '@/lib/code';
 import React from 'react';
 import { Code, Eye } from 'lucide-react';
 import { PreCoded } from './pre-coded';
-import { cn } from '@/lib/utils';
+import { cn } from 'clswind';
 
 type ComponentCodePreview = {
   component: React.ReactElement<any>;
@@ -81,7 +81,13 @@ export default async function ComponentCodePreview({
 
       {type === 'separate' && (
         <div className='not-prose relative z-0 w-full rounded-lg dark:bg-[#080b11] overflow-hidden mt-5 p-0'>
-          <PreCoded type={type} codeblock={fileContent}  classname='p-0' tabclassname="right-16 top-4" copyclass="right-5 top-4" />
+          <PreCoded
+            type={type}
+            codeblock={fileContent}
+            classname='p-0'
+            tabclassname='right-16 top-4'
+            copyclass='right-5 top-4'
+          />
         </div>
       )}
     </>

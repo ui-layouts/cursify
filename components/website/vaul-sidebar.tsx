@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import { X } from 'lucide-react';
 import { Drawer as VaulSidebar } from 'vaul';
-import { cn } from '@/lib/utils';
+import { cn } from 'clswind';
 
 interface DrawerContextProps {
   open: boolean;

@@ -14,7 +14,7 @@ import { Command } from 'cmdk';
 
 import { Dialog, DialogContent } from '@/components/website/ui/dialog';
 import { ScrollArea } from '@/components/website/ui//scroll-area';
-import { cn } from '@/lib/utils';
+import { cn } from 'clswind';
 import { basePath } from './sidebar';
 import { AllComponens } from '@/configs/docs';
 

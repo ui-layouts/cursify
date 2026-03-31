@@ -1,7 +1,7 @@
 'use client';
 import { useRef, useEffect, useState, useCallback, ReactNode } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { cn } from '@/lib/utils';
+import { cn } from 'clswind';
 
 interface MagneticProps {
   magneticDistance?: number;

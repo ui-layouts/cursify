@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import { cn } from '@/lib/utils';
+import { cn } from 'clswind';
 
 function Footer({ className }: { className?: string }) {
   return (

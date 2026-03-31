@@ -2,7 +2,7 @@
 
 import { useTheme } from 'next-themes';
 import { MoonIcon, SunIcon } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { cn } from 'clswind';
 
 export default function ThemeSwitch({ className }: { className?: string }) {
   const { theme, setTheme } = useTheme();
