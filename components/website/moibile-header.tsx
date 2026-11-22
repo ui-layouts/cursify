@@ -152,8 +152,8 @@ function MobileHeader({ classname }: { classname?: string }) {
                 );
               })}
             </ul>
-            <p className='text-sm font-semibold pb-1'>Components</p>
-            <ul>
+            <h2 id='mobile-drawer-components' className='text-sm font-semibold pb-1'>Components</h2>
+            <ul aria-labelledby='mobile-drawer-components'>
               {AllComponens?.map((link) => {
                 return (
                   <>
