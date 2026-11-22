@@ -1,4 +1,6 @@
-const baseUrl = 'https://cursify.ui-layouts.com';
+import { siteConfig } from '@/lib/utils';
+
+const baseUrl = siteConfig.url;
 
 export function getWebsiteSchema() {
   return {
@@ -9,14 +11,6 @@ export function getWebsiteSchema() {
       'A comprehensive library of stunning cursor animations and interactive effects for React and Next.js applications',
     url: baseUrl,
     inLanguage: 'en-US',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${baseUrl}/components/{search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
   };
 }
 
@@ -26,7 +20,7 @@ export function getSoftwareAppSchema() {
     '@type': 'SoftwareApplication',
     name: 'Cursify',
     description:
-      'React cursor animation library with 38+ interactive components and production-ready examples.',
+      'An open source cursor animation library with interactive effects and code examples for React and Next.js.',
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'Web Browser',
     offers: {
@@ -42,39 +36,6 @@ export function getSoftwareAppSchema() {
       url: 'https://www.ui-layouts.com',
     },
     sameAs: ['https://github.com/ui-layouts/cursify'],
-  };
-}
-
-export function getFaqSchema() {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What frameworks are supported by Cursify components?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Cursify components are built for React and Next.js projects.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Are Cursify cursor animations free to use?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes. The component collection is free to browse, copy, and use in your projects.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Can I copy production-ready code snippets?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes. Every component page includes implementation code you can copy into your application.',
-        },
-      },
-    ],
   };
 }
 

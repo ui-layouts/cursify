@@ -1,19 +1,17 @@
-export const metadata = {
-  title: 'Get Started',
-  description:
-    'Learn how to install and get started with Cursify cursor animation library',
-  tags: ['documentation', 'getting-started', 'installation', 'tutorial'],
-  category: 'documentation',
-};
+import { pageMetadata } from '@/lib/page-metadata';
 
-<div className='mt-4'>
-  <h4 className='text-4xl font-semibold'>Introdcution</h4>
-</div>
+export const metadata = pageMetadata({
+  path: '/get-started',
+  title: 'Get Started with Cursify',
+  description: 'Set up Cursify cursor animations in a React or Next.js project. Install the styling and motion dependencies, then copy an effect into your app.',
+});
+
+<h1 className='mt-4 text-4xl font-semibold'>Get Started with Cursify</h1>
 
 Create Stunning Cursor Animations with Ease.
 Cursify is a powerful library designed to elevate your React and Next.js projects. With an extensive collection of cursor animations, pre-built components, code blocks, and design templates, Cursify empowers you to craft visually stunning landing pages and marketing interfaces effortlessly.
 
-##### Installation
+## Installation
 
 You must install `tailwindcss`. As most of our components use `motion` install it too.
 
@@ -96,7 +94,7 @@ export function useMouse(): [MouseState, RefObject<HTMLDivElement>] {
 }
 ```
 
-##### Story
+## Story
 
 I was exploring **[Ui-Layouts](https://www.ui-layouts.com/)** components and noticed they didn’t have any mouse events or cursor animations. So, I thought, why not create a Cursor Components Library? I went ahead and built it, but the UI and design process were all manual. I wasn’t using developer-friendly tools like MDX. That’s when **[Naymur](https://x.com/naymur_dev)** reached out to me and said he could completely change the structure—how components are added, how users view and copy them—just like he did in **[Ui-Layouts](https://www.ui-layouts.com/)**. Now, you’re checking out the new version of **Cursify**, which has become an exciting project under **[Ui-Layouts](https://www.ui-layouts.com/)**.
 

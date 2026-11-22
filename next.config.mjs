@@ -46,7 +46,15 @@ const nextConfig = {
       },
     ],
   },
-  // Add other Next.js config options here
+  async redirects() {
+    return [
+      {
+        source: '/components/smooth-follower',
+        destination: '/components/smooth-cursor-follower',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default withMDX(nextConfig);

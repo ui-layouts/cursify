@@ -36,9 +36,10 @@ export async function getAllDocs() {
   return docs.filter((doc): doc is NonNullable<typeof doc> => doc !== null);
 }
 
-function getAllDocSlugs() {
-  const files = getAllFiles(docsDirectory);
-  return files.map((file) => file.replace(/\.mdx$/, ''));
+export function getAllDocSlugs() {
+  return getAllFiles(docsDirectory)
+    .map((file) => path.relative(docsDirectory, file).split(path.sep).join('/').slice(0, -4))
+    .sort();
 }
 
 function getAllFiles(dir: string): string[] {
@@ -49,9 +50,7 @@ function getAllFiles(dir: string): string[] {
     if (file.isDirectory()) {
       filePaths = [...filePaths, ...getAllFiles(path.join(dir, file.name))];
     } else if (file.name.endsWith('.mdx')) {
-      filePaths.push(
-        path.join(dir, file.name).replace(docsDirectory + '/', '')
-      );
+      filePaths.push(path.join(dir, file.name));
     }
   }
 

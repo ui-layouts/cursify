@@ -73,7 +73,7 @@ function DocsSidebar() {
                 })}
                 <li>
                   <a
-                    href={'https://ui-layouts.com/'}
+                    href={'https://www.ui-layouts.com/'}
                     target='_blank'
                     className={`flex gap-2 group font-medium items-center py-1  transition-all text-slate-600 hover:text-slate-900  dark:text-slate-400 dark:hover:text-white`}
                   >
@@ -96,7 +96,7 @@ function DocsSidebar() {
                   </a>
                 </li>
               </ul>
-              <h1 className='text-lg font-semibold pb-1'>Components</h1>
+              <p className='text-lg font-semibold pb-1'>Components</p>
               {AllComponens?.map((link) => {
                 return (
                   <>

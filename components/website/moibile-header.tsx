@@ -152,7 +152,7 @@ function MobileHeader({ classname }: { classname?: string }) {
                 );
               })}
             </ul>
-            <h1 className='text-sm font-semibold pb-1'>Components</h1>
+            <p className='text-sm font-semibold pb-1'>Components</p>
             <ul>
               {AllComponens?.map((link) => {
                 return (

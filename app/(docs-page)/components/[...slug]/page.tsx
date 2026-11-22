@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { getDocBySlug, getAllDocs } from '@/lib/docs';
 import { cn } from '@/lib/utils';
 import { Component } from 'lucide-react';
-import Script from 'next/script';
+import { pageMetadata } from '@/lib/page-metadata';
 import TableOfContents from '@/components/website/tableof-compoents';
 import { ComponentPagination } from '@/components/website/code-components/pagination';
 import Footer from '@/components/website/footer';
@@ -12,7 +12,6 @@ import { siteConfig } from '@/lib/utils';
 
 export async function generateStaticParams() {
   const docs = await getAllDocs();
-  console.log(docs);
 
   return docs.map((doc) => ({
     slug: doc.slug === 'index' ? [] : doc.slug.split('/'),
@@ -28,25 +27,13 @@ export async function generateMetadata(props: {
   if (!doc) {
     return {};
   }
-  return {
-    title: `${doc.content.metadata.title}`,
+  return pageMetadata({
+    path: `/components/${doc.slug}`,
+    title: doc.content.metadata.title,
     description: doc.content.metadata.description,
-    keywords: doc.content.metadata.tags?.join(', ') || '',
-    alternates: {
-      canonical: `${siteConfig.url}/components/${doc.slug}`,
-    },
-    openGraph: {
-      title: `${doc.content.metadata.title}`,
-      description: doc.content.metadata.description,
-      type: 'article',
-      tags: doc.content.metadata.tags || [],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${doc.content.metadata.title}`,
-      description: doc.content.metadata.description,
-    },
-  };
+    type: 'article',
+    tags: doc.content.metadata.tags,
+  });
 }
 
 export default async function DocPage(props: {
@@ -70,10 +57,9 @@ export default async function DocPage(props: {
 
   return (
     <>
-      <Script
-        id={`breadcrumb-${doc.slug}`}
+      <script
         type='application/ld+json'
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema).replace(/</g, '\\u003c') }}
       />
       <div className='lg:container mx-auto lg:px-0 px-2'>
         <div className='flex w-full lg:gap-3'>
@@ -85,9 +71,9 @@ export default async function DocPage(props: {
                     'mb-0 flex scroll-m-20  not-prose items-center text-3xl gap-2 font-medium tracking-tight'
                   )}
                 >
-                  <div className='w-10 h-10 bg-primary grid place-content-center text-primary-foreground rounded-lg'>
+                  <span aria-hidden='true' className='w-10 h-10 bg-primary grid place-content-center text-primary-foreground rounded-lg'>
                     <Component />
-                  </div>
+                  </span>
                   {doc.content.metadata.title}
                 </h1>
                 <p className='text-sm'>{doc.content.metadata.description}</p>

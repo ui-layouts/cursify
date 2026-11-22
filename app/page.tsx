@@ -1,38 +1,24 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import Background from '@/components/website/background';
 import Header from '@/components/website/header';
 import HeroSec from '@/components/website/hero-sec';
-import { getBreadcrumbSchema, getFaqSchema } from '@/app/schema';
-import { siteConfig } from '@/lib/utils';
+import { getSoftwareAppSchema, getWebsiteSchema } from '@/app/schema';
+import { pageMetadata } from '@/lib/page-metadata';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/',
   title: 'React Cursor Animation Library',
   description:
-    'Explore interactive cursor animations and reusable UI patterns for React and Next.js projects.',
-  alternates: {
-    canonical: siteConfig.url,
-  },
-};
+    'Browse interactive cursor effects and animated backgrounds for React and Next.js. Try live demos and copy the TypeScript or JavaScript into your project.',
+});
 
 export default function Home() {
   return (
     <>
-      <Script
-        id='home-faq-schema'
-        type='application/ld+json'
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(getFaqSchema()) }}
-      />
-      <Script
-        id='home-breadcrumb-schema'
+      <script
         type='application/ld+json'
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            getBreadcrumbSchema([
-              { name: 'Home', item: siteConfig.url },
-              { name: 'Components', item: `${siteConfig.url}/components` },
-            ])
-          ),
+          __html: JSON.stringify([getWebsiteSchema(), getSoftwareAppSchema()]),
         }}
       />
       <Background>
