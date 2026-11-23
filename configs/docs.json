@@ -123,8 +123,8 @@
           "comMessage": "Move Mouse To see the Effect"
         },
         {
-          "componentName": "fluid-cursor",
-          "filesrc": "components/cursor/common/fluid-cursor.tsx",
+          "componentName": "fluid-pixel-cursor",
+          "filesrc": "components/cursor/common/fluid-pixel-cursor.tsx",
           "parentlink": "cursor",
           "parentName": "cursor",
           "comMessage": "Move Mouse To see the Effect"

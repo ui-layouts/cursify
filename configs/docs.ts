@@ -322,6 +322,18 @@ export const AllComponens = [
     comMessage: 'Move Mouse To see the Effect',
   },
   {
+    href: '/components/fluid-pixel-cursor',
+    id: 'fluid-pixel-cursor',
+    componentName: 'Fluid Pixel Cursor',
+    filePath: 'registry/components/cursor/common/fluid-pixel-cursor.tsx',
+    componentSrc: React.lazy(
+      () => import('@/registry/components/cursor/common/fluid-pixel-cursor')
+    ),
+    isAlert: 'New',
+
+    comMessage: 'Move Mouse To see the Effect',
+  },
+  {
     href: '/components/fluid-cursor',
     id: 'fluid-cursor',
     componentName: 'Fluid Cursor',
