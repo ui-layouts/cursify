@@ -123,6 +123,13 @@
           "comMessage": "Move Mouse To see the Effect"
         },
         {
+          "componentName": "text-trail-cursor",
+          "filesrc": "components/cursor/common/text-trail-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
           "componentName": "fluid-pixel-cursor",
           "filesrc": "components/cursor/common/fluid-pixel-cursor.tsx",
           "parentlink": "cursor",
