@@ -160,6 +160,16 @@ export const AllComponens = [
     comMessage: 'Move Mouse To see the Effect',
   },
   {
+    href: '/components/shader-trail',
+    id: 'shader-trail',
+    componentName: 'Cursor Shader Trail',
+    filePath: 'registry/components/cursor/shader-trail/shader-trail.tsx',
+    componentSrc: React.lazy(
+      () => import('@/registry/components/cursor/shader-trail')
+    ),
+    comMessage: 'Move Mouse To see the Effect',
+  },
+  {
     href: '/components/neural-glow',
     id: 'neural-glow',
     componentName: 'Neural Glow Cursor',

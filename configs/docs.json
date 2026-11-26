@@ -4,6 +4,13 @@
       "name": "cursor",
       "componentArray": [
         {
+          "componentName": "shader-trail",
+          "iframeSrc": "live-components/shader-trail",
+          "filesrc": "components/cursor/shader-trail/shader-trail.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor"
+        },
+        {
           "componentName": "neural-glow",
           "iframeSrc": "live-components/neural-glow",
           "filesrc": "components/cursor/neural-glow/index.tsx",
