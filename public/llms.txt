@@ -21,7 +21,8 @@
 
 ## Components
 
-### Cursor Effects (26 components)
+### Cursor Effects (27 components)
+- [Atelier Media](https://cursify.ui-layouts.com/components/atelier-media): Liquid, pixel, and lens pointer effects for images and video.
 - [3D Cursor](https://cursify.ui-layouts.com/components/3d-cursor): WebGL-powered 3D depth perception with smooth mouse tracking.
 - [Arrow Cursor](https://cursify.ui-layouts.com/components/arrow-cursor): Dynamic arrow that points based on cursor movement direction.
 - [Blob Cursor](https://cursify.ui-layouts.com/components/blob-cursor): Fluid blob effect with spring physics animations.

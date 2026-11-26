@@ -160,6 +160,14 @@ export const AllComponens = [
     comMessage: 'Move Mouse To see the Effect',
   },
   {
+    href: '/components/atelier-media',
+    id: 'atelier-media',
+    componentName: 'Atelier Media',
+    filePath: 'registry/components/cursor/atelier-media/atelier-media.tsx',
+    componentSrc: React.lazy(() => import('@/registry/components/cursor/atelier-media')),
+    comMessage: 'Move your pointer across the image',
+  },
+  {
     href: '/components/neural-glow',
     id: 'neural-glow',
     componentName: 'Neural Glow Cursor',

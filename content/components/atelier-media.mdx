@@ -1,0 +1,20 @@
+export const metadata = {
+  title: 'Atelier Media',
+  description: 'Switch between liquid ripples, pixel displacement, and a refractive lens on images and videos.',
+  tags: ['cursor', 'image', 'video', 'webgl'],
+  category: 'cursor',
+};
+
+<ComponentCodePreview name='atelier-media' type='separate' />
+
+Copy the component above into `atelier-media.tsx`. Choose an effect with the `type` prop. The default is `liquid`.
+
+```tsx
+import AtelierMedia from './atelier-media';
+
+<AtelierMedia type="pixel" src="/landscape.webp" alt="Mountain landscape" />
+```
+
+For looping muted video, pass `media="video"`. Use a local media file or a server that allows cross-origin requests. Set the frame size with `className` to crop the media to fit.
+
+Effects and preview photograph from [Atelier UI's Codrops demo](https://github.com/whatisjery/atelier-ui-codrops).
