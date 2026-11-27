@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { getDocBySlug, getAllDocs } from '@/lib/docs';
-import { cn } from '@/lib/utils';
+import { cn } from 'clswind';
 import { Component } from 'lucide-react';
 import Script from 'next/script';
 import TableOfContents from '@/components/website/tableof-compoents';

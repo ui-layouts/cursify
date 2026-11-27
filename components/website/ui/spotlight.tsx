@@ -1,7 +1,7 @@
 // @ts-nocheck
 'use client';
 
-import { cn } from '@/lib/utils';
+import { cn } from 'clswind';
 import React, {
   useRef,
   useState,

@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { SidebarDrawer, DrawerContent } from './vaul-sidebar';
 import { basePath } from './sidebar';
 import { AllComponens } from '@/configs/docs';
-import { cn } from '@/lib/utils';
+import { cn } from 'clswind';
 
 function MobileHeader({ classname }: { classname?: string }) {
   const pathname = usePathname();

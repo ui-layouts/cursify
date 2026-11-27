@@ -1,6 +1,6 @@
 import type { MDXComponents } from 'mdx/types';
 import Image, { ImageProps } from 'next/image';
-import { cn } from './lib/utils';
+import { cn } from 'clswind';
 import { PreCode } from '@/components/website/code-components/pre-code';
 import ComponentCodePreview from '@/components/website/code-components/component-code-preview';
 

@@ -143,18 +143,7 @@
 You must install `tailwindcss`. As most of our components use `motion` install it too.
 
 ```bash
-npm install motion clsx tailwind-merge
-```
-
-Must Add it in the `utils.ts`:
-
-```tsx title="utils.tsx"
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+npm install motion clswind
 ```
 
 use this hooks for mediaQueries:
@@ -182,8 +171,9 @@ export function useMediaQuery(query: string) {
 ```
 
 ## 👤 Author (Durgesh Bachhav)
+
 - X: [@durgesh_dev](https://x.com/bachhav36741)
-- LinkedIn: [in/durgesh-bachhav](https://www.linkedin.com/in/durgesh-bachhav-914bb8337/) 
+- LinkedIn: [in/durgesh-bachhav](https://www.linkedin.com/in/durgesh-bachhav-914bb8337/)
 
 - X: [@naymur_dev](https://x.com/naymur_dev)
 - LinkedIn: [in/naymur-rahman](https://www.linkedin.com/in/naymur-rahman/)
