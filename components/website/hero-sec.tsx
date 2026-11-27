@@ -86,7 +86,7 @@ function HeroSec() {
     },
     {
       title: 'Smooth Following Cursor',
-      link: '/components/smooth-follower',
+      link: '/components/smooth-cursor-follower',
       component: <SmoothFollower />,
     },
     {
@@ -106,7 +106,7 @@ function HeroSec() {
     },
     {
       title: 'Snowflake Cursor',
-      link: '/components/character-cursor',
+      link: '/components/snowflake-cursor',
       component: <SnowflakeCursor zIndex={1} />,
     },
 
@@ -205,13 +205,13 @@ function HeroSec() {
                         className='p-2 pl-4 dark:bg-neutral-900 bg-neutral-50 transition-all rounded-md dark:border-none border backdrop-blur-md relative flex justify-between items-center'
                       >
                         <div>
-                          <h1 className='font-medium text-xl'>
+                          <h2 className='font-medium text-xl'>
                             {component.title}
-                          </h1>
+                          </h2>
                         </div>
-                        <button className='h-full dark:bg-neutral-800 bg-neutral-100 border p-3 rounded-md'>
+                        <span aria-hidden='true' className='h-full dark:bg-neutral-800 bg-neutral-100 border p-3 rounded-md'>
                           <ArrowRight />
-                        </button>
+                        </span>
                       </Link>
 
                       {hoveredIndex === index && (

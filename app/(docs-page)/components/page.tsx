@@ -33,13 +33,13 @@ export default function Home() {
                     className='p-2 pl-5 dark:bg-[#01040e] backdrop-blur-sm bg-gray-50 transition-all rounded-md dark:border-none border  relative flex justify-between items-center'
                   >
                     <div>
-                      <h1 className='font-medium text-xl'>
+                      <h2 className='font-medium text-xl'>
                         {component.componentName}
-                      </h1>
+                      </h2>
                     </div>
-                    <button className='h-full dark:bg-gray-900 bg-gray-100 border p-3 rounded-md'>
+                    <span aria-hidden='true' className='h-full dark:bg-gray-900 bg-gray-100 border p-3 rounded-md'>
                       <ArrowRight />
-                    </button>
+                    </span>
                   </Link>
                 </>
               </SpotLightItem>

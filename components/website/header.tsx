@@ -120,7 +120,7 @@ function Header() {
           <div className='flex gap-2 '>
             {pathname === '/' && (
               <a
-                href='https://ui-layouts.com/'
+                href='https://www.ui-layouts.com/'
                 target='_blank'
                 className='p-2.5 text-white bg-gradient-to-t from-zinc-900 to-neutral-950 md:inline-block hidden font-semibold uppercase rounded-lg px-3 border dark:border-0 dark:shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.15)]'
               >

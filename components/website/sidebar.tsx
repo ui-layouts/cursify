@@ -7,7 +7,7 @@ import { Component, Rocket, PenTool, LayoutPanelTop } from 'lucide-react';
 import { IRecentPage, useRecentPagesStore } from '@/hooks/useZustStore';
 import docsData from '@/configs/docs.json' assert { type: 'json' };
 import { useTheme } from 'next-themes';
-import { AllComponens } from '@/configs/docs';
+import { ComponentNavigation } from './component-navigation';
 import { useMediaQuery } from '@/hooks/use-media-query';
 export const basePath = [
   {
@@ -73,7 +73,7 @@ function DocsSidebar() {
                 })}
                 <li>
                   <a
-                    href={'https://ui-layouts.com/'}
+                    href={'https://www.ui-layouts.com/'}
                     target='_blank'
                     className={`flex gap-2 group font-medium items-center py-1  transition-all text-slate-600 hover:text-slate-900  dark:text-slate-400 dark:hover:text-white`}
                   >
@@ -96,34 +96,7 @@ function DocsSidebar() {
                   </a>
                 </li>
               </ul>
-              <h1 className='text-lg font-semibold pb-1'>Components</h1>
-              {AllComponens?.map((link) => {
-                return (
-                  <>
-                    <li
-                      key={link.href}
-                      className={`2xl:text-sm text-[0.81em]  flex items-center gap-1 dark:hover:text-white 2xl:py-1 py-0.5 pl-2 border-l transition-all ${
-                        link.href === pathname
-                          ? 'dark:border-white border-black text-black dark:text-white font-semibold'
-                          : 'dark:text-slate-400 2xl:font-normal font-medium hover:border-black/60 dark:hover:border-white/50 text-slate-500 hover:text-slate-900'
-                      }`}
-                      // data-active={link.id === pathname}
-                    >
-                      <Link
-                        href={link.href}
-                        onClick={() => addVisitedPage(link.href, link.id)}
-                      >
-                        {link.componentName}
-                      </Link>
-                      {link?.isAlert && (
-                        <span className='2xl:text-xs text-[0.74em] bg-blue-500 text-white px-1 rounded'>
-                          {link?.isAlert}
-                        </span>
-                      )}
-                    </li>
-                  </>
-                );
-              })}
+              <ComponentNavigation headingId='docs-sidebar-components' headingClassName='text-lg font-semibold pb-1' pathname={pathname} onVisit={addVisitedPage} />
             </ScrollArea>
           </div>
         </aside>

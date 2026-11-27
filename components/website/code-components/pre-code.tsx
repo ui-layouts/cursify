@@ -1,4 +1,4 @@
-import { Pre, RawCode, highlight } from 'codehike/code';
+import { Pre, highlight } from 'codehike/code';
 import prettier from 'prettier';
 import {
   Tabs,
@@ -10,7 +10,6 @@ import {
 import { CopyButton } from './copy-button';
 import { cn } from 'clswind';
 import ts from 'typescript';
-import { ScrollArea } from '../ui/scroll-area';
 import { callout, wordWrap, mark, lineNumbers } from '../constant';
 import { CopyNpmCommandButton } from './copy-npm-button';
 
@@ -29,18 +28,10 @@ export async function PreCode({
   cssclass?: string;
   metahide?: boolean;
 }) {
-  // console.log(codeblock);
-
   const checkNpm = codeblock.value?.startsWith('npm');
-  const showCompilerTab = codeblock.lang !== 'tsx';
-  // console.log(codeblock);
 
-  const tsCode = {
-    ...codeblock,
-  };
-  const tshighlighted = await highlight(tsCode, 'github-from-css');
-
-  if (showCompilerTab) {
+  if (codeblock.lang !== 'tsx') {
+    const tshighlighted = await highlight(codeblock, 'github-from-css');
     return (
       <div className={cn('relative z-[2]', cssclass)}>
         {tshighlighted.meta && (
@@ -81,13 +72,7 @@ export async function PreCode({
     },
   });
 
-  // Remove 'use strict' and preserve original structure
-  // Format the transpiled JavaScript using Prettier
-  // Remove 'use strict'
-  let jsCode = result.outputText.replace(/"use strict";\s*/, '');
-
-  // Format JavaScript code using Prettier
-  const formattedJsCode = await prettier.format(jsCode, {
+  const javascript = await prettier.format(result.outputText.replace(/"use strict";\s*/, ''), {
     parser: 'babel',
     semi: true,
     singleQuote: true,
@@ -95,60 +80,60 @@ export async function PreCode({
     printWidth: 80,
   });
 
-  const jsCodeblock = {
-    ...codeblock,
-    value: formattedJsCode,
-    lang: 'js',
-  };
-
-  // Highlight the code
-  const jshighlighted = await highlight(jsCodeblock, 'github-from-css');
-  // console.log(tshighlighted.meta);
+  // Keep long snippets copyable without serializing a node for every token.
+  const compact = codeblock.meta === 'compact';
+  const variants = [
+    { value: 'typescript', label: 'Ts', language: 'TypeScript', source: codeblock },
+    { value: 'javascript', label: 'Js', language: 'JavaScript', source: { ...codeblock, value: javascript, lang: 'js' } },
+  ];
+  const highlighted = compact
+    ? []
+    : await Promise.all(variants.map(({ source }) => highlight(source, 'github-from-css')));
 
   return (
     <div className='relative z-[2]'>
-      {!metahide && tshighlighted.meta && (
+      {!metahide && !compact && codeblock.meta && (
         <div className='text-left text-sm px-2 py-1 mt-3 border-dotted rounded-md bg-primary-foreground w-fit'>
-          {tshighlighted.meta}
+          {codeblock.meta}
         </div>
       )}
 
-      <>
-        <Tabs defaultValue={'typescript'} className='relative'>
-          <TabsList className='absolute  right-14 top-2 z-[1] h-9 p-0.5 border dark:border-background '>
-            <TabsTrigger value={'typescript'} className='h-8'>
-              Ts
+      <Tabs defaultValue='typescript' className='relative'>
+        <TabsList className='absolute right-14 top-2 z-[1] h-9 p-0.5 border dark:border-background'>
+          {variants.map(({ value, label }) => (
+            <TabsTrigger key={value} value={value} className='h-8'>
+              {label}
             </TabsTrigger>
-            <TabsTrigger value={'javascript'} className=' h-8'>
-              Js{' '}
-            </TabsTrigger>
-          </TabsList>
-          <TabsContent value={'typescript'} className=''>
-            <div className='relative'>
-              <CopyButton code={tshighlighted.code} classname='right-2' />
-              <div className='not-prose p-4 max-h-[550px]  overflow-x-hidden  rounded-md text-sm   bg-codebg border'>
-                <Pre
-                  code={tshighlighted}
-                  handlers={[callout, wordWrap, mark, lineNumbers]}
-                  className={cn(' m-0', classname)}
-                />
+          ))}
+        </TabsList>
+        {variants.map(({ value, language, source }, index) => {
+          const code = highlighted[index];
+          return (
+            <TabsContent key={value} value={value}>
+              <div className='relative'>
+                <CopyButton code={code?.code ?? source.value} classname='right-2' />
+                <div className='not-prose p-4 max-h-[550px] overflow-x-hidden rounded-md text-sm bg-codebg border'>
+                  {code ? (
+                    <Pre
+                      code={code}
+                      handlers={[callout, wordWrap, mark, lineNumbers]}
+                      className={cn('m-0', classname)}
+                    />
+                  ) : (
+                    <pre
+                      tabIndex={0}
+                      aria-label={`Source code (${language})`}
+                      className={cn('m-0 max-h-[480px] overflow-auto pt-8 text-foreground', classname)}
+                    >
+                      <code>{source.value}</code>
+                    </pre>
+                  )}
+                </div>
               </div>
-            </div>
-          </TabsContent>
-          <TabsContent value={'javascript'} className=''>
-            <div className='relative'>
-              <CopyButton code={jshighlighted.code} classname='right-2' />
-              <div className='not-prose p-4 max-h-[550px] overflow-x-hidden  rounded-md text-sm  bg-codebg border'>
-                <Pre
-                  code={jshighlighted}
-                  handlers={[callout, wordWrap, mark, lineNumbers]}
-                  className={cn('m-0', classname)}
-                />
-              </div>
-            </div>
-          </TabsContent>
-        </Tabs>
-      </>
+            </TabsContent>
+          );
+        })}
+      </Tabs>
     </div>
   );
 }

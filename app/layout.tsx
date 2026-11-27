@@ -5,7 +5,6 @@ import Script from 'next/script';
 import { ThemeProvider } from '@/components/website/theme-provider';
 import Progressbar from '@/lib/progressbar';
 import { siteConfig } from '@/lib/utils';
-import { getSoftwareAppSchema, getWebsiteSchema } from '@/app/schema';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -53,7 +52,7 @@ export const metadata: Metadata = {
       {
         url: siteConfig.ogImage,
         width: 1200,
-        height: 630,
+        height: 672,
         alt: siteConfig.name,
       },
     ],
@@ -71,9 +70,6 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   manifest: '/manifest.json',
-  alternates: {
-    canonical: siteConfig.url,
-  },
   robots: {
     index: true,
     follow: true,
@@ -107,17 +103,6 @@ export default async function RootLayout({
             gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}');
           `}
           </Script>
-
-          <Script
-            id='website-schema'
-            type='application/ld+json'
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(getWebsiteSchema()) }}
-          />
-          <Script
-            id='software-schema'
-            type='application/ld+json'
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(getSoftwareAppSchema()) }}
-          />
         </head>
         <body className={poppins.className}>
           <Progressbar>
