@@ -1,0 +1,185 @@
+.toolbar {
+  --edge: max(10px, 3vw, calc((100% - 1280px) / 2));
+  position: fixed;
+  inset: auto var(--edge) var(--toolbar-bottom);
+  z-index: 45;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: 5px;
+  pointer-events: none;
+  font-size: 13px;
+  font-weight: 500;
+}
+.toolbar[data-open='true'] {
+  --edge: 16px;
+}
+.toolbar > * {
+  pointer-events: auto;
+}
+.toolbar::before,
+.toolbar > .topBlur {
+  content: '';
+  position: absolute;
+  inset: -32px 0 calc(-1 * var(--toolbar-bottom));
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, hsl(var(--background)));
+  backdrop-filter: blur(10px);
+  mask-image: linear-gradient(to bottom, transparent, black 85%);
+}
+.toolbar > .topBlur {
+  position: fixed;
+  inset: 0 var(--edge) auto;
+  height: calc(var(--toolbar-top) + var(--toolbar-height) + 32px);
+  transform: rotate(180deg);
+}
+.group,
+.launcher,
+.github {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: var(--shell-inset);
+  border-radius: 12px;
+  background: var(--panel-shell);
+  box-shadow: var(--panel-rim);
+}
+.group {
+  justify-self: start;
+}
+.group:last-of-type {
+  justify-self: end;
+}
+.launcher,
+.github {
+  position: fixed;
+  top: var(--toolbar-top);
+}
+.launcher {
+  left: var(--edge);
+}
+.github {
+  right: var(--edge);
+}
+.toolbar svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+.launcher svg,
+.github svg,
+.group :is(a, button, output) {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  min-width: var(--nav-size);
+  height: var(--nav-size);
+  padding-inline: 8px;
+  border: 0;
+  border-radius: 7px;
+  background: hsl(var(--background));
+  color: inherit;
+  white-space: nowrap;
+}
+.launcher svg,
+.github svg {
+  width: var(--nav-size);
+  padding: 9px;
+}
+.group output {
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+}
+.toolbar .search {
+  width: var(--nav-size);
+}
+.search > :is(span, kbd) {
+  display: none;
+}
+.toolbar :is(a, button):hover,
+.toolbar [aria-pressed='true'] {
+  color: hsl(var(--muted-foreground));
+}
+.toolbar :disabled {
+  opacity: 0.4;
+}
+.toolbar :focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+.drawer {
+  position: fixed;
+  margin: 0;
+  inset: var(--toolbar-top) auto auto var(--edge, 16px);
+  width: min(320px, 90vw);
+  max-height: 85dvh;
+  border-radius: 16px;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  box-shadow: var(--panel-rim);
+}
+.drawer > div {
+  padding: 20px;
+}
+.drawer form {
+  float: right;
+  font-size: 13px;
+}
+.drawer::backdrop {
+  background: rgb(0 0 0 / 0.22);
+}
+.error {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  background: hsl(var(--background));
+}
+@media (max-width: 680px) {
+  .toolbar,
+  .toolbar[data-open='true'] {
+    --edge: 6px;
+    grid-template-columns: auto auto auto;
+    justify-content: space-between;
+  }
+  .group {
+    gap: 2px;
+  }
+  .group button span {
+    display: none;
+  }
+}
+@media (max-width: 450px) {
+  .toolbar {
+    --nav-size: 26px;
+    --shell-inset: 3px;
+    gap: 2px;
+  }
+  .group :is(button, a, output) {
+    padding-inline: 3px;
+  }
+  .launcher svg,
+  .github svg {
+    padding: 5px;
+  }
+}
+@media (max-width: 319px) {
+  .toolbar {
+    grid-template-columns: auto auto;
+  }
+  .group:nth-of-type(1) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    grid-row: 1;
+  }
+}
+.wordmark {
+  position: fixed;
+  top: var(--toolbar-top);
+  left: calc(var(--edge) + var(--toolbar-height) + 10px);
+  width: min(148px, 30vw);
+  height: var(--toolbar-height);
+}
+.toolbar .wordmark svg { width: 100%; height: 100%; }
+.pro { display: flex; align-items: center; height: var(--nav-size); padding-inline: 8px; border-radius: 7px; background: hsl(var(--background)); font-style: italic; font-weight: 600; }
