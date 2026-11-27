@@ -4,6 +4,13 @@
       "name": "cursor",
       "componentArray": [
         {
+          "componentName": "atelier-media",
+          "iframeSrc": "live-components/atelier-media",
+          "filesrc": "components/cursor/atelier-media/atelier-media.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor"
+        },
+        {
           "componentName": "neural-glow",
           "iframeSrc": "live-components/neural-glow",
           "filesrc": "components/cursor/neural-glow/index.tsx",
