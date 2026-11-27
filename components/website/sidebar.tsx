@@ -96,10 +96,9 @@ function DocsSidebar() {
                   </a>
                 </li>
               </ul>
-              <p className='text-lg font-semibold pb-1'>Components</p>
-              {AllComponens?.map((link) => {
-                return (
-                  <>
+              <h2 id='docs-sidebar-components' className='text-lg font-semibold pb-1'>Components</h2>
+              <ul aria-labelledby='docs-sidebar-components'>
+                {AllComponens?.map((link) => (
                     <li
                       key={link.href}
                       className={`2xl:text-sm text-[0.81em]  flex items-center gap-1 dark:hover:text-white 2xl:py-1 py-0.5 pl-2 border-l transition-all ${
@@ -121,9 +120,8 @@ function DocsSidebar() {
                         </span>
                       )}
                     </li>
-                  </>
-                );
-              })}
+                ))}
+              </ul>
             </ScrollArea>
           </div>
         </aside>
