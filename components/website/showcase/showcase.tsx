@@ -1,6 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import * as Dialog from '@radix-ui/react-dialog';
+import { NavigationIcon, PanelIcon } from './panel-icons';
 import {
   useEffect,
   useRef,
@@ -9,24 +11,30 @@ import {
   type ReactNode,
 } from 'react';
 import { HugeiconsIcon } from '@hugeicons/react';
+import { NPM, Pnpm, Yarn, Bun } from './package-manager-icons';
+import ArrowUpDownIcon from '@hugeicons/core-free-icons/ArrowUpDownIcon';
+import Copy01Icon from '@hugeicons/core-free-icons/Copy01Icon';
 import Tick02Icon from '@hugeicons/core-free-icons/Tick02Icon';
 import ArrowLeft01Icon from '@hugeicons/core-free-icons/ArrowLeft01Icon';
 import ArrowRight01Icon from '@hugeicons/core-free-icons/ArrowRight01Icon';
-import CommandLineIcon from '@hugeicons/core-free-icons/CommandLineIcon';
 import Maximize01Icon from '@hugeicons/core-free-icons/Maximize01Icon';
 import SourceCodeIcon from '@hugeicons/core-free-icons/SourceCodeIcon';
 import GithubIcon from '@hugeicons/core-free-icons/GithubIcon';
-import SidebarLeft01Icon from '@hugeicons/core-free-icons/SidebarLeft01Icon';
-import LayoutLeftIcon from '@hugeicons/core-free-icons/LayoutLeftIcon';
-import RefreshIcon from '@hugeicons/core-free-icons/RefreshIcon';
-import AiMagicIcon from '@hugeicons/core-free-icons/AiMagicIcon';
 import { AllComponens } from '@/configs/docs';
 import { CursifyWordmark } from '../cursify-wordmark';
-import { ComponentNavigation } from '../component-navigation';
+import CubeIcon from '@hugeicons/core-free-icons/CubeIcon';
+import BookOpen01Icon from '@hugeicons/core-free-icons/BookOpen01Icon';
 import { SearchDialog } from '../searchbar';
 import styles from './showcase.module.css';
 import bar from './toolbar.module.css';
 
+const managerIcons = { npm: NPM, pnpm: Pnpm, yarn: Yarn, bun: Bun };
+const commands = {
+  npm: 'npx',
+  pnpm: 'pnpm dlx',
+  yarn: 'yarn dlx',
+  bun: 'bunx',
+};
 const desktop = '(min-width: 900px)';
 const repository = 'https://github.com/ui-layouts/cursify';
 
@@ -44,14 +52,15 @@ export function Showcase({
   children: ReactNode;
 }) {
   const layout = useRef<HTMLDivElement>(null);
-  const drawer = useRef<HTMLDialogElement>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [manager, setManager] = useState<keyof typeof commands>('npm');
   const notes = useRef<HTMLDivElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
+  const ManagerIcon = managerIcons[manager];
   const [width, setWidth] = useState(50);
   const [dragging, setDragging] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [generation, setGeneration] = useState(0);
   const [copied, setCopied] = useState('');
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const index = AllComponens.findIndex((item) => item.id === slug);
@@ -108,7 +117,7 @@ export function Showcase({
     try {
       await navigator.clipboard.writeText(
         action === 'cli'
-          ? `npx shadcn@latest add ${window.location.origin}/r/${slug}.json`
+          ? `${commands[manager]} shadcn@latest add ${window.location.origin}/r/${slug}.json`
           : `Implement the Cursify ${title} effect in my project. Adapt this React component to the existing layout and preserve its pointer behavior.\n\n${github}\n\n${source}`,
       );
       setCopied(action);
@@ -146,7 +155,6 @@ export function Showcase({
       >
         <section className={styles.stage} aria-label={title + ' preview'}>
           <iframe
-            key={generation}
             className={styles.frame}
             src={live}
             title={title + ' interactive preview'}
@@ -210,19 +218,71 @@ export function Showcase({
         </div>
         <div className={bar.toolbar} data-open={open}>
           <span className={bar.topBlur} aria-hidden />
-          <button
-            className={bar.launcher}
-            ref={toggle}
-            aria-label='Documentation view'
-            aria-controls='component-details'
-            aria-pressed={open}
-            onClick={toggleDocs}
-          >
-            <HugeiconsIcon icon={LayoutLeftIcon} />
-          </button>
-          <Link className={bar.wordmark} href='/' aria-label='Cursify home'>
-            <CursifyWordmark className='h-full w-full fill-primary stroke-primary' />
-          </Link>
+          <Dialog.Root open={drawerOpen} onOpenChange={setDrawerOpen}>
+            <Dialog.Trigger asChild>
+              <button
+                className={bar.launcher}
+                aria-label='Open component navigation'
+              >
+                <NavigationIcon open={drawerOpen} />
+              </button>
+            </Dialog.Trigger>
+            <Link className={bar.wordmark} href='/' aria-label='Cursify home'>
+              <CursifyWordmark className='h-full w-full fill-primary stroke-primary' />
+            </Link>
+            <Dialog.Portal>
+              <Dialog.Overlay className={bar.overlay} />
+              <Dialog.Content
+                className={bar.drawer}
+                aria-describedby={undefined}
+              >
+                <header className={bar.drawerHeader}>
+                  <Dialog.Title className='sr-only'>
+                    Browse components
+                  </Dialog.Title>
+                  <Dialog.Close asChild>
+                    <button aria-label='Close component navigation'>
+                      <NavigationIcon open />
+                    </button>
+                  </Dialog.Close>
+                </header>
+                <nav
+                  aria-label='Browse Cursify'
+                  className={bar.drawerLinks}
+                  onClick={(e) => {
+                    if ((e.target as Element).closest('a'))
+                      setDrawerOpen(false);
+                  }}
+                >
+                  <Link href='/get-started'>
+                    <HugeiconsIcon icon={BookOpen01Icon} />
+                    Get Started
+                  </Link>
+                  <Link href='/components'>
+                    <HugeiconsIcon icon={CubeIcon} />
+                    Components
+                  </Link>
+                  {['Cursor Effects', 'Patterns'].map((group) => (
+                    <section key={group}>
+                      <h2>{group}</h2>
+                      {AllComponens.filter(
+                        (item) =>
+                          (item.type === 'pattern') === (group === 'Patterns'),
+                      ).map((item) => (
+                        <Link
+                          key={item.id}
+                          href={item.href}
+                          aria-current={item.id === slug ? 'page' : undefined}
+                        >
+                          {item.componentName}
+                        </Link>
+                      ))}
+                    </section>
+                  ))}
+                </nav>
+              </Dialog.Content>
+            </Dialog.Portal>
+          </Dialog.Root>
           <div className={bar.github}>
             <a href={repository} aria-label='Cursify on GitHub'>
               <HugeiconsIcon icon={GithubIcon} />
@@ -237,10 +297,13 @@ export function Showcase({
           </div>
           <nav className={bar.group} aria-label='Component navigation'>
             <button
-              aria-label='Browse components'
-              onClick={() => drawer.current?.showModal()}
+              ref={toggle}
+              aria-label='Documentation view'
+              aria-controls='component-details'
+              aria-pressed={open}
+              onClick={toggleDocs}
             >
-              <HugeiconsIcon icon={SidebarLeft01Icon} />
+              <PanelIcon open={open} />
             </button>
             {[-1, 1].map((step) => {
               const item = AllComponens[index + step];
@@ -272,32 +335,43 @@ export function Showcase({
           </nav>
           <div className={bar.group}>
             <SearchDialog classname={bar.search} />
-            <button onClick={() => copy('cli')} aria-label='Copy CLI command'>
-              {copied === 'cli' ? (
-                <HugeiconsIcon icon={Tick02Icon} />
-              ) : (
-                <HugeiconsIcon icon={CommandLineIcon} />
-              )}
-              <span>Copy CLI</span>
-            </button>
+            <div className={bar.install}>
+              <label className={bar.manager} title={manager}>
+                <ManagerIcon aria-hidden />
+                <HugeiconsIcon icon={ArrowUpDownIcon} size={12} />
+                <select
+                  aria-label='Package manager'
+                  value={manager}
+                  onChange={(e) =>
+                    setManager(e.target.value as keyof typeof commands)
+                  }
+                >
+                  {Object.keys(commands).map((id) => (
+                    <option key={id}>{id}</option>
+                  ))}
+                </select>
+              </label>
+              <button
+                onClick={() => copy('cli')}
+                aria-label='Copy CLI command'
+                title='Copy install command'
+              >
+                <span>@cursify/{slug}</span>
+                <HugeiconsIcon
+                  icon={copied === 'cli' ? Tick02Icon : Copy01Icon}
+                />
+              </button>
+            </div>
             <output aria-label='Reading progress'>
               {open ? progress : 0}%
             </output>
           </div>
           <div className={bar.group}>
             <button onClick={() => copy('prompt')} aria-label='Copy prompt'>
-              {copied === 'prompt' ? (
-                <HugeiconsIcon icon={Tick02Icon} />
-              ) : (
-                <HugeiconsIcon icon={AiMagicIcon} />
-              )}
               <span>Copy Prompt</span>
-            </button>
-            <button
-              aria-label='Restart preview'
-              onClick={() => setGeneration((value) => value + 1)}
-            >
-              <HugeiconsIcon icon={RefreshIcon} />
+              <HugeiconsIcon
+                icon={copied === 'prompt' ? Tick02Icon : Copy01Icon}
+              />
             </button>
             <a
               href={github}
@@ -327,27 +401,6 @@ export function Showcase({
                 : ''}
           </span>
         </div>
-        <dialog
-          ref={drawer}
-          className={bar.drawer}
-          aria-label='Browse components'
-          onClick={(e) => {
-            if (e.target === drawer.current) drawer.current.close();
-          }}
-        >
-          <div>
-            <form method='dialog'>
-              <button aria-label='Close navigation'>Close</button>
-            </form>
-            <Link href='/components'>Component gallery</Link>
-            <ComponentNavigation
-              pathname={'/components/' + slug}
-              headingId='drawer-components'
-              headingClassName='mt-5 mb-2 font-semibold'
-              onVisit={() => drawer.current?.close()}
-            />
-          </div>
-        </dialog>
       </div>
     </main>
   );

@@ -109,26 +109,140 @@
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
+.overlay {
+  position: fixed;
+  z-index: 90;
+  inset: 0;
+  background: transparent;
+}
 .drawer {
   position: fixed;
-  margin: 0;
-  inset: var(--toolbar-top) auto auto var(--edge, 16px);
-  width: min(320px, 90vw);
-  max-height: 85dvh;
+  z-index: 91;
+  inset: max(16px, env(safe-area-inset-top)) auto
+    max(16px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  display: flex;
+  flex-direction: column;
+  width: min(280px, calc(100% - 28px));
+  padding-block: 10px 14px;
   border-radius: 16px;
-  background: hsl(var(--background));
-  color: hsl(var(--foreground));
-  box-shadow: var(--panel-rim);
+  background: white;
+  color: #171717;
+  box-shadow:
+    0 8px 32px #0002,
+    0 1px 8px #0001;
 }
-.drawer > div {
-  padding: 20px;
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 12px;
+  margin-bottom: 4px;
 }
-.drawer form {
-  float: right;
-  font-size: 13px;
+
+.drawerHeader {
+  justify-content: flex-end;
 }
-.drawer::backdrop {
-  background: rgb(0 0 0 / 0.22);
+.drawerHeader button {
+  display: grid;
+  place-items: center;
+  width: 37px;
+  height: 37px;
+}
+.drawerLinks {
+  overflow-y: auto;
+  padding: 8px 12px;
+  scrollbar-width: thin;
+}
+.drawerLinks > a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-block: 4px;
+  font-weight: 500;
+}
+.drawerLinks > a svg {
+  width: 25px;
+  height: 25px;
+  padding: 4px;
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.drawerLinks > a:nth-child(2) svg {
+  color: white;
+  background: #345dff;
+}
+.drawerLinks h2 {
+  margin-block: 12px 4px;
+  font-weight: 600;
+}
+.drawerLinks section a {
+  display: block;
+  border-left: 1px solid #ddd;
+  padding: 2px 8px;
+  font-size: 14px;
+  color: #666;
+}
+.drawerLinks section a:is(:hover, [aria-current]) {
+  color: #111;
+  border-color: currentColor;
+}
+.drawerLinks section a[aria-current] {
+  font-weight: 600;
+}
+.toolbar:has(> .launcher[data-state='open']) > :is(.launcher, .wordmark) {
+  opacity: 0;
+  filter: blur(10px);
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .toolbar > :is(.launcher, .wordmark) {
+    transition:
+      opacity 200ms ease-in-out,
+      filter 200ms ease-in-out,
+      left var(--split-transition);
+  }
+}
+.install {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 7px;
+}
+.manager {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 5px;
+}
+.manager svg:last-of-type {
+  width: 11px;
+}
+.manager select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.manager:focus-within {
+  outline: 2px solid currentColor;
+  border-radius: 5px;
+}
+.install button span {
+  max-width: 30vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.github a:first-child svg {
+  color: white;
+  background: linear-gradient(135deg, #262064, #6351cc 56%, #24224f);
+}
+@media (max-width: 450px) {
+  .install select {
+    max-width: 40px;
+  }
 }
 .error {
   position: absolute;
@@ -181,5 +295,17 @@
   width: min(148px, 30vw);
   height: var(--toolbar-height);
 }
-.toolbar .wordmark svg { width: 100%; height: 100%; }
-.pro { display: flex; align-items: center; height: var(--nav-size); padding-inline: 8px; border-radius: 7px; background: hsl(var(--background)); font-style: italic; font-weight: 600; }
+.toolbar .wordmark svg {
+  width: 100%;
+  height: 100%;
+}
+.pro {
+  display: flex;
+  align-items: center;
+  height: var(--nav-size);
+  padding-inline: 8px;
+  border-radius: 7px;
+  background: hsl(var(--background));
+  font-style: italic;
+  font-weight: 600;
+}
