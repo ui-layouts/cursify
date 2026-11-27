@@ -17,9 +17,9 @@ import Copy01Icon from '@hugeicons/core-free-icons/Copy01Icon';
 import Tick02Icon from '@hugeicons/core-free-icons/Tick02Icon';
 import ArrowLeft01Icon from '@hugeicons/core-free-icons/ArrowLeft01Icon';
 import ArrowRight01Icon from '@hugeicons/core-free-icons/ArrowRight01Icon';
-import Maximize01Icon from '@hugeicons/core-free-icons/Maximize01Icon';
-import SourceCodeIcon from '@hugeicons/core-free-icons/SourceCodeIcon';
-import GithubIcon from '@hugeicons/core-free-icons/GithubIcon';
+import ArrowExpandIcon from '@hugeicons/core-free-icons/ArrowExpandIcon';
+import FolderCodeIcon from '@hugeicons/core-free-icons/FolderCodeIcon';
+import GitHubButton from '../github-btn';
 import { AllComponens } from '@/configs/docs';
 import { CursifyWordmark } from '../cursify-wordmark';
 import CubeIcon from '@hugeicons/core-free-icons/CubeIcon';
@@ -284,9 +284,7 @@ export function Showcase({
             </Dialog.Portal>
           </Dialog.Root>
           <div className={bar.github}>
-            <a href={repository} aria-label='Cursify on GitHub'>
-              <HugeiconsIcon icon={GithubIcon} />
-            </a>
+            <GitHubButton iconOnly className={bar.liquidGithub} />
             <a
               className={bar.pro}
               href='https://pro.ui-layouts.com'
@@ -295,7 +293,7 @@ export function Showcase({
               Pro<sup>+</sup>
             </a>
           </div>
-          <nav className={bar.group} aria-label='Component navigation'>
+          <nav className={`${bar.group} ${bar.pager}`} aria-label='Component navigation'>
             <button
               ref={toggle}
               aria-label='Documentation view'
@@ -333,7 +331,7 @@ export function Showcase({
               );
             })}
           </nav>
-          <div className={bar.group}>
+          <div className={`${bar.group} ${bar.center}`}>
             <SearchDialog classname={bar.search} />
             <div className={bar.install}>
               <label className={bar.manager} title={manager}>
@@ -366,7 +364,7 @@ export function Showcase({
               {open ? progress : 0}%
             </output>
           </div>
-          <div className={bar.group}>
+          <div className={`${bar.group} ${bar.actions}`}>
             <button onClick={() => copy('prompt')} aria-label='Copy prompt'>
               <span>Copy Prompt</span>
               <HugeiconsIcon
@@ -379,7 +377,7 @@ export function Showcase({
               rel='noreferrer'
               aria-label='View source on GitHub'
             >
-              <HugeiconsIcon icon={SourceCodeIcon} />
+              <HugeiconsIcon icon={FolderCodeIcon} />
             </a>
             <a
               href={live}
@@ -387,7 +385,7 @@ export function Showcase({
               rel='noreferrer'
               aria-label='Expand preview'
             >
-              <HugeiconsIcon icon={Maximize01Icon} />
+              <HugeiconsIcon icon={ArrowExpandIcon} />
             </a>
           </div>
           <span

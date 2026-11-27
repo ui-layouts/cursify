@@ -5,6 +5,7 @@
   z-index: 45;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
+  grid-template-areas: 'pager center actions';
   align-items: end;
   gap: 5px;
   pointer-events: none;
@@ -45,10 +46,16 @@
   background: var(--panel-shell);
   box-shadow: var(--panel-rim);
 }
-.group {
+.pager {
+  grid-area: pager;
   justify-self: start;
 }
-.group:last-of-type {
+.center {
+  grid-area: center;
+  justify-self: center;
+}
+.actions {
+  grid-area: actions;
   justify-self: end;
 }
 .launcher,
@@ -62,13 +69,12 @@
 .github {
   right: var(--edge);
 }
-.toolbar svg {
+.toolbar :is(.group, .launcher) svg {
   width: 18px;
   height: 18px;
   flex: none;
 }
 .launcher svg,
-.github svg,
 .group :is(a, button, output) {
   display: inline-flex;
   justify-content: center;
@@ -83,8 +89,7 @@
   color: inherit;
   white-space: nowrap;
 }
-.launcher svg,
-.github svg {
+.launcher svg {
   width: var(--nav-size);
   padding: 9px;
 }
@@ -235,10 +240,19 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.github a:first-child svg {
-  color: white;
-  background: linear-gradient(135deg, #262064, #6351cc 56%, #24224f);
+.liquidGithub {
+  display: grid;
+  place-items: center;
+  width: var(--nav-size);
+  height: var(--nav-size);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid #45449e;
+  border-radius: 7px;
+  background: #21196e;
 }
+
 @media (max-width: 450px) {
   .install select {
     max-width: 40px;
@@ -273,19 +287,14 @@
   .group :is(button, a, output) {
     padding-inline: 3px;
   }
-  .launcher svg,
-  .github svg {
+  .launcher svg {
     padding: 5px;
   }
 }
-@media (max-width: 319px) {
+@media (max-width: 350px) {
   .toolbar {
-    grid-template-columns: auto auto;
-  }
-  .group:nth-of-type(1) {
-    grid-column: 1 / -1;
-    justify-self: center;
-    grid-row: 1;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'center center' 'pager actions';
   }
 }
 .wordmark {
