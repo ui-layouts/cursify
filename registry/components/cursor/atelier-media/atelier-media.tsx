@@ -127,6 +127,7 @@ function animate(
     previous = 0,
     frame = 0,
     uploaded = false;
+  const maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE) as number;
   const video = media instanceof HTMLVideoElement;
   function render(now: number) {
     frame = 0;
@@ -139,6 +140,10 @@ function animate(
     if (!w || !h || !mw || !mh || (video && media.readyState < 2)) {
       canvas.style.opacity = '0';
       if (hover) frame = requestAnimationFrame(render);
+      return;
+    }
+    if (mw > maxTextureSize || mh > maxTextureSize) {
+      canvas.style.opacity = '0';
       return;
     }
     const ratio = Math.min(devicePixelRatio, 2);
@@ -305,6 +310,10 @@ export default function AtelierMedia({
     let dispose: ReturnType<typeof animate>;
     function setup() {
       dispose?.();
+      if (source instanceof HTMLVideoElement) {
+        if (motion.matches) source.pause();
+        else void source.play().catch(() => {});
+      }
       dispose = motion.matches ? undefined : animate(canvas, source, type);
     }
     function lost(event: Event) {
@@ -339,7 +348,6 @@ export default function AtelierMedia({
           muted
           loop
           playsInline
-          autoPlay
           crossOrigin='anonymous'
           style={style}
         />
