@@ -151,9 +151,18 @@ export default function ShaderTrail({
   useEffect(() => {
     const canvas = canvasRef.current!;
     const label = labelRef.current!;
+    function fitLabel() {
+      const scale = Math.min(1, (canvas.clientWidth * 0.9) / Math.max(1, label.offsetWidth),
+        (canvas.clientHeight * 0.9) / Math.max(1, label.offsetHeight));
+      label.style.transform = `scale(${scale})`;
+    }
+    const labelObserver = new ResizeObserver(fitLabel);
+    labelObserver.observe(canvas);
+    labelObserver.observe(label);
+    fitLabel();
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
     const context = canvas.getContext('webgl2', { premultipliedAlpha: false });
-    if (!context) return;
+    if (!context) return () => labelObserver.disconnect();
     const gl = context;
     const program = gl.createProgram();
     for (const [kind, code] of [
@@ -169,7 +178,7 @@ export default function ShaderTrail({
     gl.linkProgram(program);
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
       gl.deleteProgram(program);
-      return;
+      return () => labelObserver.disconnect();
     }
     gl.useProgram(program);
     function makeTexture(unit: number, filter: number) {
@@ -290,7 +299,8 @@ export default function ShaderTrail({
       gl.activeTexture(gl.TEXTURE0);
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, mask);
       gl.viewport(0, 0, mask.width, mask.height);
-      wake();
+      cancelAnimationFrame(frame);
+      render(performance.now());
     }
     function move(event: PointerEvent) {
       const rect = canvas.getBoundingClientRect();
@@ -332,6 +342,7 @@ export default function ShaderTrail({
     return () => {
       fallback();
       observer.disconnect();
+      labelObserver.disconnect();
       canvas.removeEventListener('pointermove', move);
       canvas.removeEventListener('pointerleave', leave);
       canvas.removeEventListener('pointercancel', leave);
@@ -350,6 +361,7 @@ export default function ShaderTrail({
         position: 'relative',
         display: 'grid',
         placeItems: 'center',
+        gridTemplateColumns: 'minmax(0, 1fr)',
         overflow: 'hidden',
         containerType: 'inline-size',
       }}
@@ -359,7 +371,8 @@ export default function ShaderTrail({
         style={{
           font: 'bold 20cqw Arial, sans-serif',
           lineHeight: 1,
-          maxWidth: '100%',
+          width: 'max-content',
+          whiteSpace: 'pre',
         }}
       >
         {text}
