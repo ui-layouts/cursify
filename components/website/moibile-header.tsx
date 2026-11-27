@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { SidebarDrawer, DrawerContent } from './vaul-sidebar';
 import { basePath } from './sidebar';
-import { AllComponens } from '@/configs/docs';
+import { ComponentNavigation } from './component-navigation';
 import { cn } from '@/lib/utils';
 
 function MobileHeader({ classname }: { classname?: string }) {
@@ -152,31 +152,7 @@ function MobileHeader({ classname }: { classname?: string }) {
                 );
               })}
             </ul>
-            <h2 id='mobile-drawer-components' className='text-sm font-semibold pb-1'>Components</h2>
-            <ul aria-labelledby='mobile-drawer-components'>
-              {AllComponens?.map((link) => {
-                return (
-                  <>
-                    <li
-                      key={link.href}
-                      className={`2xl:text-sm text-[0.81em]  flex items-center gap-1 dark:hover:text-white 2xl:py-1 py-0.5 pl-2 border-l transition-all ${
-                        link.href === pathname
-                          ? 'dark:border-white border-black text-black dark:text-white font-semibold'
-                          : 'dark:text-slate-400 2xl:font-normal font-medium hover:border-black/60 dark:hover:border-white/50 text-slate-500 hover:text-slate-900'
-                      }`}
-                      // data-active={link.id === pathname}
-                    >
-                      <Link href={link.href}>{link.componentName}</Link>
-                      {link?.isAlert && (
-                        <span className='2xl:text-xs text-[0.74em] bg-blue-500 text-white px-1 rounded'>
-                          {link?.isAlert}
-                        </span>
-                      )}
-                    </li>
-                  </>
-                );
-              })}
-            </ul>
+            <ComponentNavigation headingId='mobile-drawer-components' headingClassName='text-sm font-semibold pb-1' pathname={pathname} />
           </ScrollArea>
         </DrawerContent>
       </SidebarDrawer>
