@@ -2,7 +2,7 @@
 
 import { type HTMLAttributes, useCallback, useEffect, useState } from 'react';
 import { X } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { cn } from 'clswind';
 import { buttonVariants } from '@/components/website/ui/button';
 import { usePathname } from 'next/navigation';
 
@@ -35,7 +35,7 @@ export function Banner({
 }: BannerProps): React.ReactElement {
   const [open, setOpen] = useState(true);
   const globalKey = id ? `banner-${id}` : undefined;
-  const pathname = usePathname()
+  const pathname = usePathname();
   useEffect(() => {
     if (globalKey) setOpen(localStorage.getItem(globalKey) !== 'true');
   }, [globalKey]);
@@ -54,8 +54,8 @@ export function Banner({
         'relative z-50 flex flex-row font-mono items-center justify-center px-4 text-center text-sm font-medium transition-all duration-300',
         variant === 'rainbow' && ' ',
         pathname === '/' || pathname === '/work-with-us'
-        ? "" 
-        : "dark:bg-zinc-950 bg-zinc-50",
+          ? ''
+          : 'dark:bg-zinc-950 bg-zinc-50',
         !open && 'hidden',
         props.className
       )}
@@ -80,8 +80,8 @@ export function Banner({
       {message || props.children}
       {id ? (
         <button
-          type="button"
-          aria-label="Close Banner"
+          type='button'
+          aria-label='Close Banner'
           onClick={onClick}
           className={cn(
             buttonVariants({
@@ -92,7 +92,7 @@ export function Banner({
             })
           )}
         >
-          <X className="h-4 w-4" />
+          <X className='h-4 w-4' />
         </button>
       ) : null}
     </div>
@@ -102,8 +102,8 @@ export function Banner({
 const RainbowLayer = () => {
   return (
     <>
-      <div className="absolute inset-0 z-[-1] rainbow-banner-gradient-1" />
-      <div className="absolute inset-0 z-[-1] rainbow-banner-gradient-2" />
+      <div className='absolute inset-0 z-[-1] rainbow-banner-gradient-1' />
+      <div className='absolute inset-0 z-[-1] rainbow-banner-gradient-2' />
     </>
   );
 };

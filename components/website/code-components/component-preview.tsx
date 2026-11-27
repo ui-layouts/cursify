@@ -4,7 +4,7 @@ import { Check, Copy, RotateCw } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { TCurrComponentProps } from './component-code-preview';
 import { AllComponens } from '@/configs/docs';
-import { cn } from '@/lib/utils';
+import { cn } from 'clswind';
 
 type ComponentPreviewProps = {
   component?: TCurrComponentProps;
@@ -24,7 +24,7 @@ export default function ComponentPreview({
   code,
   responsive,
   isNotCopy,
-  type
+  type,
 }: ComponentPreviewProps) {
   const [reTriggerKey, setReTriggerKey] = useState<number>(0);
   const [hasCheckIcon, setHasCheckIcon] = useState(false);
@@ -52,7 +52,12 @@ export default function ComponentPreview({
 
   return (
     <>
-      <div className={cn('absolute right-10 top-7 z-[10] flex h-12 items-center gap-2',type === "separate" && 'right-4 top-4')}>
+      <div
+        className={cn(
+          'absolute right-10 top-7 z-[10] flex h-12 items-center gap-2',
+          type === 'separate' && 'right-4 top-4'
+        )}
+      >
         {!isNotCopy && (
           <button
             className='relative grid cursor-pointer place-content-center rounded-lg border bg-background p-2 px-2.5'

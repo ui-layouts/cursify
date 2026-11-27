@@ -8,7 +8,7 @@ import {
 } from '@/components/website/ui/tabs';
 
 import { CopyButton } from './copy-button';
-import { cn } from '@/lib/utils';
+import { cn } from 'clswind';
 import ts from 'typescript';
 import { callout, wordWrap, mark, lineNumbers } from '../constant';
 import { CopyNpmCommandButton } from './copy-npm-button';

@@ -1,6 +1,6 @@
 'use client';
 
-import { cn } from '@/lib/utils';
+import { cn } from 'clswind';
 import { Copy, Check, CheckCheck } from 'lucide-react';
 import { useState } from 'react';
 
