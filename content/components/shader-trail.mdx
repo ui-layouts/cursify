@@ -1,0 +1,20 @@
+export const metadata = {
+  title: 'Cursor Shader Trail',
+  description: 'Drag a patterned trail of colored ink through text with six interchangeable brushes.',
+  tags: ['cursor', 'shader', 'text', 'trail'],
+  category: 'cursor',
+};
+
+<ComponentCodePreview name='shader-trail' type='separate' />
+
+Copy the source above into `shader-trail.tsx`. Give the component a height and move your pointer across the letters. The canvas is transparent so you can choose the background.
+
+```tsx
+import ShaderTrail from './shader-trail';
+
+<ShaderTrail text="Cursify" brush="hatch" className="h-80 w-full bg-stone-200" />
+```
+
+Set `brush` to `circle`, `hatch`, `corner`, `crossSquareCorner` (default), `cross`, or `star`. Pass `intro={false}` to skip the opening sweep. Reduced-motion users see static text.
+
+Adapted from [Bautista Berto’s Cursor Shader Trail](https://github.com/BertovDev/cursor-shader-trail).

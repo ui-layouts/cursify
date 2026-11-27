@@ -160,6 +160,24 @@ export const AllComponens = [
     comMessage: 'Move Mouse To see the Effect',
   },
   {
+    href: '/components/atelier-media',
+    id: 'atelier-media',
+    componentName: 'Atelier Media',
+    filePath: 'registry/components/cursor/atelier-media/atelier-media.tsx',
+    componentSrc: React.lazy(() => import('@/registry/components/cursor/atelier-media')),
+    comMessage: 'Move your pointer across the image',
+  },
+  {
+    href: '/components/shader-trail',
+    id: 'shader-trail',
+    componentName: 'Cursor Shader Trail',
+    filePath: 'registry/components/cursor/shader-trail/shader-trail.tsx',
+    componentSrc: React.lazy(
+      () => import('@/registry/components/cursor/shader-trail')
+    ),
+    comMessage: 'Move Mouse To see the Effect',
+  },
+  {
     href: '/components/neural-glow',
     id: 'neural-glow',
     componentName: 'Neural Glow Cursor',
@@ -319,6 +337,30 @@ export const AllComponens = [
       () => import('@/registry/components/cursor/common/canvas-cursor')
     ),
     isAlert: 'udpate',
+    comMessage: 'Move Mouse To see the Effect',
+  },
+  {
+    href: '/components/text-trail-cursor',
+    id: 'text-trail-cursor',
+    componentName: 'Text Trail Cursor',
+    filePath: 'registry/components/cursor/common/text-trail-cursor.tsx',
+    componentSrc: React.lazy(
+      () => import('@/registry/components/cursor/common/text-trail-cursor')
+    ),
+    isAlert: 'New',
+
+    comMessage: 'Move Mouse To see the Effect',
+  },
+  {
+    href: '/components/fluid-pixel-cursor',
+    id: 'fluid-pixel-cursor',
+    componentName: 'Fluid Pixel Cursor',
+    filePath: 'registry/components/cursor/common/fluid-pixel-cursor.tsx',
+    componentSrc: React.lazy(
+      () => import('@/registry/components/cursor/common/fluid-pixel-cursor')
+    ),
+    isAlert: 'New',
+
     comMessage: 'Move Mouse To see the Effect',
   },
   {

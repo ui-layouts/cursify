@@ -21,7 +21,9 @@
 
 ## Components
 
-### Cursor Effects (26 components)
+### Cursor Effects (30 components)
+- [Atelier Media](https://cursify.ui-layouts.com/components/atelier-media): Liquid, pixel, and lens pointer effects for images and video.
+- [Cursor Shader Trail](https://cursify.ui-layouts.com/components/shader-trail): Six interchangeable brushes warp text with a speed-sensitive ink trail.
 - [3D Cursor](https://cursify.ui-layouts.com/components/3d-cursor): WebGL-powered 3D depth perception with smooth mouse tracking.
 - [Arrow Cursor](https://cursify.ui-layouts.com/components/arrow-cursor): Dynamic arrow that points based on cursor movement direction.
 - [Blob Cursor](https://cursify.ui-layouts.com/components/blob-cursor): Fluid blob effect with spring physics animations.
@@ -30,6 +32,8 @@
 - [Character Cursor](https://cursify.ui-layouts.com/components/character-cursor): Radiating characters that expand from cursor position.
 - [Click Effect Cursor](https://cursify.ui-layouts.com/components/clickeffect-cursor): Visual effects triggered by mouse clicks.
 - [Fairy Dust Cursor](https://cursify.ui-layouts.com/components/fairydust-cursor): Magical particle trails with emoji sparkles.
+- [Fluid Pixel Cursor](https://cursify.ui-layouts.com/components/fluid-pixel-cursor): A pixelated fluid simulation that follows the pointer.
+- [Text Trail Cursor](https://cursify.ui-layouts.com/components/text-trail-cursor): Animated text follows the pointer.
 - [Fluid Cursor](https://cursify.ui-layouts.com/components/fluid-cursor): WebGL shader-based fluid dynamics.
 - [Follow Cursor](https://cursify.ui-layouts.com/components/follow-cursor): Simple smooth following circle effect.
 - [Glitch Cursor](https://cursify.ui-layouts.com/components/glitch-cursor): Digital glitch effects on hover.
