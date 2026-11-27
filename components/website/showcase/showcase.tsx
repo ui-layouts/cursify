@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { Select } from '@base-ui/react/select';
 import * as Dialog from '@radix-ui/react-dialog';
 import { NavigationIcon, PanelIcon } from './panel-icons';
 import {
@@ -224,7 +225,9 @@ export function Showcase({
                 className={bar.launcher}
                 aria-label='Open component navigation'
               >
-                <NavigationIcon open={drawerOpen} />
+                <span>
+                  <NavigationIcon open={drawerOpen} />
+                </span>
               </button>
             </Dialog.Trigger>
             <Link className={bar.wordmark} href='/' aria-label='Cursify home'>
@@ -237,8 +240,15 @@ export function Showcase({
                 aria-describedby={undefined}
               >
                 <header className={bar.drawerHeader}>
-                  <Dialog.Title className='sr-only'>
-                    Browse components
+                  <Dialog.Title>
+                    <Link
+                      href='/'
+                      className={bar.drawerBrand}
+                      aria-label='Cursify home'
+                    >
+                      <CursifyWordmark className='fill-primary stroke-primary' />
+                    </Link>
+                    <span className='sr-only'>Browse components</span>
                   </Dialog.Title>
                   <Dialog.Close asChild>
                     <button aria-label='Close component navigation'>
@@ -293,7 +303,10 @@ export function Showcase({
               Pro<sup>+</sup>
             </a>
           </div>
-          <nav className={`${bar.group} ${bar.pager}`} aria-label='Component navigation'>
+          <nav
+            className={`${bar.group} ${bar.pager}`}
+            aria-label='Component navigation'
+          >
             <button
               ref={toggle}
               aria-label='Documentation view'
@@ -334,21 +347,54 @@ export function Showcase({
           <div className={`${bar.group} ${bar.center}`}>
             <SearchDialog classname={bar.search} />
             <div className={bar.install}>
-              <label className={bar.manager} title={manager}>
-                <ManagerIcon aria-hidden />
-                <HugeiconsIcon icon={ArrowUpDownIcon} size={12} />
-                <select
-                  aria-label='Package manager'
-                  value={manager}
-                  onChange={(e) =>
-                    setManager(e.target.value as keyof typeof commands)
-                  }
+              <Select.Root
+                value={manager}
+                onValueChange={(value) => {
+                  if (value) setManager(value);
+                }}
+              >
+                <Select.Trigger
+                  className={bar.manager}
+                  aria-label={'Package manager: ' + manager}
                 >
-                  {Object.keys(commands).map((id) => (
-                    <option key={id}>{id}</option>
-                  ))}
-                </select>
-              </label>
+                  <ManagerIcon aria-hidden />
+                  <HugeiconsIcon icon={ArrowUpDownIcon} size={12} />
+                </Select.Trigger>
+                <Select.Portal>
+                  <Select.Positioner
+                    className={bar.managerPositioner}
+                    side='top'
+                    align='start'
+                    sideOffset={8}
+                    alignItemWithTrigger={false}
+                  >
+                    <Select.Popup className={bar.managerPopup}>
+                      <Select.List>
+                        {(
+                          Object.keys(commands) as (keyof typeof commands)[]
+                        ).map((id) => {
+                          const Icon = managerIcons[id];
+                          return (
+                            <Select.Item
+                              key={id}
+                              value={id}
+                              className={bar.managerOption}
+                            >
+                              <Icon aria-hidden />
+                              <Select.ItemText>{id}</Select.ItemText>
+                              <Select.ItemIndicator
+                                className={bar.managerCheck}
+                              >
+                                <HugeiconsIcon icon={Tick02Icon} size={14} />
+                              </Select.ItemIndicator>
+                            </Select.Item>
+                          );
+                        })}
+                      </Select.List>
+                    </Select.Popup>
+                  </Select.Positioner>
+                </Select.Portal>
+              </Select.Root>
               <button
                 onClick={() => copy('cli')}
                 aria-label='Copy CLI command'

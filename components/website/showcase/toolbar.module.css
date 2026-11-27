@@ -1,5 +1,4 @@
 .toolbar {
-  --edge: max(10px, 3vw, calc((100% - 1280px) / 2));
   position: fixed;
   inset: auto var(--edge) var(--toolbar-bottom);
   z-index: 45;
@@ -11,9 +10,6 @@
   pointer-events: none;
   font-size: 13px;
   font-weight: 500;
-}
-.toolbar[data-open='true'] {
-  --edge: 16px;
 }
 .toolbar > * {
   pointer-events: auto;
@@ -74,7 +70,7 @@
   height: 18px;
   flex: none;
 }
-.launcher svg,
+.launcher > span,
 .group :is(a, button, output) {
   display: inline-flex;
   justify-content: center;
@@ -89,9 +85,9 @@
   color: inherit;
   white-space: nowrap;
 }
-.launcher svg {
+.launcher > span {
   width: var(--nav-size);
-  padding: 9px;
+  padding: 0;
 }
 .group output {
   font-variant-numeric: tabular-nums;
@@ -144,8 +140,14 @@
   margin-bottom: 4px;
 }
 
-.drawerHeader {
-  justify-content: flex-end;
+.drawerBrand {
+  display: block;
+  width: 136px;
+}
+.drawerBrand svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 .drawerHeader button {
   display: grid;
@@ -224,16 +226,39 @@
 .manager svg:last-of-type {
   width: 11px;
 }
-.manager select {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  opacity: 0;
+.managerPositioner {
+  z-index: 80;
+}
+.managerPopup {
+  min-width: 128px;
+  padding: 4px;
+  border-radius: 10px;
+  background: white;
+  color: #171717;
+  box-shadow:
+    0 0 0 1px #0001,
+    0 4px 20px #0002;
+}
+.managerOption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 9px;
+  border-radius: 6px;
+  font-size: 13px;
   cursor: pointer;
 }
-.manager:focus-within {
-  outline: 2px solid currentColor;
-  border-radius: 5px;
+.managerOption[data-highlighted] {
+  background: #f2f2f2;
+  outline: none;
+}
+.managerOption > svg {
+  width: 16px;
+  height: 16px;
+}
+.managerOption [role='presentation'],
+.managerCheck {
+  margin-left: auto;
 }
 .install button span {
   max-width: 30vw;
@@ -253,11 +278,6 @@
   background: #21196e;
 }
 
-@media (max-width: 450px) {
-  .install select {
-    max-width: 40px;
-  }
-}
 .error {
   position: absolute;
   bottom: 100%;
@@ -267,7 +287,6 @@
 @media (max-width: 680px) {
   .toolbar,
   .toolbar[data-open='true'] {
-    --edge: 6px;
     grid-template-columns: auto auto auto;
     justify-content: space-between;
   }
@@ -286,9 +305,6 @@
   }
   .group :is(button, a, output) {
     padding-inline: 3px;
-  }
-  .launcher svg {
-    padding: 5px;
   }
 }
 @media (max-width: 350px) {
