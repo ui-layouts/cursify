@@ -1,10 +1,8 @@
 'use client';
-import { useTheme } from 'next-themes';
 import React from 'react';
 import Link from 'next/link';
 import { ArrowUpRight, Github } from 'lucide-react';
 import { SearchDialog } from './searchbar';
-import ThemeSwitch from './theme-switch';
 import { usePathname } from 'next/navigation';
 import {
   DropdownMenu,
@@ -19,7 +17,6 @@ import { CursifyWordmark } from './cursify-wordmark';
 import MobileHeader from './moibile-header';
 import { Banner } from './ui/banner';
 function Header() {
-  const { setTheme } = useTheme();
   const pathname = usePathname();
 
   return (
@@ -180,7 +177,6 @@ function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <ThemeSwitch className='bg-background border w-12 rounded-md h-11 flex-shrink-0' />
           </div>
         </div>
       </header>

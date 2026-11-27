@@ -2,7 +2,8 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { getDocBySlug, getAllDocs } from '@/lib/docs';
 import { pageMetadata } from '@/lib/page-metadata';
-import { Component } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import CubeIcon from '@hugeicons/core-free-icons/CubeIcon';
 import docs from '@/configs/docs.json';
 import { extractCodeFromFilePath } from '@/lib/code';
 import { PreCoded } from '@/components/website/code-components/pre-coded';
@@ -69,7 +70,7 @@ export default async function DocPage(props: {
       />
       <Showcase key={slug} slug={slug} title={title} source={source} filePath={filePath}>
         <article id='component-details' tabIndex={-1} className={styles.details}>
-          <h1 className={styles.componentHeading}><span className={styles.headingTile}><Component size={20} aria-hidden /></span>{title}</h1>
+          <h1 className={styles.componentHeading}><span className={styles.headingTile}><HugeiconsIcon icon={CubeIcon} size={20} aria-hidden /></span>{title}</h1>
           <p className={styles.description}>{description}</p>
           <div className='prose prose-zinc max-w-none dark:prose-invert'>
             <Content components={{ ComponentCodePreview: () => null }} />

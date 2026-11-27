@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 import { Component, Rocket, PenTool, LayoutPanelTop } from 'lucide-react';
 import { IRecentPage, useRecentPagesStore } from '@/hooks/useZustStore';
 import docsData from '@/configs/docs.json' assert { type: 'json' };
-import { useTheme } from 'next-themes';
 import { ComponentNavigation } from './component-navigation';
 import { useMediaQuery } from '@/hooks/use-media-query';
 export const basePath = [
@@ -25,7 +24,6 @@ export const basePath = [
 function DocsSidebar() {
   const pathname = usePathname();
   const isDesktop = useMediaQuery('(min-width: 992px)');
-  const { setTheme } = useTheme();
   const { addVisitedPage, getRecentPages, removeAllRecentPages } =
     useRecentPagesStore();
   const [recentPages, setRecentPages] = useState<IRecentPage[]>([]);

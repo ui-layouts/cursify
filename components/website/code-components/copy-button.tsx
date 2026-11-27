@@ -1,7 +1,9 @@
 'use client';
 
 import { cn } from 'clswind';
-import { Copy, Check, CheckCheck } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import Copy01Icon from '@hugeicons/core-free-icons/Copy01Icon';
+import Tick02Icon from '@hugeicons/core-free-icons/Tick02Icon';
 import { useState } from 'react';
 
 export function CopyButton({
@@ -36,14 +38,14 @@ export function CopyButton({
             hasCheckIcon ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
           }`}
         >
-          <Copy className='h-4 w-4 text-foreground/80' />
+          <HugeiconsIcon icon={Copy01Icon} className='h-4 w-4 text-foreground/80' />
         </div>
         <div
           className={`absolute inset-0 transform transition-all duration-300 w-8 h-8 grid place-content-center  ${
             hasCheckIcon ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
           }`}
         >
-          <CheckCheck className='h-4 w-4 text-foreground/80' />
+          <HugeiconsIcon icon={Tick02Icon} className='h-4 w-4 text-foreground/80' />
         </div>
       </div>
     </>

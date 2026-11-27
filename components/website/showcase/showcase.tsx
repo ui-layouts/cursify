@@ -8,19 +8,18 @@ import {
   type CSSProperties,
   type ReactNode,
 } from 'react';
-import {
-  Check,
-  ChevronLeft,
-  ChevronRight,
-  Copy,
-  Expand,
-  FileCode2,
-  Github,
-  PanelLeft,
-  PanelLeftOpen,
-  RotateCw,
-  Sparkles,
-} from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import Tick02Icon from '@hugeicons/core-free-icons/Tick02Icon';
+import ArrowLeft01Icon from '@hugeicons/core-free-icons/ArrowLeft01Icon';
+import ArrowRight01Icon from '@hugeicons/core-free-icons/ArrowRight01Icon';
+import CommandLineIcon from '@hugeicons/core-free-icons/CommandLineIcon';
+import Maximize01Icon from '@hugeicons/core-free-icons/Maximize01Icon';
+import SourceCodeIcon from '@hugeicons/core-free-icons/SourceCodeIcon';
+import GithubIcon from '@hugeicons/core-free-icons/GithubIcon';
+import SidebarLeft01Icon from '@hugeicons/core-free-icons/SidebarLeft01Icon';
+import LayoutLeftIcon from '@hugeicons/core-free-icons/LayoutLeftIcon';
+import RefreshIcon from '@hugeicons/core-free-icons/RefreshIcon';
+import AiMagicIcon from '@hugeicons/core-free-icons/AiMagicIcon';
 import { AllComponens } from '@/configs/docs';
 import { CursifyWordmark } from '../cursify-wordmark';
 import { ComponentNavigation } from '../component-navigation';
@@ -105,11 +104,11 @@ export function Showcase({
       toggle.current?.focus();
     } else setWidth(Math.min(70, value));
   }
-  async function copy(action: 'source' | 'prompt') {
+  async function copy(action: 'cli' | 'prompt') {
     try {
       await navigator.clipboard.writeText(
-        action === 'source'
-          ? source
+        action === 'cli'
+          ? `npx shadcn@latest add ${window.location.origin}/r/${slug}.json`
           : `Implement the Cursify ${title} effect in my project. Adapt this React component to the existing layout and preserve its pointer behavior.\n\n${github}\n\n${source}`,
       );
       setCopied(action);
@@ -213,32 +212,45 @@ export function Showcase({
           <span className={bar.topBlur} aria-hidden />
           <button
             className={bar.launcher}
-            aria-label='Browse components'
-            onClick={() => drawer.current?.showModal()}
+            ref={toggle}
+            aria-label='Documentation view'
+            aria-controls='component-details'
+            aria-pressed={open}
+            onClick={toggleDocs}
           >
-            <PanelLeft />
+            <HugeiconsIcon icon={LayoutLeftIcon} />
           </button>
           <Link className={bar.wordmark} href='/' aria-label='Cursify home'>
             <CursifyWordmark className='h-full w-full fill-primary stroke-primary' />
           </Link>
           <div className={bar.github}>
-            <a href={repository} aria-label='Cursify on GitHub'><Github /></a>
-            <a className={bar.pro} href='https://pro.ui-layouts.com' aria-label='UI Layouts Pro'>Pro<sup>+</sup></a>
+            <a href={repository} aria-label='Cursify on GitHub'>
+              <HugeiconsIcon icon={GithubIcon} />
+            </a>
+            <a
+              className={bar.pro}
+              href='https://pro.ui-layouts.com'
+              aria-label='UI Layouts Pro'
+            >
+              Pro<sup>+</sup>
+            </a>
           </div>
           <nav className={bar.group} aria-label='Component navigation'>
             <button
-              ref={toggle}
-              aria-label='Documentation view'
-              aria-controls='component-details'
-              aria-pressed={open}
-              onClick={toggleDocs}
+              aria-label='Browse components'
+              onClick={() => drawer.current?.showModal()}
             >
-              <PanelLeftOpen />
+              <HugeiconsIcon icon={SidebarLeft01Icon} />
             </button>
             {[-1, 1].map((step) => {
               const item = AllComponens[index + step];
               const direction = step < 0 ? 'Previous' : 'Next';
-              const icon = step < 0 ? <ChevronLeft /> : <ChevronRight />;
+              const icon =
+                step < 0 ? (
+                  <HugeiconsIcon icon={ArrowLeft01Icon} />
+                ) : (
+                  <HugeiconsIcon icon={ArrowRight01Icon} />
+                );
               return item ? (
                 <Link
                   key={step}
@@ -260,12 +272,13 @@ export function Showcase({
           </nav>
           <div className={bar.group}>
             <SearchDialog classname={bar.search} />
-            <button
-              onClick={() => copy('source')}
-              aria-label='Copy component source'
-            >
-              {copied === 'source' ? <Check /> : <Copy />}
-              <span>Copy source</span>
+            <button onClick={() => copy('cli')} aria-label='Copy CLI command'>
+              {copied === 'cli' ? (
+                <HugeiconsIcon icon={Tick02Icon} />
+              ) : (
+                <HugeiconsIcon icon={CommandLineIcon} />
+              )}
+              <span>Copy CLI</span>
             </button>
             <output aria-label='Reading progress'>
               {open ? progress : 0}%
@@ -273,14 +286,18 @@ export function Showcase({
           </div>
           <div className={bar.group}>
             <button onClick={() => copy('prompt')} aria-label='Copy prompt'>
-              {copied === 'prompt' ? <Check /> : <Sparkles />}
+              {copied === 'prompt' ? (
+                <HugeiconsIcon icon={Tick02Icon} />
+              ) : (
+                <HugeiconsIcon icon={AiMagicIcon} />
+              )}
               <span>Copy Prompt</span>
             </button>
             <button
               aria-label='Restart preview'
               onClick={() => setGeneration((value) => value + 1)}
             >
-              <RotateCw />
+              <HugeiconsIcon icon={RefreshIcon} />
             </button>
             <a
               href={github}
@@ -288,7 +305,7 @@ export function Showcase({
               rel='noreferrer'
               aria-label='View source on GitHub'
             >
-              <FileCode2 />
+              <HugeiconsIcon icon={SourceCodeIcon} />
             </a>
             <a
               href={live}
@@ -296,7 +313,7 @@ export function Showcase({
               rel='noreferrer'
               aria-label='Expand preview'
             >
-              <Expand />
+              <HugeiconsIcon icon={Maximize01Icon} />
             </a>
           </div>
           <span
