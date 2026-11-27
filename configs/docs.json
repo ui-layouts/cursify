@@ -4,6 +4,13 @@
       "name": "cursor",
       "componentArray": [
         {
+          "componentName": "atelier-media",
+          "iframeSrc": "live-components/atelier-media",
+          "filesrc": "components/cursor/atelier-media/atelier-media.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor"
+        },
+        {
           "componentName": "shader-trail",
           "iframeSrc": "live-components/shader-trail",
           "filesrc": "components/cursor/shader-trail/shader-trail.tsx",
@@ -130,8 +137,15 @@
           "comMessage": "Move Mouse To see the Effect"
         },
         {
-          "componentName": "fluid-cursor",
-          "filesrc": "components/cursor/common/fluid-cursor.tsx",
+          "componentName": "text-trail-cursor",
+          "filesrc": "components/cursor/common/text-trail-cursor.tsx",
+          "parentlink": "cursor",
+          "parentName": "cursor",
+          "comMessage": "Move Mouse To see the Effect"
+        },
+        {
+          "componentName": "fluid-pixel-cursor",
+          "filesrc": "components/cursor/common/fluid-pixel-cursor.tsx",
           "parentlink": "cursor",
           "parentName": "cursor",
           "comMessage": "Move Mouse To see the Effect"
