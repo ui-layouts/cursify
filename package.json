@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@base-ui/react": "^1.9.0",
     "@code-hike/mdx": "^0.9.0",
     "@headlessui/react": "^2.1.8",
+    "@hugeicons/core-free-icons": "^4.4.0",
+    "@hugeicons/react": "^1.1.10",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
     "@motionone/utils": "^10.18.0",

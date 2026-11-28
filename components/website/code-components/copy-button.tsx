@@ -1,8 +1,10 @@
 'use client';
 
 import { cn } from 'clswind';
-import { Copy, Check, CheckCheck } from 'lucide-react';
-import { useState } from 'react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import Copy01Icon from '@hugeicons/core-free-icons/Copy01Icon';
+import Tick02Icon from '@hugeicons/core-free-icons/Tick02Icon';
+import { useEffect, useRef, useState } from 'react';
 
 export function CopyButton({
   code,
@@ -11,41 +13,47 @@ export function CopyButton({
   code: string;
   classname?: string;
 }) {
-  const [hasCheckIcon, setHasCheckIcon] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'copied' | 'error'>('idle');
+  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  useEffect(() => () => clearTimeout(timer.current), []);
 
-  const onCopy = () => {
-    navigator.clipboard.writeText(code);
-    setHasCheckIcon(true);
-
-    setTimeout(() => {
-      setHasCheckIcon(false);
-    }, 1000);
-  };
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(code);
+      setStatus('copied');
+    } catch {
+      setStatus('error');
+    }
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => setStatus('idle'), 1800);
+  }
 
   return (
-    <>
-      <div
-        className={cn(
-          'absolute right-2 top-2 cursor-pointer dark:hover:shadow-[0px_1px_10px_5px_#3f7ef3] hover:shadow-[0px_1px_10px_5px_#9abaf7] dark:hover:border-blue-500 hover:border-blue-300  dark:bg-gray-950 backdrop-blur-2xl bg-white rounded-md border-2',
-          classname
-        )}
-        onClick={onCopy}
-      >
-        <div
-          className={` inset-0 transform transition-all duration-300  w-9 h-8 grid place-content-center  ${
-            hasCheckIcon ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
-          }`}
-        >
-          <Copy className='h-4 w-4 text-foreground/80' />
-        </div>
-        <div
-          className={`absolute inset-0 transform transition-all duration-300 w-8 h-8 grid place-content-center  ${
-            hasCheckIcon ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
-          }`}
-        >
-          <CheckCheck className='h-4 w-4 text-foreground/80' />
-        </div>
-      </div>
-    </>
+    <button
+      type='button'
+      aria-label='Copy code'
+      onClick={copy}
+      title={status === 'error' ? 'Clipboard unavailable' : 'Copy code'}
+      className={cn(
+        'absolute right-2 top-2 z-[1] grid h-8 w-8 place-items-center rounded-lg bg-white text-neutral-700 focus-visible:outline-offset-2',
+        classname,
+      )}
+      style={{
+        boxShadow:
+          'var(--panel-rim, inset 0 1px 0 #fff, 0 0 0 1px #0001, 0 2px 4px #0001)',
+      }}
+    >
+      <HugeiconsIcon
+        icon={status === 'copied' ? Tick02Icon : Copy01Icon}
+        size={16}
+      />
+      <span role='status' className='sr-only'>
+        {status === 'copied'
+          ? 'Copied'
+          : status === 'error'
+            ? 'Could not copy to clipboard'
+            : ''}
+      </span>
+    </button>
   );
 }

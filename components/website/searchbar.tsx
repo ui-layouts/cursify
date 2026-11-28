@@ -1,15 +1,10 @@
 'use client';
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
-import { useTheme } from 'next-themes';
 import { DialogProps } from '@radix-ui/react-dialog';
-import {
-  CircleIcon,
-  LaptopIcon,
-  MoonIcon,
-  SearchIcon,
-  SunIcon,
-} from 'lucide-react';
+import CircleIcon from '@hugeicons/core-free-icons/CircleIcon';
+import Search01Icon from '@hugeicons/core-free-icons/Search01Icon';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Command } from 'cmdk';
 
 import { Dialog, DialogContent } from '@/components/website/ui/dialog';
@@ -22,7 +17,6 @@ import { AllComponens } from '@/configs/docs';
 
 export function SearchDialog({ classname }: { classname?: string }) {
   const router = useRouter();
-  const { setTheme } = useTheme();
   const searchbardata = [...basePath, ...AllComponens];
   console.log(searchbardata);
 
@@ -60,9 +54,10 @@ export function SearchDialog({ classname }: { classname?: string }) {
           'relative inline-flex w-full items-center justify-start gap-2 whitespace-nowrap rounded-[0.5rem] border border-input bg-white px-4 py-2 text-sm font-normal text-muted-foreground shadow-none transition-colors hover:border-accent-foreground hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 dark:bg-black sm:pr-12',
           classname
         )}
+        aria-label="Search components"
         onClick={() => setSearchOpen(true)}
       >
-        <SearchIcon />
+        <HugeiconsIcon icon={Search01Icon} />
         <span className='hidden lg:inline-flex'>Search...</span>
         <span className='inline-flex lg:hidden'>Search...</span>
         <kbd className='pointer-events-none absolute right-[0.3rem] top-[0.3rem] hidden h-7 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex'>
@@ -119,37 +114,12 @@ export function SearchDialog({ classname }: { classname?: string }) {
                         }}
                       >
                         <div className='mr-2 flex h-4 w-4 items-center justify-center'>
-                          <CircleIcon className='h-3 w-3' />
+                          <HugeiconsIcon icon={CircleIcon} className='h-3 w-3' />
                         </div>
                         {category.componentName}
                       </Command.Item>
                     </React.Fragment>
                   ))}
-                </Command.Group>
-                <Command.Separator />
-                <Command.Group className='rounded-xl py-2 dark:bg-[#010309]'>
-                  <span className='block p-1 py-2'>Theme</span>
-                  <Command.Item
-                    className='relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:opacity-75'
-                    onSelect={() => runCommand(() => setTheme('light'))}
-                  >
-                    <SunIcon className='mr-2 h-4 w-4' />
-                    Light
-                  </Command.Item>
-                  <Command.Item
-                    className='relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:opacity-75'
-                    onSelect={() => runCommand(() => setTheme('dark'))}
-                  >
-                    <MoonIcon className='mr-2 h-4 w-4' />
-                    Dark
-                  </Command.Item>
-                  <Command.Item
-                    className='relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:opacity-75'
-                    onSelect={() => runCommand(() => setTheme('system'))}
-                  >
-                    <LaptopIcon className='mr-2 h-4 w-4' />
-                    System
-                  </Command.Item>
                 </Command.Group>
               </ScrollArea>
             </Command.List>

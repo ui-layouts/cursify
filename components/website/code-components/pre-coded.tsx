@@ -1,4 +1,4 @@
-import { Pre, RawCode, highlight } from 'codehike/code';
+import { Pre, highlight } from 'codehike/code';
 import prettier from 'prettier';
 import {
   Tabs,
@@ -57,65 +57,48 @@ export async function PreCoded({
     meta: '',
   };
 
-  // Highlight the code
-  const tshighlighted = await highlight(tsCode, 'github-from-css');
-  const jshighlighted = await highlight(jsCodeblock, 'github-from-css');
+  const [typescript, javascript] = await Promise.all([
+    highlight(tsCode, 'github-from-css'),
+    highlight(jsCodeblock, 'github-from-css'),
+  ]);
+  const variants = [
+    { id: 'typescript', label: 'TS', code: typescript, raw: codeblock },
+    { id: 'javascript', label: 'JS', code: javascript, raw: formattedJsCode },
+  ];
 
   return (
-    <div className='relative '>
-      <Tabs defaultValue={'typescript'}>
-        <TabsList
-          className={cn(
-            'absolute  right-[8rem] top-8 z-[1] h-9 p-0.5 border dark:border-background ',
-            tabclassname
-          )}
-        >
-          <TabsTrigger value={'typescript'} className='h-8 text-foreground'>
-            Ts
+    <Tabs defaultValue='typescript' className='relative min-w-0'>
+      <TabsList
+        aria-label='Source language'
+        className={cn(
+          'absolute top-2 right-12 z-[1] h-8 gap-0.5 p-0.5',
+          tabclassname,
+        )}
+      >
+        {variants.map(({ id, label }) => (
+          <TabsTrigger key={id} value={id} className='h-7 px-2 py-0 text-xs'>
+            {label}
           </TabsTrigger>
-          <TabsTrigger value={'javascript'} className=' h-8  text-foreground'>
-            Js{' '}
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value={'typescript'} className='bg-transparent'>
-          <div className={cn('relative p-4 ', classname)}>
-            <CopyButton
-              code={tshighlighted.code}
-              classname={cn('top-[1.58rem] right-[5.1em]', copyclass)}
-            />
+        ))}
+      </TabsList>
+      {variants.map(({ id, code, raw }) => (
+        <TabsContent key={id} value={id} className='relative mt-0 min-w-0'>
+          <CopyButton code={raw} classname={copyclass} />
+          <div className='min-w-0 rounded-lg border bg-neutral-50 pt-12'>
             <div
-              className={cn(
-                'p-2 max-h-[500px] pt-8 overflow-x-hidden rounded-md text-sm bg-codebg border'
-              )}
+              tabIndex={0}
+              aria-label={id + ' source'}
+              className='max-h-[min(50dvh,500px)] overflow-auto p-2 text-sm'
             >
               <Pre
-                code={tshighlighted}
+                code={code}
                 handlers={[callout, wordWrap, lineNumbers]}
                 className={cn('m-0', classname)}
               />
             </div>
           </div>
         </TabsContent>
-        <TabsContent value={'javascript'} className='bg-transparent'>
-          <div className={cn('relative p-4', classname)}>
-            <CopyButton
-              code={jshighlighted.code}
-              classname={cn('top-[1.58rem] right-[5.1em]', copyclass)}
-            />
-            <div
-              className={cn(
-                'p-2 max-h-[500px] overflow-x-hidden pt-8 rounded-md text-sm bg-codebg border'
-              )}
-            >
-              <Pre
-                code={jshighlighted}
-                handlers={[callout, wordWrap, lineNumbers]}
-                className={cn(' m-0', classname)}
-              />
-            </div>
-          </div>
-        </TabsContent>
-      </Tabs>
-    </div>
+      ))}
+    </Tabs>
   );
 }

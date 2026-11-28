@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { visit } from 'unist-util-visit';
-import { u } from 'unist-builder';
+import { toString } from 'hast-util-to-string';
 import remarkGfm from 'remark-gfm';
 import createMDX from '@next/mdx';
 import { remarkCodeHike, recmaCodeHike } from 'codehike/mdx';
@@ -11,9 +11,21 @@ const chConfig = {
   components: { code: 'PreCode' },
 };
 
-function rehypeComponent() {
+function labelTableColumns() {
   return (tree) => {
-    visit(tree, (node) => {});
+    visit(tree, 'element', table => {
+      if (table.tagName !== 'table') return;
+      const heading = table.children.find(node => node.tagName === 'thead');
+      const row = heading?.children.find(node => node.tagName === 'tr');
+      const labels = row?.children.filter(node => node.tagName === 'th').map(node => toString(node));
+      if (!labels) return;
+      visit(table, 'element', row => {
+        if (row.tagName !== 'tr') return;
+        row.children.filter(node => node.tagName === 'td').forEach((cell, index) => {
+          cell.properties.dataColumn = labels[index] ?? '';
+        });
+      });
+    });
   };
 }
 
@@ -22,7 +34,7 @@ const withMDX = createMDX({
   options: {
     remarkPlugins: [remarkGfm, [remarkCodeHike, chConfig]],
     recmaPlugins: [[recmaCodeHike, chConfig]],
-    rehypePlugins: [rehypeSlug, rehypeComponent],
+    rehypePlugins: [rehypeSlug, labelTableColumns],
     jsx: true,
   },
 });
