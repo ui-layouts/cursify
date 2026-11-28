@@ -1,5 +1,6 @@
 {
   "lockfileVersion": 1,
+  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "ui-layout-starter-kit",
@@ -25,7 +26,7 @@
         "@types/mdx": "^2.0.13",
         "bcryptjs": "^2.4.3",
         "class-variance-authority": "^0.7.0",
-        "clsx": "^2.1.1",
+        "clswind": "26.12.3",
         "cmdk": "^1.0.0",
         "codehike": "^1.0.1",
         "embla-carousel": "^8.3.0",
@@ -48,7 +49,6 @@
         "rehype-slug": "^6.0.0",
         "remark-gfm": "^4.0.0",
         "remark-parse": "^11.0.0",
-        "tailwind-merge": "^2.3.0",
         "unified": "^11.0.5",
         "unist-builder": "^4.0.0",
         "unist-util-visit": "^5.0.0",
@@ -524,6 +524,8 @@
     "class-variance-authority": ["class-variance-authority@0.7.1", "", { "dependencies": { "clsx": "^2.1.1" } }, "sha512-Ka+9Trutv7G8M6WT6SeiRWz792K5qEqIGEGzXKhAE6xOWAY6pPH8U+9IY3oCMv6kqTmLsv7Xh/2w2RigkePMsg=="],
 
     "client-only": ["client-only@0.0.1", "", {}, "sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA=="],
+
+    "clswind": ["clswind@26.12.3", "", { "dependencies": { "clsx": "^2.0.0", "tailwind-merge": "^2.0.0" } }, "sha512-Qyrg4UAQxEDVzCDwVBQDpEyscrjuJG5AN4X52MFEPWehLLBfwQS2mq3ApXKyNVFcJDaX2TrhbG6vL48Bc/opKA=="],
 
     "clsx": ["clsx@2.1.1", "", {}, "sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA=="],
 

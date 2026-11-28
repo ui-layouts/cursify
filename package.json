@@ -30,7 +30,7 @@
     "@types/mdx": "^2.0.13",
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",
-    "clswind": "^26.12.3",
+    "clswind": "26.12.3",
     "cmdk": "^1.0.0",
     "codehike": "^1.0.1",
     "embla-carousel": "^8.3.0",
