@@ -36,7 +36,6 @@ const commands = {
   yarn: 'yarn dlx',
   bun: 'bunx',
 };
-const desktop = '(min-width: 900px)';
 const repository = 'https://github.com/ui-layouts/cursify';
 
 export function Showcase({
@@ -57,7 +56,7 @@ export function Showcase({
   const [manager, setManager] = useState<keyof typeof commands>('npm');
   const notes = useRef<HTMLDivElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const ManagerIcon = managerIcons[manager];
   const [width, setWidth] = useState(50);
   const [dragging, setDragging] = useState(false);
@@ -70,42 +69,14 @@ export function Showcase({
 
   useEffect(() => () => clearTimeout(timer.current), []);
   useEffect(() => {
-    const media = matchMedia(desktop);
-    function sync() {
-      if (media.matches) {
-        if (
-          location.hash &&
-          document.getElementById(decodeURI(location.hash.slice(1)))
-        )
-          setOpen(true);
-      } else {
-        setOpen((notes.current?.getBoundingClientRect().top ?? Infinity) <= 72);
-        setProgress(
-          Math.round(
-            (100 * window.scrollY) /
-              Math.max(1, document.documentElement.scrollHeight - innerHeight),
-          ),
-        );
-      }
+    function revealHash() {
+      const target = document.getElementById(location.hash.slice(1));
+      if (target && notes.current?.contains(target)) setOpen(true);
     }
-    sync();
-    media.addEventListener('change', sync);
-    window.addEventListener('scroll', sync, { passive: true });
-    window.addEventListener('hashchange', sync);
-    return () => {
-      media.removeEventListener('change', sync);
-      window.removeEventListener('scroll', sync);
-      window.removeEventListener('hashchange', sync);
-    };
+    window.addEventListener('hashchange', revealHash);
+    return () => window.removeEventListener('hashchange', revealHash);
   }, []);
 
-  function toggleDocs() {
-    if (!matchMedia(desktop).matches) {
-      if (open) window.scrollTo({ top: 0 });
-      else notes.current?.scrollIntoView();
-    }
-    setOpen(!open);
-  }
   function resize(value: number) {
     if (value <= 25) {
       setOpen(false);
@@ -146,8 +117,7 @@ export function Showcase({
         onScroll={(event) => {
           if (
             !open &&
-            event.currentTarget.scrollTop > 0 &&
-            matchMedia(desktop).matches
+            event.currentTarget.scrollTop > 0
           ) {
             event.currentTarget.scrollTop = 0;
             setOpen(true);
@@ -312,7 +282,7 @@ export function Showcase({
               aria-label='Documentation view'
               aria-controls='component-details'
               aria-pressed={open}
-              onClick={toggleDocs}
+              onClick={() => setOpen(value => !value)}
             >
               <PanelIcon open={open} />
             </button>

@@ -76,8 +76,8 @@ export default async function DocPage(props: {
             <Content components={{ ComponentCodePreview: () => null }} />
           </div>
           <section aria-label='Component source' className='mt-8 min-w-0'>
-            <h2 className='mb-3 text-xl font-semibold'>Source code</h2>
-            <PreCoded codeblock={source} type='separate' classname='p-0' tabclassname='right-16 top-4' copyclass='right-5 top-4' />
+            <h2 className='mb-3 text-lg font-medium'>Source code</h2>
+            <PreCoded codeblock={source} />
           </section>
         </article>
       </Showcase>
